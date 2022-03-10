@@ -5,7 +5,7 @@
 //cabecera: void cargar_usuarios(usuario * usuarios)
 //precondicion: recibe un vector de usuarios
 //postcondicion: carga los usuarios del fichero usuarios.txt y lo vuelca a sus registros
-void cargar_usuarios(usuario * usuarios)
+void cargar_usuarios(usuario ** usuarios)
 {
     FILE *fich;
     int n_usuario = 0;
@@ -89,3 +89,8 @@ int n_usuarios()
     }
     return n;
 }
+
+
+fscanf(fich, "%[^-]-%[^-]-%[^-]  ", atemp.id)
+
+*vector = (locker *) realloc (*vector, (*num+1)*sizeof(locker))
