@@ -7,7 +7,7 @@
 
 //char * login(usuario ** v_usuarios)
 //precondicion: recibe un vector de usuarios inicializado
-//postcondicion: devuelve el Id_usuario del usuario con ese usuario y contraseña y "000" si no existe, y llama al perfil correspondiente (de profesor o de administrador)
+//postcondicion: devuelve el Id_usuario del usuario con ese usuario y contraseï¿½a y "000" si no existe, y llama al perfil correspondiente (de profesor o de administrador)
 char * login(usuario ** v_usuarios)
 {
     char user[6];
@@ -21,12 +21,12 @@ char * login(usuario ** v_usuarios)
     fgets(user, 6, stdin);
     printf("Contrasena: ");
     fflush(stdin);
-    fgets(passwd, 9, stdin);    //ya tenemos un usuario y una contraseña leidos
+    fgets(passwd, 9, stdin);    //ya tenemos un usuario y una contraseï¿½a leidos
 
     quita_salto_linea(user);
     quita_salto_linea(passwd);
 
-    while(n_usuario < usuarios_max && encontrado == 0)  //buscar si el usuario y la contraseña son válidos
+    while(n_usuario < usuarios_max && encontrado == 0)  //buscar si el usuario y la contraseï¿½a son vï¿½lidos
     {
         if((strcmp(user, (*v_usuarios)[n_usuario].Usuario) == 0)
            && (strcmp(passwd, (*v_usuarios)[n_usuario].Contrasena) == 0))
@@ -39,12 +39,12 @@ char * login(usuario ** v_usuarios)
         }
     }
 
-    if(encontrado == 1)  //si el usuario y contraseña son validos, comprobamos si es profe o admin y llamamos a su funcion perfil
+    if(encontrado == 1)  //si el usuario y contraseï¿½a son validos, comprobamos si es profe o admin y llamamos a su funcion perfil
     {
         if(strcmp((*v_usuarios)[n_usuario].Perfil_usuario, "profesor") == 0)
-            perfil_profesor((*v_usuarios)[n_usuario].Id_usuario);
+            perfil_profesor((*v_usuarios)[n_usuario].Id_usuario, &v_usuarios);
         else
-            perfil_administrador((*v_usuarios)[n_usuario].Id_usuario);
+            perfil_administrador((*v_usuarios)[n_usuario].Id_usuario, &v_usuarios);
         return (*v_usuarios)[n_usuario].Id_usuario;
     }
     else
@@ -59,12 +59,13 @@ char * login(usuario ** v_usuarios)
 //postcondicion: realiza las funciones del perfil de profesor
 void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
 {
-    printf("\nListado de grupos y materias\n")
+    int op;
+    int op2;
+    printf("\nListado de grupos y materias\n");
     menu_listado_seleccion_grupos_materias_profesor();
     do
     {
         menu_seleccion_grupo_materia();
-        int op;
         do
         {
             printf("1. Lista de alumnos\n2.Cambiar de grupo\n");
@@ -72,7 +73,6 @@ void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
         }while(op != 1 && op != 2); //controlo que no metan numero distinto de 1 y 2
         if(op == 1)     //si seleccionamos 1. lista de alumnos
         {
-            int op2;
             do
             {
                 lista_alumnos();

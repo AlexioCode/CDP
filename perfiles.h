@@ -1,5 +1,6 @@
 #ifndef PERFILES_H_INCLUDED
 #define PERFILES_H_INCLUDED
+#include "usuarios.h"
 
 //char * login(usuario ** v_usuarios)
 //precondicion: recibe un vector de usuarios inicializado

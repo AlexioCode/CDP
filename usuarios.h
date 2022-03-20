@@ -1,5 +1,6 @@
 #ifndef USUARIOS_H_INCLUDED
 #define USUARIOS_H_INCLUDED
+
 typedef struct
 {
 
@@ -36,4 +37,5 @@ void guardar_usuarios(usuario ** v_usuarios);
 //precondicion: recibe la direccion de un vector de usuarios
 //postcondicion: escribe por pantalla los usuarios que hay cargados en las estructuras
 void escribir_usuarios(usuario ** v_usuarios);
+
 #endif // USUARIOS_H_INCLUDED

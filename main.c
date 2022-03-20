@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "usuarios.h"
 int main()
 {
-    printf("Hello world!\n");
+    usuario * v_usuarios;
+    login(&v_usuarios);
     return 0;
 }

@@ -40,7 +40,7 @@ void cargar_usuarios(usuario ** usuarios)
     FILE *fich;
     usuario * aux;
     //*usuarios = (usuario *) realloc (*usuarios, n_lineas("usuarios.txt") * sizeof(usuario));
-    *usuarios = (usuario *) malloc (sizeof(usuario) * usuarios_max); //la reserva de memoria la hago al principio porque ya sé el número de usuarios del fichero "usuarios.txt"
+    *usuarios = (usuario *) malloc (sizeof(usuario) * usuarios_max); //la reserva de memoria la hago al principio porque ya sï¿½ el nï¿½mero de usuarios del fichero "usuarios.txt"
     int n_usuario;
     if ((fich = fopen("usuarios.txt", "r")) == NULL)
     {
