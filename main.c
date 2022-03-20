@@ -3,8 +3,7 @@
 #include "usuarios.h"
 int main()
 {
-    int n = n_usuarios();
-    usuario usuarios[n];
-    cargar_usuarios(&usuarios);
+    usuario * v_usuarios;
+    login(&v_usuarios);
     return 0;
 }
