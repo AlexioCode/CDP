@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #ifndef MATRICULAS_H_INCLUDED
 #define MATRICULAS_H_INCLUDED
 
@@ -6,21 +7,22 @@ typedef struct{
     char alumid[7];
 }matricula;
 
+int tam_matricula();
+void cargar_matriculas();
+// tam_max debe de ser un valor devuelto por cargar_materias() o alta()
+void guardar_matriculas(matricula *p, int tam_max);
 
-int cargar_matriculas();
-void guardar_matriculas(matricula *p, int cant);
-
-void cambiar_id_matriculas(matricula *p, char *id, char *nuevo_id);
+void cambiar_id_matriculas(matricula *p, char *matid, char *nuevo_matid);
 
 void cambiar_alumid_matriculas(matricula *p, char *alumid, char *nuevo_alumid);
 
-// cant debe de ser un valor devuelto por cargar_materias() o alta()
-void ver_matriculas(matricula *p, int cant);
+// tam_max debe de ser un valor devuelto por cargar_materias() o alta()
+void ver_matriculas(matricula *p, int tam_max);
 
 
-void baja(matricula *p, char *id);
+void baja_matricula(matricula *p, char *matid);
 
-// cant debe de ser un valor devuelto por cargar_materias o alta()
-void alta(matricula *p, char *id, char *alumid, int cant);
+// tam_max debe de ser un valor devuelto por cargar_materias o alta()
+int alta_matricula(matricula *p, char *matid, char *alumid, int tam_max);
 
 #endif // MATRICULAS_H_INCLUDED

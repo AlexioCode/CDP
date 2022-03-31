@@ -1,114 +1,132 @@
 #include <stdio.h>
+#include <string.h>
 #include "Matriculas.h"
 
-int cargar_materias(){
-    int i, j=0, cant = 0;
-    matricula *p;
-    FILE *matriculas = fopen("matriculas.txt","r"); //abre el fichero matriculas.txt para leer
-    if(matriculas == NULL)
+int tam_matricula()
+{
+    int n = 0;
+    char c;
+    FILE *fich;
+    if((fich = fopen("matriculas.txt", "r")) == NULL)
     {
-        printf("ERROR al abrir el fichero");
+        printf("No se ha podido abrir el fichero");
         exit(1);
     }
-
-    fseek(f, 0, SEEK_END); // busca el final del fichero
-    tam = ftell(f); // devuelve la posicion final
-    fseek(f, 0, SEEK_SET); // vuelve al principio
-
-    p = (matriculas *)malloc(sizeof(matriculas)); //Se genera el primer elemento del array
-    if(p==NULL)
-        printf("ERROR al cargar datos");
-    exit(1);
     else
-        cant++;
-        fgets(p->id,4,matriculas);
-        p->id[5]='\0';
-
-        fgets(p->alumid,6,matriculas);
-        p->alumid[7]='\0';
-
-        while(j<=cant); //se van cargando el resto de los elementos
+    {
+        c = getc(fich);
+        while(c != EOF)
         {
-            p = (matriculas *)realloc(p,sizeof(matriculas));
-        if(p==NULL)
-            printf("ERROR al cargar datos");
-        exit(1);
-        else
-        cant++;
-        fgets(p->id,4,matriculas);
-        p->id[5]='\0';
-
-        fgets(p->alumid,6,matriculas);
-        p->alumid[7]='\0';
-
-       }
-    fclose(matriculas);
-    return cant;
+            c = getc(fich);
+            if(c == '\n')   //una linea por cada caracter '\n'
+                n++;
+        }
+        fclose(fich);
+    }
+    return n;
 }
 
-    void guardar_matriculas(matriculas *p, int cant){
-        int i = 0;
-        FILE *matriculas = fopen("matriculas.txt","w"); //abre el fichero matriculas.txt para escribir
-        if(matriculas == NULL)
+void cargar_matriculas()
+{
+    int tam_max = tam_matricula("matriculas.txt");
+    int i;
+    matricula *p;
+    FILE *fich;
+
+    p = (matricula *)malloc(sizeof(matricula)); //Se genera el primer elemento del array
+    if(p==NULL)
         {
-            printf("ERROR al abrir el fichero");
-            exit(1);
+        printf("ERROR al cargar datos");
+        exit(1);
         }
         else
-        while(i<cant)
         {
-            fprintf(matriculas,"%s",(p+i)->id);
-            fprintf(matriculas,'-');
-            fputs((p+i)->alumid,matriculas);
-            i++;
+            if ((fich = fopen("matriculas.txt", "r")) == NULL)
+            {
+                puts("No se pudo abrir el fichero usuarios.txt");
+                exit(1);
+            }
+            else
+            {
+                for (i = 0; i < tam_max; i++)
+                {
+                    fscanf(fich, "%[^-]-%[^\n]\n", p[i].matid, p[i].alumid);    // %[^-]-%[^\n] esta ideado para leer una linea entera y guardar los valores correspondientes entre '-'
+                }
+                fclose(fich);
+            }
         }
-        fclose(matriculas);
-    }
+}
 
+void guardar_matriculas(matricula *p, int tam_max)
+{
 
-void cambiar_id_matriculas(matriculas *p, char *id,char *nuevo_id){
-    int i = 0;
-    while ((p+i)->id == id)
+    FILE * fich;
+    int i;
+    if((fich = fopen("matriculas.txt", "w")) == NULL)
     {
-        (p+i)->id = nuevo_id;
+        printf("No se ha podido abrir el fichero matriculas.txt");
+        exit(1);
+    }
+    else
+    {
+        for(i = 0; i < tam_max; i++)
+        {
+            fprintf(fich, "%s-%s\n", p[i].matid, p[i].alumid);  //Los datos se guardan con el estandar de estar separados por '-' en cada linea
+        }
+        fclose(fich);
+    }
+}
+
+void cambiar_id_matriculas(matricula *p, char *matid,char *nuevo_matid){
+    int i = 0;
+    while ((p+i)->matid == matid)
+    {
+        strcpy((p+i)->matid, nuevo_matid);
         i++;
     }
 }
 
 
-void cambiar_alumid_matriculas(matriculas *p, char *alumid, char *nuevo_alumid){
+void cambiar_alumid_matriculas(matricula *p, char *alumid, char *nuevo_alumid){
     int i = 0;
     while((p+i)->alumid == alumid)
     {
-        (p+i)->alumid = nuevo_alumid;
-        i++
+        strcpy((p+i)->alumid, nuevo_alumid);
+        i++;
     }
 }
 
-void ver_matriculas(matriculas *p, int cant){   //muestra las matriculas de linea en linea de forma: id-alumid
+void ver_matriculas(matricula *p, int tam_max){   //muestra las matriculas de linea en linea de forma: id-alumid
     int i;
-    for(i=0; 0< cant; i++){
-        printf(matriculas,"%s",(p+i)->id);
-        printf(matriculas,'-');
-        puts((p+i)->alumid,matriculas);
+    for(i=0; 0< tam_max; i++){
+        printf("%s",(p+i)->matid);
+        printf("-");
+        puts((p+i)->alumid);
     }
 }
 
 
-void baja(matriculas *p, char *id){         //Libera la matricula indicada con id
-    while((p+i)->id == id) {free(p+i);}
+void baja_matricula(matricula *p, char *matid){         //Libera la matricula indicada con id
+    int i;
+    while((p+i)->matid == matid)
+    {
+        free(p+i);
+        i++;
+    }
 }
 
-int alta(matriculas *p, char *nuevo_id, char *nuevo_alumid, int cant){
-    p = (matriculas *)realloc(p,sizeof(matriculas));
+int alta_matricula(matricula *p, char *nuevo_matid, char *nuevo_alumid, int tam_max){
+    p = (matricula *)realloc(p,sizeof(matricula));
         if(p==NULL)
+        {
             printf("ERROR al cargar datos");
-        exit(1);
-        else
-        cant++;
-        (p+cant)->id = nuevo_id;
-        (p+cant)->alumid = nuevo_alumid;
-        return cant;
+            exit(1);
+        }
+            else
+            tam_max++;
+            strcpy((p+tam_max)->matid, nuevo_matid);
+            strcpy((p+tam_max)->alumid, nuevo_alumid);
+            return tam_max;
 }
 
 
