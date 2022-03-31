@@ -113,9 +113,6 @@ void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
 void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
 {
     int op;
-    /*char op2;
-    do
-    {*/
         do
         {
             printf("\n1.- Usuarios\n2.- Alumnos\n3.- Materias\n4.- Horarios\n\n");
