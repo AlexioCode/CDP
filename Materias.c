@@ -122,7 +122,12 @@ void ver_materias(materia *p, int tam_max){    //muestra las materias de linea e
 
 
 void baja_materia(materia *p, char* id){
-    while(p->id == id) {free(p);} //Libera la materia indicada con id
+    int i=0;
+    while((p+i)->id == id)
+    {
+        free(p+i); //Libera la materia indicada con id
+        i++;
+    }
 }
 
 int alta_materia(materia *p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas, int tam_max){

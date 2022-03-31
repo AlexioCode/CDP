@@ -107,7 +107,7 @@ void ver_matriculas(matricula *p, int tam_max){   //muestra las matriculas de li
 
 
 void baja_matricula(matricula *p, char *matid){         //Libera la matricula indicada con id
-    int i;
+    int i=0;
     while((p+i)->matid == matid)
     {
         free(p+i);
