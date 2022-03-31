@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "usuarios.h"
-#define hey {puts("\n\nHEY!!!\n\n");}   //lo uso para hacer pruebas
 
 //cabecera: int n_lineas(char * fichero)
 //precondicion: fichero es el nombre del fichero cuyo numero de lineas quieres contar
