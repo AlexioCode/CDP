@@ -68,13 +68,17 @@ void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
 {
     int op;
     int op2;
+    /*
     printf("\n\nListado de grupos y materias\n");
     printf("\nListado grupos materias: \n");
-    //menu_listado_seleccion_grupos_materias_profesor();
-    do
+    */
+    //pregunto el dia de clase
+    id_horario = elige_grupo(id_prof, dia_clase);//dani la termina
+    /*do
     {
-        printf("\nSelecciona grupo materia: \n");
-        //menu_seleccion_grupo_materia();
+        printf("\nSelecciona grupo y materia: \n");
+        menu_seleccion_grupo_materia();
+        */
         do
         {
             do
@@ -87,7 +91,7 @@ void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
             if(op == 1)                 //si seleccionamos 1. vamos a lista de alumnos
             {
                 printf("\nLista de alumnos:\n");
-                //lista_alumnos();
+                listaalumprof();
                 printf("\nAlumno noseque: ");
                 do
                 {
@@ -99,8 +103,12 @@ void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
                         printf("\nLlamo a ficha_alumno(): ");
                         //ficha_alumno();
                     if(op2 == 2)
+                    {
                         printf("\nLlamo a calif_alum(): ");
+                        void ver_nota(int alum, int materia);
+                        calif_profe(int alum, int materia);
                         //calif_alum();
+                    }
                 }while(op2 != 1 && op2 != 2 && op2 != 3);
             }
         }while(op2 == 3);   //si op2=3 entonces volver a lista de alumnos
@@ -128,11 +136,11 @@ void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
                     break;
                 case 3:
                     printf("Llamo a admin_materias(): ");
-                    //admin_materias();
+                    admin_materias();   //la hace javi
                     break;
                 case 4:
                     printf("Llamo a admin_horarios(): ");
-                    //admin_horarios();
+                    admin_hora();
                     break;
             }
             if(op < 1 || op > 4)
@@ -184,3 +192,65 @@ void admin_usuarios(usuario ** pv_usuarios)
             printf("\nOpcion no valida");
     }while(op < 1 || op > 4);   //comprobar si opción es válida
 }
+
+//cabecera: void admin_alumnos(alumno ** pv_alumnos)
+//precondicion: pv_alumnos es un puntero a un vector de alumnos
+//postcondicion: nos permite seleccionar cual de las 4 funciones de administrar alumnos queremos llamar
+void admin_alumnos(alumno ** pv_alumnos)
+{
+    int op;
+    do
+    {
+        printf("\n1. Dar de alta\n2. Dar de baja\n3. Modificar alumno\n4. Listar alumnos\n\n");
+        scanf("%i", &op);
+        switch(op)
+        {
+            case 1:
+                alta_alumno(pv_alumnos);
+                break;
+            case 2:
+                baja_alumno(pv_alumnos);
+                break;
+            case 3:
+                modificar_alumno(pv_alumnos);
+                break;
+            case 4:
+                escribir_alumnos(pv_alumnos);
+                break;
+        }
+        if(op < 1 || op > 4)
+            printf("\nOpcion no valida");
+    }while(op < 1 || op > 4);   //comprobar si opción es válida
+}
+
+/*
+//cabecera: void admin_materias(materia ** pv_materias)
+//precondicion: pv_materias es un puntero a un vector de materias
+//postcondicion: nos permite seleccionar cual de las 4 funciones de administrar materias queremos llamar
+void admin_materias(materia ** pv_materias)
+{
+    int op;
+    do
+    {
+        printf("\n1. Dar de alta asignatura\n2. Eliminarla\n3. Modificarla\n4. Listar materias\n\n");
+        scanf("%i", &op);
+        switch(op)
+        {
+            case 1:
+                alta_materia(&pv_materias);
+                break;
+            case 2:
+                baja_materia(&pv_materias);
+                break;
+            case 3:
+                modificar_materia(&pv_materias);
+                break;
+            case 4:
+                escribir_materias(&pv_materias);
+                break;
+        }
+        if(op < 1 || op > 4)
+            printf("\nOpcion no valida");
+    }while(op < 1 || op > 4);   //comprobar si opción es válida
+}
+*/
