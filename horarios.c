@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-int A=5,Y=5,MAX=5,M=5,N=5;
+int A=5,Y=5,M=5,B=5;
 
 typedef struct{
 int ID_prof;
@@ -11,7 +11,7 @@ int hora_clase;
 int ID_materia;
 char grupo[10];
 }horari;
-horari horarios[N];
+horari horarios[B];
 
 typedef struct{
 	char Id_alum[6]; //Identificador escolar
@@ -42,7 +42,7 @@ materia mater[Y];
 
 int busca_hora(int hora,int dia, int ID_pro){
 int i;
-for(i=0;i<M;i++){
+for(i=0;i<B;i++){
     if(ID_pro==horarios[i].ID_prof && hora==horarios[i].hora_clase && horarios[i].dia_clase==dia){
         return i;
         }
@@ -176,30 +176,62 @@ switch(i){
     }
 }
 
-int elige_grupo(int ID_pro, int dia_clas){
-int i, j, k=1,p;
+int conver_int(char *A, int tam){ //A es el vector de caracteres (en numeros) y tam es el tamaño del vector
+int in=0,cont=1,i;
+for(i=tam-1;i>=0;i--){
+    in+=(A[i]*cont);
+    cont*=10;
+    }
+return in;}
+
+void conver_char(char *A, int B, int tam){
+int i, num=B, cont=10;
+for(i=tam-1;(i>=0 || num/10==0);i--){
+    num%10=A[i];
+    num/=10;
+    }
+if(i!=0){
+    do{
+        A[i]=0;
+        i--;
+    }while(i>=0);
+    }
+}
+
+int elige_grupo(char *ID){
+int i=0, j=0, k=1,p=2,dia_clas=0,ID_pro;
+ID_pro=conver_int(ID, 3);
+do{
+    printf("Introduzca el dia al que quiere acceder \n Introduzca un numero del 1-5 siendo el 1 el lunes, el 2 martes, el 3 miercoles, el 4 jueves y el 5 viernes \n");
+    scanf("%i", dia_clas);
+
+}while(dia_clas>5 || dia_clas<1);
+
+
 printf("Estas son las clases que tiene en este día:\n");
 do{
-j=0;
-printf("A la hora %i tiene ",k);
-    for(i=0;i>M;i++){
-        if(ID_pro==horarios[M].ID_prof && dia_clas==horarios[M].dia_clase && k==horarios[M].hora_clase){
-            printf("con la clase %i para dar la asignatura %i\n", horarios[M].grupo, horarios[M].ID_materia);
+    printf("A la hora %i tiene ",k);
+    j=0;
+    for(i=0;i>B;i++){
+        if(ID_pro==horarios[i].ID_prof && dia_clas==horarios[i].dia_clase && k==horarios[i].hora_clase){
+            printf("con la clase %i para dar la asignatura %i\n", horarios[i].grupo, horarios[i].ID_materia);
             k++;
             j=1;
             do{
                 printf("¿Desea elegir este grupo?\n Elige 1 para si y 0 para no \n");
                 scanf("%i",p);
                 }while(p==0 || p==1);
-            if(p==1){return i;}
+            if(p==1){
+                    printf("%s", horarios[i].grupo);
+                    return i;}
             }
         }
     if(j=0){
         printf("hora libre\n");
         }
 k++;
-    }while(k<6);
-return 0;}
+    }while(k<=5);
+return -1;}
 
 void aniadir_hora(int ID_pro){
 int a=0, b=0,i,l=1,c=3;
@@ -211,7 +243,7 @@ do{
 printf("Introduzca la hora del dia en que quiere aniadir la clase \n El numero debera ser del 1-6 donde sera primera, segunda, tercera, cuarta, quinta y sexta hora respectivamente");
 scanf("%i",b);
 }while(b<1 || b>6);
-for(i=0;i<M;i++){
+for(i=0;i<B;i++){
     if(horarios[i].ID_prof==ID_pro && horarios[i].dia_clase==a && horarios[i].hora_clase==b){
         l=0;
         }
@@ -232,11 +264,11 @@ if(l==0){
         }
     }
 else{
-    horarios=realloc(horarios,M+1);           //Preguntar sobre el realloc
+    horarios=realloc(horarios,B+1);           //Preguntar sobre el realloc
     M=M+1;                                  //Preguntar sobre punteros
-    horarios[M-1].dia_clase=a;
-    horarios[M-1].hora_clase=b;
-    horarios[M-1].ID_prof=ID_pro;
+    horarios[B-1].dia_clase=a;
+    horarios[B-1].hora_clase=b;
+    horarios[B-1].ID_prof=ID_pro;
                                             //Preguntar sobre materia y sobre el grupo
     }
 }
@@ -265,11 +297,11 @@ if(i==-1){
         }
     }
 else{
-    for(p=i;p<(M-1);p++){
+    for(p=i;p<(B-1);p++){
         horarios[p]=horarios[p+1];
         }
-    horarios=realloc(horarios,M-1);
-    M--;
+    horarios=realloc(horarios,B-1);
+    B--;
     printf("Eliminado con exito \n");
     printf("Volveras al anterior menu \n");
     }

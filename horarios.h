@@ -31,11 +31,24 @@ Postcondicion: Abre un menu para seleccionar que quiere hacer con la hora selecc
 */
 void modificar_hora(int ID_pro);
 /*
-cabecera: int elige_grupo(int ID_pro, int dia_clas)
-Precondicion: Le debe llegar la ID del profesor y el dia en el que esta
-Postcondicion: Le dice que clases tiene ese dia y devuelve la posicion del vector de la clase elegida
+cabecera: char conver_char(char *A, int B, int tam)
+Precondicion: Le debe llegar un vector de caracteres pero que contengan numeros enteros, el tamanio de dicho vector y el numero a introducir en el
+Postcondicion: Devuelve en el vector, el numero separado por unidades
 */
-int elige_grupo(int ID_pro, int dia_clas);
+char conver_char(char *A, int B, int tam);
+/*
+cabecera: int conver_int(char *A, int tam)
+Precondicion: Le debe llegar un vector de caracteres pero que contengan numeros enteros y el tamanio de dicho vector
+Postcondicion: Devuelve el numero que hay en el vector en formato de entero
+*/
+int conver_int(char *A, int tam);
+/*
+cabecera: int elige_grupo(char *ID)
+Precondicion: Le debe llegar la ID del profesor
+Postcondicion: Le dice que clases tiene ese dia y devuelve la posicion del vector de la clase elegida sino devuelve -1
+
+*/
+int elige_grupo(char *ID);
 /*
 cabecera: void aniadir_hora(int ID_pro)
 Precondicion: Le debe llegar la ID de un profesor
