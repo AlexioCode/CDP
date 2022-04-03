@@ -1,7 +1,7 @@
 #ifndef USUARIOS_H_INCLUDED
 #define USUARIOS_H_INCLUDED
 
-int num_usuarios;   //variable global que guarda el numero de usuarios que hay en el vector de usuarios
+int num_usuarios;   //variable global que contiene en todo momento el numero de usuarios que hay en el vector de usuarios
 typedef struct
 {
     char Id_usuario[4];
@@ -30,5 +30,10 @@ void guardar_usuarios(usuario ** v_usuarios)
 //precondicion: fichero es el nombre del fichero cuyo numero de lineas quieres contar
 //postcondicon: devuelve el numero de lineas que tiene fichero
 int n_lineas(char * fichero);
+
+//cabecera: void admin_usuarios(usuario ** pv_usuarios)
+//precondicion: pv_usuarios es un puntero a un vector de usuarios
+//postcondicion: nos permite seleccionar cual de las 4 funciones de administrar usuarios queremos llamar
+void admin_usuarios(usuario ** pv_usuarios);
 
 #endif // USUARIOS_H_INCLUDED

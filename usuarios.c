@@ -264,3 +264,33 @@ void modificar_usuario(usuario ** pv_usuarios)
     else
         printf("El id de usuario no existe");
 }
+
+//cabecera: void admin_usuarios(usuario ** pv_usuarios)
+//precondicion: pv_usuarios es un puntero a un vector de usuarios
+//postcondicion: nos permite seleccionar cual de las 4 funciones de administrar usuarios queremos llamar
+void admin_usuarios(usuario ** pv_usuarios)
+{
+    int op;
+    do
+    {
+        printf("\n1. Dar de alta\n2. Dar de baja\n3. Modificar usuario\n4. Listar usuarios\n\n");
+        scanf("%i", &op);
+        switch(op)
+        {
+            case 1:
+                alta_usuario(pv_usuarios);
+                break;
+            case 2:
+                baja_usuario(pv_usuarios);
+                break;
+            case 3:
+                modificar_usuario(pv_usuarios);
+                break;
+            case 4:
+                escribir_usuarios(pv_usuarios);
+                break;
+        }
+        if(op < 1 || op > 4)
+            printf("\nOpcion no valida");
+    }while(op < 1 || op > 4);   //comprobar si opción es válida
+}
