@@ -1,15 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "perfiles.h"
-#include "usuarios.h"
-/*
 #include "alumnos.h"
-#include "materias.txt"
-#include "matriculas.txt"
 #include "calificaciones.txt"
 #include "horarios.txt"
-*/
+#include "Materias.txt"
+#include "Matriculas.txt"
+#include "perfiles.h"
+#include "usuarios.h"
 
 //char * login(usuario ** pv_usuarios)
 //precondicion: recibe una direccion de vector de usuarios inicializado
@@ -29,12 +27,12 @@ char * login(usuario ** pv_usuarios)
         fgets(user, 6, stdin);
         printf("Contrasena: ");
         fflush(stdin);
-        fgets(passwd, 9, stdin);    //ya tenemos un usuario y una contrase�a leidos
+        fgets(passwd, 9, stdin);    //ya tenemos un usuario y una contrasena leidos
 
         quita_salto_linea(user);
         quita_salto_linea(passwd);
 
-        while(n_usuario < num_usuarios && encontrado == 0)  //buscar si el usuario y la contrase�a son v�lidos
+        while(n_usuario < num_usuarios && encontrado == 0)  //buscar si el usuario y la contrasena son validos
         {
             if((strcmp(user, (*pv_usuarios)[n_usuario].Usuario) == 0)
             && (strcmp(passwd, (*pv_usuarios)[n_usuario].Contrasena) == 0))
@@ -68,59 +66,60 @@ void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
 {
     int op;
     int op2;
-    /*
-    printf("\n\nListado de grupos y materias\n");
-    printf("\nListado grupos materias: \n");
-    */
-    //pregunto el dia de clase
-    id_horario = elige_grupo(id_prof, dia_clase);//dani la termina
-    /*do
+    int pos_grupo;
+    char grupo[10];
+    char siglas_materia[4];
+    char Id_materia[5];
+    char Id_alumno[7];
+
+    do
     {
-        printf("\nSelecciona grupo y materia: \n");
-        menu_seleccion_grupo_materia();
-        */
         do
         {
+            pos_grupo = elige_grupo(id_prof);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
+            strcpy(grupo, horarios[pos_grupo].grupo);
+            strcpy(Id_materia, horarios[pos_grupo].ID_materia);
+            strcpy(siglas_materia, id_siglas_materia(Id_materia));
+            printf("\nMenu:\nGRUPO %s MATERIA %s\n--------------\n"
+                "1. Lista de alumnos\n2. Cambiar de grupo\n\n", grupo, siglas_materia);
+            scanf("%i", &op);
+            if(op != 1 && op != 2)
+            printf("Opcion no valida");
+        }while(op != 1);            //controlo que no metan numero distinto de 1. listar alumnos
+
+        if(op == 1)                 //Opcion elegida: lista de alumnos
+        {
+            mostrar_alumnos_grupo_materia(grupo, Id_materia);
+            printf("Selecciona un alumno (Identificador escolar): ");
+            fflush(stdin);
+            fgets(Id_alumno, 7, stdin);
+            printf("\nMenu: Lista de alumnos:\nALUMNO: %s", Id_alumno);
             do
             {
-                printf("\n1. Lista de alumnos\n2. Cambiar de grupo\n\n");
-                scanf("%i", &op);
-                if(op != 1 && op != 2)
-                    printf("Opcion no valida");
-            }while(op != 1 && op != 2); //controlo que no metan numero distinto de 1 y 2
-            if(op == 1)                 //si seleccionamos 1. vamos a lista de alumnos
-            {
-                printf("\nLista de alumnos:\n");
-                listaalumprof();
-                printf("\nAlumno noseque: ");
-                do
+                printf("\n1. Ficha del alumno\n2. Calificaciones del alumno\n3. Volver\n\n");
+                scanf("%i", &op2);
+                if(op2 == 1)
+                    ficha_alumno(Id_alumno);
+                if(op2 == 2)
                 {
-                    printf("\n1. Ficha del alumno\n2. Calificaciones del alumno\n3. Volver\n\n");
-                    scanf("%i", &op2);
-                    if(op2 != 1 && op2 != 2 && op2 != 3)
-                        printf("Opcion incorrecta");
-                    if(op2 == 1)
-                        printf("\nLlamo a ficha_alumno(): ");
-                        //ficha_alumno();
-                    if(op2 == 2)
-                    {
-                        printf("\nLlamo a calif_alum(): ");
-                        void ver_nota(int alum, int materia);
-                        calif_profe(int alum, int materia);
-                        //calif_alum();
-                    }
-                }while(op2 != 1 && op2 != 2 && op2 != 3);
-            }
-        }while(op2 == 3);   //si op2=3 entonces volver a lista de alumnos
-    }while(op == 2); //si meten un 2 volvemos a seleccionar grupo y materia
+                    ver_nota(Id_alumno, Id_materia);
+                    calif_profe(Id_alumno, Id_materia);
+                }
+                if(op2 != 1 && op2 != 2 && op2 != 3)
+                    printf("Opcion incorrecta");
+            }while(op2 != 1 && op2 != 2 && op2 != 3);   //controlo que está correcta la opcion
+        }
+    }while(op2 == 3);   //si queremos volver al menu anterior
 }
 
 //cabecera: void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
-//precondicion: id_prof es el Id_usuario del administrador en cuestion y pv_usuarios es un puntero a un vector de usuarios
+//precondicion: id_admin es el Id_usuario del administrador en cuestion y pv_usuarios es un puntero a un vector de usuarios
 //postcondicion: realiza las funciones del perfil de administrador
 void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
 {
-    int op;
+    int op, op2;
+    do
+    {
         do
         {
             printf("\n1.- Usuarios\n2.- Alumnos\n3.- Materias\n4.- Horarios\n\n");
@@ -131,26 +130,23 @@ void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
                     admin_usuarios(pv_usuarios);
                     break;
                 case 2:
-                    printf("Llamo a admin_alumnos(): ");
-                    //admin_alumnos();
+                    listaalumadm(alum);
                     break;
                 case 3:
-                    printf("Llamo a admin_materias(): ");
-                    admin_materias();   //la hace javi
+                    admin_materias();
                     break;
                 case 4:
-                    printf("Llamo a admin_horarios(): ");
                     admin_hora();
                     break;
+                default:
+                    printf("Opcion no valida\n");
             }
-            if(op < 1 || op > 4)
-                printf("Opcion no valida\n");
         }while(op < 1 || op > 4);
 
-        /*printf("Desea realizar otra operacion de administrador (s/n): ");
+        printf("Desea realizar otra operacion de administrador (s/n): ");
         fflush(stdin);
         op2 = getchar();
-    }while(op2 == 's');         //por si quiere realizar otra operacion de administrador*/
+    }while(op2 == 's'); //por si quiere realizar otra operacion de administrador*/
 }
 
 //cabecera: void quita_salto_linea(char * cad)
@@ -162,95 +158,3 @@ void quita_salto_linea(char * cad)
     if (cad[longitud - 1] == '\n')
         cad[longitud - 1] = '\0';
 }
-
-//cabecera: void admin_usuarios(usuario ** pv_usuarios)
-//precondicion: pv_usuarios es un puntero a un vector de usuarios
-//postcondicion: nos permite seleccionar cual de las 4 funciones de administrar usuarios queremos llamar
-void admin_usuarios(usuario ** pv_usuarios)
-{
-    int op;
-    do
-    {
-        printf("\n1. Dar de alta\n2. Dar de baja\n3. Modificar usuario\n4. Listar usuarios\n\n");
-        scanf("%i", &op);
-        switch(op)
-        {
-            case 1:
-                alta_usuario(pv_usuarios);
-                break;
-            case 2:
-                baja_usuario(pv_usuarios);
-                break;
-            case 3:
-                modificar_usuario(pv_usuarios);
-                break;
-            case 4:
-                escribir_usuarios(pv_usuarios);
-                break;
-        }
-        if(op < 1 || op > 4)
-            printf("\nOpcion no valida");
-    }while(op < 1 || op > 4);   //comprobar si opción es válida
-}
-
-//cabecera: void admin_alumnos(alumno ** pv_alumnos)
-//precondicion: pv_alumnos es un puntero a un vector de alumnos
-//postcondicion: nos permite seleccionar cual de las 4 funciones de administrar alumnos queremos llamar
-void admin_alumnos(alumno ** pv_alumnos)
-{
-    int op;
-    do
-    {
-        printf("\n1. Dar de alta\n2. Dar de baja\n3. Modificar alumno\n4. Listar alumnos\n\n");
-        scanf("%i", &op);
-        switch(op)
-        {
-            case 1:
-                alta_alumno(pv_alumnos);
-                break;
-            case 2:
-                baja_alumno(pv_alumnos);
-                break;
-            case 3:
-                modificar_alumno(pv_alumnos);
-                break;
-            case 4:
-                escribir_alumnos(pv_alumnos);
-                break;
-        }
-        if(op < 1 || op > 4)
-            printf("\nOpcion no valida");
-    }while(op < 1 || op > 4);   //comprobar si opción es válida
-}
-
-/*
-//cabecera: void admin_materias(materia ** pv_materias)
-//precondicion: pv_materias es un puntero a un vector de materias
-//postcondicion: nos permite seleccionar cual de las 4 funciones de administrar materias queremos llamar
-void admin_materias(materia ** pv_materias)
-{
-    int op;
-    do
-    {
-        printf("\n1. Dar de alta asignatura\n2. Eliminarla\n3. Modificarla\n4. Listar materias\n\n");
-        scanf("%i", &op);
-        switch(op)
-        {
-            case 1:
-                alta_materia(&pv_materias);
-                break;
-            case 2:
-                baja_materia(&pv_materias);
-                break;
-            case 3:
-                modificar_materia(&pv_materias);
-                break;
-            case 4:
-                escribir_materias(&pv_materias);
-                break;
-        }
-        if(op < 1 || op > 4)
-            printf("\nOpcion no valida");
-    }while(op < 1 || op > 4);   //comprobar si opción es válida
-}
-*/
