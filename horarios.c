@@ -11,7 +11,7 @@ int hora_clase;
 int ID_materia;
 char grupo[10];
 }horari;
-horari horarios[B];
+horari *horarios;
 
 typedef struct{
 	char Id_alum[6]; //Identificador escolar
@@ -22,7 +22,7 @@ typedef struct{
 	char Grupo[10];
 } r_alum;
 
-r_alum alum[A];
+r_alum *alum;
 
 typedef struct{
     int Id_usuario;
@@ -31,14 +31,14 @@ typedef struct{
     char Usuario[6];
     char Contrasena[9];
 }usuario;
-usuario usuar[M];
+usuario *usuar;
 
 typedef struct{
 int id;
 char nombre[50];
 char siglas[3];
 }materia;
-materia mater[Y];
+materia *mater;
 
 int busca_hora(int hora,int dia, int ID_pro){
 int i;
@@ -78,7 +78,7 @@ void grupo_hora(int i){
 int o=0,l=0,u=0;
 char c[10];
 printf("Introduzca la clase a donde quiere mover la clase \n");
-getchar(c);
+scanf("%s", c);
     do{
     if(strcmp(c,alum[l].Grupo)==0){
         o=1;}
@@ -98,7 +98,7 @@ getchar(c);
         }
     }
     else{
-        cpystr(horarios[i].grupo,c);
+        strcpy(horarios[i].grupo,c);
         printf("Se ha completado el cambio con exito \n");
         return;
     }
@@ -176,31 +176,9 @@ switch(i){
     }
 }
 
-int conver_int(char *A, int tam){ //A es el vector de caracteres (en numeros) y tam es el tamaño del vector
-int in=0,cont=1,i;
-for(i=tam-1;i>=0;i--){
-    in+=(A[i]*cont);
-    cont*=10;
-    }
-return in;}
-
-void conver_char(char *A, int B, int tam){
-int i, num=B, cont=10;
-for(i=tam-1;(i>=0 || num/10==0);i--){
-    num%10=A[i];
-    num/=10;
-    }
-if(i!=0){
-    do{
-        A[i]=0;
-        i--;
-    }while(i>=0);
-    }
-}
-
 int elige_grupo(char *ID){
 int i=0, j=0, k=1,p=2,dia_clas=0,ID_pro;
-ID_pro=conver_int(ID, 3);
+ID_pro=strtol(ID,NULL,10);
 do{
     printf("Introduzca el dia al que quiere acceder \n Introduzca un numero del 1-5 siendo el 1 el lunes, el 2 martes, el 3 miercoles, el 4 jueves y el 5 viernes \n");
     scanf("%i", dia_clas);
@@ -265,11 +243,10 @@ if(l==0){
     }
 else{
     horarios=realloc(horarios,B+1);           //Preguntar sobre el realloc
-    M=M+1;                                  //Preguntar sobre punteros
+    B=B+1;                                    //Preguntar sobre punteros
     horarios[B-1].dia_clase=a;
     horarios[B-1].hora_clase=b;
     horarios[B-1].ID_prof=ID_pro;
-                                            //Preguntar sobre materia y sobre el grupo
     }
 }
 
@@ -309,7 +286,7 @@ else{
 
 int busca(int ID_pro){              //Devuelve 1 si existe la ID pasada y ademas es un profesor
 int i;
-for(i=0;i<MAX;i++){
+for(i=0;i<M;i++){
     if(strcmp("profesor",usuar[i].Perfil_usuario)==0 && ID_pro==usuar[i].Id_usuario){
         return 1;
         }

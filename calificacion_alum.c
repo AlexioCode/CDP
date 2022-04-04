@@ -14,7 +14,7 @@ int materia;
 int alum;
 int not;
 }calificaciones;
-calificaciones nota[N];
+calificaciones *nota;
 
 int borrar(int alum, int materia){
 int i,j=0,k,u=0;
@@ -116,8 +116,10 @@ N++;
 anadir_not(alu,materia);
 }
 
-void calif_profe(int alum, int materia){
-int a=0,b=0;
+void calif_profe(char *al, char *mat){
+int a=0,b=0, alum, materia;
+alum=strtol(al, NULL ,10);
+materia=strtol(mat,NULL,10);
 do{
     printf("###################################################################################\n");
     printf("Bienvenido al menu de calificaciones \n");
