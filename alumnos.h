@@ -1,8 +1,10 @@
 #ifndef ALUMNOS_H_INCLUDED
 #define ALUMNOS_H_INCLUDED
+#include "Materias.h"
+
 //Estructura
 typedef struct{
-	char Id_alum[6]; //Identificador escolar
+	char Id_alum[7]; //Identificador escolar
 	char Nombre_alum[20]; //Nombre alumno
 	char Direc_alum[30]; //Direccion alumno
 	char Local_alum[30]; //Localidad del alumno
@@ -10,41 +12,53 @@ typedef struct{
 	char Grupo[10];
 } r_alum;
 
-// Cabecera: int nLineas(char* fichero)
-//Precondición: Puntero a fichero
-//Postcondición: Información cargada en el fichero
+//Cabecera: int tam_alumnos(char *fichero)
+//Precondici—n: Puntero a fichero
+//Postcondici—n: Tama–o del fichero alumnos.txt
+int tam_alumnos(char *fichero);
 
-int nLineas(char* fichero);
+//Cabecera: void cargar_estructura (char *fichero)
+//PrecondiciÑn: Puntero a fichero
+//PostcondiciÑn: Estructura cargada en fichero
+void cargar_estructura (char *fichero);
 
-//Cabecera: void Guardar_Alumnos(r_alum **alum, int *A)
-// Precondici—n: estructura realizada y tamaño A
-//Postcondici—n: estructura cargada en fichero
-void Guardar_Alumnos(r_alum **alum, int *A);
+//Cabecera: void Guardar_Alumnos(r_alum *alum)
+// PrecondiciÑn: estructura realizada
+//PostcondiciÑn: estructura cargada en fichero
+void Guardar_Alumnos(r_alum *alum);
 
-//Cabecera:void baja(int alumno)
-//Precondición: Recibe la estructura con un alumno.
-//Postcondición: Da de alta al alumno seleccionado.
+//Cabecera:void alta(r_alum* alum)
+//Precondici—n: Recibe la estructura inicializada
+//Postcondici—n: Da de alta al alumno seleccionado.
+void alta(r_alum* alum);
 
-void alta(r_alum *alum);
-
-//Cabecera:void baja(int alumno)
-//Precondición: Recibe la estructura inicializada
-//Postcondición: Da de baja al alumno seleccionado.
+//Cabecera:void baja(r_alum *alum)
+//Precondici—n: Recibe la estructura inicializada
+//Postcondici—n: Da de baja al alumno seleccionado.
 void baja(r_alum *alum);
 
 //Cabecera:void modalum(r_alum *alum)
-//Precondición: Recibe estructura inicializada
-//Postcondición: Alumno que ha seleccionado el usuario modificado
+//Precondici—n: Recibe estructura inicializada
+//Postcondici—n: Alumno que ha seleccionado el usuario modificado
 void modalum(r_alum *alum);
 
-//Cabecera:void listaalumprof (r_alum*alum)
-//Precondición: Recibe estructura inicializada
-//Postcondición: Devuelve lista de alumnos con opción a modificar alguno de ellos
+//Cabecera:void listaalumprof (r_alum *alum)
+//Precondici—n: Recibe estructura inicializada
+//Postcondici—n: Devuelve lista de alumnos con opci—n a modificar alguno de ellos
 void listaalumprof (r_alum *alum);
 
-//Cabecera:void listaalumadm (r_alum*alum)
-//Precondición: Recibe estructura inicializada
-//Postcondición: Devuelve lista de alumnos con opción a modificar alguno de ellos
+//Cabecera:void listaalumadm (r_alum *alum)
+//Precondici—n: Recibe estructura inicializada
+//Postcondici—n: Devuelve lista de alumnos con opci—n a modificar alguno de ellos
 void listaalumadm (r_alum *alum);
 
+//Cabecera:ficha_alumno(char* id_alumno,r_alum *alum )
+//Precondici—n: Recibe estructura inicializada y el id de un alumno en concreto
+//Postcondici—n: Devuelve lista de un alumno con opcion a modificar datos
+void ficha_alumno(char* id_alumno,r_alum *alum );
+
+//Cabecera: void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat)
+//Precondici—n: Recibe estructura inicializada, grupo de un alumno y materia
+//Postcondici—n: Devuelve lista de alumnos del grupo determinado en la materia determinada
+void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat);
 #endif //Perfiles_H_included
