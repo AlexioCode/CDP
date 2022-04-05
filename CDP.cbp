@@ -31,6 +31,43 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="CDP.cpp" />
+		<Unit filename="Cargar_calificaciones.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Cargar_horarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Guardar_Horarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Guardar_calificaciones.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Materias.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Materias.h" />
+		<Unit filename="Matriculas.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Matriculas.h" />
+		<Unit filename="alumnos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="alumnos.h" />
+		<Unit filename="calificacion_alum.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="calificaciones.h" />
+		<Unit filename="ej1.cpp" />
+		<Unit filename="horarios.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="horarios.h" />
+		<Unit filename="main PPal.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
