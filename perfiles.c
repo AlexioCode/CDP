@@ -99,7 +99,7 @@ void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
                 printf("\n1. Ficha del alumno\n2. Calificaciones del alumno\n3. Volver\n\n");
                 scanf("%i", &op2);
                 if(op2 == 1)
-                    ficha_alumno(Id_alumno);
+                    ficha_alumno(Id_alumno, alum);
                 if(op2 == 2)
                 {
                     ver_nota(Id_alumno, Id_materia);
