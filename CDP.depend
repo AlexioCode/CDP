@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1648064556 source:c:\users\alexa\desktop\cdp\main.c
+	<stdio.h>
+	<stdlib.h>
+	"usuarios.h"
+
+1648070242 source:c:\users\alexa\desktop\cdp\usuarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"usuarios.h"
+
+1648067257 source:c:\users\alexa\desktop\cdp\perfiles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"perfiles.h"
+	"usuarios.h"
+	"alumnos.h"
+	"materias.txt"
+	"matriculas.txt"
+	"calificaciones.txt"
+	"horarios.txt"
+
+1648055339 c:\users\alexa\desktop\cdp\perfiles.h
+	"usuarios.h"
+
+1648057975 c:\users\alexa\desktop\cdp\usuarios.h
+
+1648136482 source:c:\users\usuario\desktop\cdp\main.c
+	<stdio.h>
+	<stdlib.h>
+	"usuarios.h"
+	"perfiles.h"
+
+1648070933 c:\users\usuario\desktop\cdp\usuarios.h
+
+1648137729 source:c:\users\usuario\desktop\cdp\perfiles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"perfiles.h"
+	"usuarios.h"
+	"alumnos.h"
+	"materias.txt"
+	"matriculas.txt"
+	"calificaciones.txt"
+	"horarios.txt"
+
+1648070936 c:\users\usuario\desktop\cdp\perfiles.h
+	"usuarios.h"
+
+1648138129 source:c:\users\usuario\desktop\cdp\usuarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"usuarios.h"
+
