@@ -177,8 +177,11 @@ switch(i){
 }
 
 int elige_grupo(char *ID){
-int i=0, j=0, k=1,p=2,dia_clas=0,ID_pro;
-ID_pro=strtol(ID,NULL,10);
+int i=0, j=0, k=1,p=2,dia_clas=0, ID_pro;
+long ID_p;
+ID_p=strtol(ID,NULL,10);
+ID_pro=(int)ID_p;
+
 do{
     printf("Introduzca el dia al que quiere acceder \n Introduzca un numero del 1-5 siendo el 1 el lunes, el 2 martes, el 3 miercoles, el 4 jueves y el 5 viernes \n");
     scanf("%i", dia_clas);
@@ -319,3 +322,6 @@ switch(a){
             break;
     }
 }
+
+
+

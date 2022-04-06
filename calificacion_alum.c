@@ -117,9 +117,12 @@ anadir_not(alu,materia);
 }
 
 void calif_profe(char *al, char *mat){
-int a=0,b=0, alum, materia;
-alum=strtol(al, NULL ,10);
-materia=strtol(mat,NULL,10);
+int a=0,b=0, alum,materia;
+long alu, mater;
+alu=strtol(al, NULL ,10);
+mater=strtol(mat,NULL,10);
+alum=(int)alu;
+materia=(int)mater;
 do{
     printf("###################################################################################\n");
     printf("Bienvenido al menu de calificaciones \n");
