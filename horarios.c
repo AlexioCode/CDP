@@ -16,16 +16,16 @@ char grupo[10];
 }horari;
 horari *horarios;
 
-int busca_hora(int hora,int dia, int ID_pro,int B){
+int busca_hora(int hora,int dia, int ID_pro,int *B){
 int i;
-for(i=0;i<B;i++){
+for(i=0;i<*B;i++){
     if(ID_pro==horarios[i].ID_prof && hora==horarios[i].hora_clase && horarios[i].dia_clase==dia){
         return i;
         }
     }
 return -1;}
 
-void modi_hora(int i,int Y){
+void modi_hora(int i,int *Y){
 int m=0,o=0,l=0;
 do{
 printf("Introduzca el ID de la nueva materia o pulse 0 \n");
@@ -39,7 +39,7 @@ else{
         if(mater[l].id==m){
                 o=1;}
         l++;
-        }while((o=0) && (l!=Y));
+        }while((o=0) && (l!=*Y));
         if(o==0){
             printf("El ID introducido no se ha encontrado o no existe \n");
             modi_hora(i,Y);
@@ -50,7 +50,7 @@ else{
     }
 }
 
-void grupo_hora(int i, int A){
+void grupo_hora(int i, int *A){
 int o=0,l=0,u=0;
 char c[10];
 printf("Introduzca la clase a donde quiere mover la clase \n");
@@ -59,7 +59,7 @@ scanf("%s", c);
     if(strcmp(c,alum[l].Grupo)==0){
         o=1;}
         l++;
-    }while((o=0)&& (l!=A));
+    }while((o=0)&& (l!=*A));
     if(o==0){
         printf("La clase introducida no se ha encontrado o no existe \n");
         do{
@@ -70,7 +70,7 @@ scanf("%s", c);
             return;
         }
         else{
-            grupo_hora(i,A);
+            grupo_hora(i,*A);
         }
     }
     else{
@@ -109,7 +109,7 @@ horarios[i].dia_clase=d;
 horarios[i].hora_clase=h;
 }
 
-void modificar_hora(int ID_pro, int M, int A, int B, int Y){
+void modificar_hora(int ID_pro, int *M, int *A, int *B, int *Y){
 int i,d=0,h=0,x=0;
 do{
 do{
@@ -123,11 +123,11 @@ do{
     printf("Introduzca la hora en un rango de 1 a 6 \n");
     scanf("%i",&h);
 }while(h<1 || h>6);
-x=busca_hora(d,h,ID_pro,B);
-if(x<1 || x>M){
+x=busca_hora(d,h,ID_pro,*B);
+if(x<1 || x>*M){
     printf("Lo siento, no se ha encontrado o no existe clase en la hora a la que quiere acceder. Intentelo de nuevo :) \n");
     }
-}while(x<1 || x>M);
+}while(x<1 || x>*M);
 printf("Se ha encontrado clase en la hora accedida\n");
 do{
 printf("¿Que desea modificar de esta clase?\n");
@@ -138,13 +138,13 @@ printf(" 4.Salir al anterior menu");
 scanf("%i",&i);
 }while(i<1 || i>4);
 switch(i){
-    case 1: modi_hora(i,Y);
+    case 1: modi_hora(i,*Y);
             break;
 
-    case 2: grupo_hora(i, A);
+    case 2: grupo_hora(i,*A);
             break;
 
-    case 3: cambia_hora(i,B);
+    case 3: cambia_hora(i,*B);
             break;
 
     case 4: return;
@@ -152,7 +152,7 @@ switch(i){
     }
 }
 
-int elige_grupo(char *ID, int B){
+int elige_grupo(char *ID, int *B){
 int i=0, j=0, k=1,p=2,dia_clas, ID_pro;
 long ID_p;
 ID_p=strtol(ID,NULL,10);
@@ -169,7 +169,7 @@ printf("Estas son las clases que tiene en este día:\n");
 do{
     printf("A la hora %i tiene ",k);
     j=0;
-    for(i=0;i>B;i++){
+    for(i=0;i>*B;i++){
         if(ID_pro==horarios[i].ID_prof && dia_clas==horarios[i].dia_clase && k==horarios[i].hora_clase){
             printf("con la clase %s para dar la asignatura %i\n", horarios[i].grupo, horarios[i].ID_materia);
             k++;
@@ -190,7 +190,7 @@ k++;
     }while(k<=5);
 return -1;}
 
-void aniadir_hora(int ID_pro, int B, int A, int M, int Y){
+void aniadir_hora(int ID_pro, int *B, int *A, int *M, int *Y){
 int a=0, b=0,i,l=1,c=3;
 do{
     printf("Introduzca el dia de la semana en que quiere aniadir la clase \n El numero debera ser del 1-5 donde sera lunes, martes, miercoles, jueves y viernes, respectivamente");
@@ -200,7 +200,7 @@ do{
 printf("Introduzca la hora del dia en que quiere aniadir la clase \n El numero debera ser del 1-6 donde sera primera, segunda, tercera, cuarta, quinta y sexta hora respectivamente");
 scanf("%i",&b);
 }while(b<1 || b>6);
-for(i=0;i<B;i++){
+for(i=0;i<*B;i++){
     if(horarios[i].ID_prof==ID_pro && horarios[i].dia_clase==a && horarios[i].hora_clase==b){
         l=0;
         }
@@ -212,24 +212,23 @@ if(l==0){
         scanf("%i",&c);
     }while(c<1 || c>3);
     switch(c){
-        case 1: modificar_hora(ID_pro,M,A,B,Y);
+        case 1: modificar_hora(ID_pro,*M,*A,*B,*Y);
                 break;
-        case 2: aniadir_hora(ID_pro,B,A,M,Y);
+        case 2: aniadir_hora(ID_pro,*B,*A,*M,*Y);
                 break;
         case 3: return;
                 break;
         }
     }
 else{
-    horarios=realloc(horarios,B+1);           //Preguntar sobre el realloc
-    B=B+1;                                    //Preguntar sobre punteros
-    horarios[B-1].dia_clase=a;
-    horarios[B-1].hora_clase=b;
-    horarios[B-1].ID_prof=ID_pro;
+    horarios=(horari*)realloc(horarios,sizeof(horari)*(*B+1));           //Preguntar sobre el realloc 
+    horarios[*B-1].dia_clase=a;
+    horarios[*B-1].hora_clase=b;
+    horarios[*B-1].ID_prof=ID_pro;
     }
 }
 
-void eliminar_hora(int ID_pro, int B){
+void eliminar_hora(int ID_pro, int *B){
 int d=0,h=0,i=0,j=0,p;
 do{
 printf("Introduzca la hora \n");
@@ -239,7 +238,7 @@ do{
 printf("Introduzca el dia \n");
 scanf("%i",&d);
 }while(d<1 || d>5);
-i=busca_hora(h,d,ID_pro,B);
+i=busca_hora(h,d,ID_pro,*B);
 if(i==-1){
     do{
     printf("La hora seleccionada no existe\n ÀDesea introducir otra o volver al anterior menu? Pulse 1 para lo primero o 0 para lo segundo\n");
@@ -249,30 +248,30 @@ if(i==-1){
         return;
         }
     else{
-        eliminar_hora(ID_pro,B);
+        eliminar_hora(ID_pro,*B);
         }
     }
 else{
-    for(p=i;p<(B-1);p++){
+    int x=*B;
+    for(p=i;p<(x-1);p++){
         horarios[p]=horarios[p+1];
         }
-    horarios=realloc(horarios,B-1);
-    B--;
+    horarios=realloc(horarios,sizeof(horari)*(*B-1));
     printf("Eliminado con exito \n");
     printf("Volveras al anterior menu \n");
     }
 }
 
-int busca(int ID_pro, int M){              //Devuelve 1 si existe la ID pasada y ademas es un profesor
+int busca(int ID_pro, int *M){              //Devuelve 1 si existe la ID pasada y ademas es un profesor
 int i;
-for(i=0;i<M;i++){
+for(i=0;i<*M;i++){
     if(strcmp("profesor",usuar[i].Perfil_usuario)==0 && ID_pro==usuar[i].Id_usuario){
         return 1;
         }
     }
 return 5;}
 
-void admin_hora(int A,int B, int Y, int M){
+void admin_hora(int *A,int *B, int *Y, int *M){
 printf("######################################################################################");
 int a=4,b=0;
 printf("Bienvenido a la opcion de horarios \n");
@@ -285,19 +284,16 @@ scanf("%i",&a);
 do{
 printf("Introduzca el ID de un profesor \n");
 scanf("%i",&b);
-}while((b<1 || b>999) && busca(b,M)!=1);
+}while((b<1 || b>999) && busca(b,*M)!=1);
 
 switch(a){
-    case 1: modificar_hora(b,M,A,B,Y);
+    case 1: modificar_hora(b,*M,*A,*B,*Y);
             break;
-    case 2: eliminar_hora(b,B);
+    case 2: eliminar_hora(b,*B);
             break;
-    case 3: aniadir_hora(b,B,A,M,Y);
+    case 3: aniadir_hora(b,*B,*A,*M,*Y);
             break;
     case 4: return;
             break;
     }
 }
-
-
-
