@@ -1,5 +1,10 @@
 #ifndef PERFILES_H_INCLUDED
 #define PERFILES_H_INCLUDED
+#include "alumnos.h"
+#include "calificaciones.h"
+#include "horarios.h"
+#include "Materias.h"
+#include "Matriculas.h"
 #include "usuarios.h"
 
 //char * login(usuario ** pv_usuarios)
