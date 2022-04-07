@@ -6,7 +6,10 @@
 #include <usuarios.h>
 #include <alumnos.h>
 //int A=5,Y=5,M=5,B=5;
-
+//B=Horarios
+//M=Usuarios
+//A=Alumnos
+//Y=materias
 typedef struct{
 int ID_prof;
 int dia_clase;
