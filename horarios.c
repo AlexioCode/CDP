@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <Materias.h>
+#include <usuarios.h>
+#include <alumnos.h>
 //int A=5,Y=5,M=5,B=5;
 
 typedef struct{
@@ -12,33 +15,6 @@ int ID_materia;
 char grupo[10];
 }horari;
 horari *horarios;
-
-typedef struct{
-	char Id_alum[6]; //Identificador escolar
-	char Nombre_alum[20]; //Nombre alumno
-	char Direc_alum[30]; //Direccion alumno
-	char Local_alum[30]; //Localidad del alumno
-	char Curso[30]; // Curso al que pertenece
-	char Grupo[10];
-} r_alum;
-
-r_alum *alum;
-
-typedef struct{
-    int Id_usuario;
-    char Nomb_usuario[21];
-    char Perfil_usuario[14];
-    char Usuario[6];
-    char Contrasena[9];
-}usuario;
-usuario *usuar;
-
-typedef struct{
-int id;
-char nombre[50];
-char siglas[3];
-}materia;
-materia *mater;
 
 int busca_hora(int hora,int dia, int ID_pro,int B){
 int i;
