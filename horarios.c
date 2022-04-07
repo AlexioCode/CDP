@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-int A=5,Y=5,M=5,B=5;
+//int A=5,Y=5,M=5,B=5;
 
 typedef struct{
 int ID_prof;
@@ -40,7 +40,7 @@ char siglas[3];
 }materia;
 materia *mater;
 
-int busca_hora(int hora,int dia, int ID_pro){
+int busca_hora(int hora,int dia, int ID_pro,int B){
 int i;
 for(i=0;i<B;i++){
     if(ID_pro==horarios[i].ID_prof && hora==horarios[i].hora_clase && horarios[i].dia_clase==dia){
@@ -49,7 +49,7 @@ for(i=0;i<B;i++){
     }
 return -1;}
 
-void modi_hora(int i){
+void modi_hora(int i,int Y){
 int m=0,o=0,l=0;
 do{
 printf("Introduzca el ID de la nueva materia o pulse 0 \n");
@@ -87,7 +87,7 @@ scanf("%s", c);
     if(o==0){
         printf("La clase introducida no se ha encontrado o no existe \n");
         do{
-        printf("ÀQuiere salir? Pulse 1 para si y 0 para no \n");
+        printf("Ã€Quiere salir? Pulse 1 para si y 0 para no \n");
         scanf("%i",&u);
         }while(u<0 || u>1);
         if(u==1){
@@ -121,7 +121,7 @@ if(busca_hora(h,d,horarios[i].ID_prof)==-1){
 else{
     printf("La hora escogida ya tiene una clase \n");
     do{
-    printf("ÀDesea salir de este menu? Marque 1 para si y 0 para no \n");
+    printf("Ã€Desea salir de este menu? Marque 1 para si y 0 para no \n");
     scanf("%i",&y);
     }while(y==1 || y==0);
     if(y==1){
@@ -133,7 +133,7 @@ horarios[i].dia_clase=d;
 horarios[i].hora_clase=h;
 }
 
-void modificar_hora(int ID_pro){
+void modificar_hora(int ID_pro, int M){
 int i,d=0,h=0,x=0;
 do{
 do{
@@ -154,7 +154,7 @@ if(x<1 || x>M){
 }while(x<1 || x>M);
 printf("Se ha encontrado clase en la hora accedida\n");
 do{
-printf("¿Que desea modificar de esta clase?\n");
+printf("Â¿Que desea modificar de esta clase?\n");
 printf(" 1.La materia a la que dara clase el profesor \n 2.El grupo al que dara clase el profesor \n");
 printf(" 3.Tambien puede cambiar el dia y la hora de esta clase\n");
 printf(" Advertencia: Tenga en cuenta, que solo se podra cambiar esta clase a una hora que no tenga una clase previa asignada \n");
@@ -176,7 +176,7 @@ switch(i){
     }
 }
 
-int elige_grupo(char *ID){
+int elige_grupo(char *ID, int B){
 int i=0, j=0, k=1,p=2,dia_clas, ID_pro;
 long ID_p;
 ID_p=strtol(ID,NULL,10);
@@ -189,7 +189,7 @@ do{
 }while(dia_clas>5 || dia_clas<1);
 
 
-printf("Estas son las clases que tiene en este día:\n");
+printf("Estas son las clases que tiene en este dÃ­a:\n");
 do{
     printf("A la hora %i tiene ",k);
     j=0;
@@ -199,7 +199,7 @@ do{
             k++;
             j=1;
             do{
-                printf("ÀDesea elegir este grupo?\n Elige 1 para si y 0 para no \n");
+                printf("Ã€Desea elegir este grupo?\n Elige 1 para si y 0 para no \n");
                 scanf("%i",&p);
                 }while(p==0 || p==1);
             if(p==1){
@@ -214,7 +214,7 @@ k++;
     }while(k<=5);
 return -1;}
 
-void aniadir_hora(int ID_pro){
+void aniadir_hora(int ID_pro, int B){
 int a=0, b=0,i,l=1,c=3;
 do{
     printf("Introduzca el dia de la semana en que quiere aniadir la clase \n El numero debera ser del 1-5 donde sera lunes, martes, miercoles, jueves y viernes, respectivamente");
@@ -232,7 +232,7 @@ for(i=0;i<B;i++){
 if(l==0){
     printf("El profesor %i ya tiene clase el dia %i en la hora numero %i \n", ID_pro, a, b);
     do{
-        printf("¿Desea modificarla o introducir otros parametros o desea salir?. Introduce 1 para lo primero, 2 para lo segundo o 3 para lo tercero\n");
+        printf("Â¿Desea modificarla o introducir otros parametros o desea salir?. Introduce 1 para lo primero, 2 para lo segundo o 3 para lo tercero\n");
         scanf("%i",&c);
     }while(c<1 || c>3);
     switch(c){
@@ -253,7 +253,7 @@ else{
     }
 }
 
-void eliminar_hora(int ID_pro){
+void eliminar_hora(int ID_pro, int B){
 int d=0,h=0,i=0,j=0,p;
 do{
 printf("Introduzca la hora \n");
@@ -266,7 +266,7 @@ scanf("%i",&d);
 i=busca_hora(h,d,ID_pro);
 if(i==-1){
     do{
-    printf("La hora seleccionada no existe\n ÀDesea introducir otra o volver al anterior menu? Pulse 1 para lo primero o 0 para lo segundo\n");
+    printf("La hora seleccionada no existe\n Ã€Desea introducir otra o volver al anterior menu? Pulse 1 para lo primero o 0 para lo segundo\n");
     scanf("%i",&j);
     }while(j!=0 && j!=1);               //Pendiente de revision !!!!!!!!!!!!!!!!!!!!!!
     if(j==0){
@@ -287,7 +287,7 @@ else{
     }
 }
 
-int busca(int ID_pro){              //Devuelve 1 si existe la ID pasada y ademas es un profesor
+int busca(int ID_pro, int M){              //Devuelve 1 si existe la ID pasada y ademas es un profesor
 int i;
 for(i=0;i<M;i++){
     if(strcmp("profesor",usuar[i].Perfil_usuario)==0 && ID_pro==usuar[i].Id_usuario){
