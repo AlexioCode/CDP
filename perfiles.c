@@ -10,9 +10,9 @@
 #include "usuarios.h"
 
 //char * login(usuario ** pv_usuarios)
-//precondicion: recibe una direccion de vector de usuarios inicializado
+//precondicion: recibe punteros a vectores inicializados
 //postcondicion: devuelve el Id_usuario del usuario con ese usuario y contraseña, y llama al perfil correspondiente (de profesor o de administrador)
-char * login(usuario ** pv_usuarios)
+char * login(alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 {
     char user[6];
     char passwd[9];
@@ -49,9 +49,9 @@ char * login(usuario ** pv_usuarios)
         if(encontrado == 1)  //si el usuario y contrasena son validos, comprobamos si es profe o admin y llamamos a su funcion perfil
         {
             if(strcmp((*pv_usuarios)[n_usuario].Perfil_usuario, "profesor") == 0)
-                perfil_profesor((*pv_usuarios)[n_usuario].Id_usuario, pv_usuarios);
+                perfil_profesor((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);
             else
-                perfil_administrador((*pv_usuarios)[n_usuario].Id_usuario, pv_usuarios);
+                perfil_administrador((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);
             return (*pv_usuarios)[n_usuario].Id_usuario;
         }
         else
@@ -60,9 +60,9 @@ char * login(usuario ** pv_usuarios)
 }
 
 //cabecera: void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
-//precondicion: id_prof es el Id_usuario del profesor en cuestion y pv_usuarios es un puntero a un vector de usuarios
+//precondicion: id_prof es el Id_usuario del profesor en cuestion y recibe punteros a vectores inicializados
 //postcondicion: realiza las funciones del perfil de profesor
-void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
+void perfil_profesor(char * id_prof, alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 {
     int op;
     int op2;
@@ -99,7 +99,7 @@ void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
                 printf("\n1. Ficha del alumno\n2. Calificaciones del alumno\n3. Volver\n\n");
                 scanf("%i", &op2);
                 if(op2 == 1)
-                    ficha_alumno(Id_alumno, alum);
+                    ficha_alumno(Id_alumno, alumnos);
                 if(op2 == 2)
                 {
                     ver_nota(Id_alumno, Id_materia);
@@ -113,9 +113,9 @@ void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
 }
 
 //cabecera: void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
-//precondicion: id_admin es el Id_usuario del administrador en cuestion y pv_usuarios es un puntero a un vector de usuarios
+//precondicion: id_admin es el Id_usuario del administrador en cuestion y recibe punteros a vectores inicializados
 //postcondicion: realiza las funciones del perfil de administrador
-void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
+void perfil_administrador(char * id_admin, alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 {
     int op, op2;
     do
@@ -130,13 +130,13 @@ void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
                     admin_usuarios(pv_usuarios);
                     break;
                 case 2:
-                    listaalumadm(alum);
+                    listaalumadm(alumnos);
                     break;
                 case 3:
-                    admin_materias();
+                    admin_materias(materias);
                     break;
                 case 4:
-                    admin_hora();
+                    admin_hora(v_fechas);
                     break;
                 default:
                     printf("Opcion no valida\n");
@@ -150,7 +150,7 @@ void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
 }
 
 //cabecera: void quita_salto_linea(char * cad)
-//precondicion: recibe una cedena inicializada
+//precondicion: recibe una cadena inicializada
 //postcondicion: quita el salto de linea del final de una cadena si es que lo tiene
 void quita_salto_linea(char * cad)
 {
