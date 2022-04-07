@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-int A=5,Y=5,M=5,B=5;
+#include <Materias.h>
+#include <usuarios.h>
+#include <alumnos.h>
+//int A=5,Y=5,M=5,B=5;
 
 typedef struct{
 int ID_prof;
@@ -13,34 +16,7 @@ char grupo[10];
 }horari;
 horari *horarios;
 
-typedef struct{
-	char Id_alum[6]; //Identificador escolar
-	char Nombre_alum[20]; //Nombre alumno
-	char Direc_alum[30]; //Direccion alumno
-	char Local_alum[30]; //Localidad del alumno
-	char Curso[30]; // Curso al que pertenece
-	char Grupo[10];
-} r_alum;
-
-r_alum *alum;
-
-typedef struct{
-    int Id_usuario;
-    char Nomb_usuario[21];
-    char Perfil_usuario[14];
-    char Usuario[6];
-    char Contrasena[9];
-}usuario;
-usuario *usuar;
-
-typedef struct{
-int id;
-char nombre[50];
-char siglas[3];
-}materia;
-materia *mater;
-
-int busca_hora(int hora,int dia, int ID_pro){
+int busca_hora(int hora,int dia, int ID_pro,int B){
 int i;
 for(i=0;i<B;i++){
     if(ID_pro==horarios[i].ID_prof && hora==horarios[i].hora_clase && horarios[i].dia_clase==dia){
@@ -49,7 +25,7 @@ for(i=0;i<B;i++){
     }
 return -1;}
 
-void modi_hora(int i){
+void modi_hora(int i,int Y){
 int m=0,o=0,l=0;
 do{
 printf("Introduzca el ID de la nueva materia o pulse 0 \n");
@@ -66,7 +42,7 @@ else{
         }while((o=0) && (l!=Y));
         if(o==0){
             printf("El ID introducido no se ha encontrado o no existe \n");
-            modi_hora(i);
+            modi_hora(i,Y);
             }
         else{
             horarios[i].ID_materia=m;
@@ -74,7 +50,7 @@ else{
     }
 }
 
-void grupo_hora(int i){
+void grupo_hora(int i, int A){
 int o=0,l=0,u=0;
 char c[10];
 printf("Introduzca la clase a donde quiere mover la clase \n");
@@ -87,14 +63,14 @@ scanf("%s", c);
     if(o==0){
         printf("La clase introducida no se ha encontrado o no existe \n");
         do{
-        printf("ÀQuiere salir? Pulse 1 para si y 0 para no \n");
+        printf("Ã€Quiere salir? Pulse 1 para si y 0 para no \n");
         scanf("%i",&u);
         }while(u<0 || u>1);
         if(u==1){
             return;
         }
         else{
-            grupo_hora(i);
+            grupo_hora(i,A);
         }
     }
     else{
@@ -104,7 +80,7 @@ scanf("%s", c);
     }
 }
 
-void cambia_hora(int i){
+void cambia_hora(int i, int B){
 int o=0,d=0,h=0,y=0;
 do{
 do{
@@ -115,13 +91,13 @@ do{
 printf("Indique la hora del dia a la que quiere cambiar la clase \n");
 scanf("%i",&h);
 }while(h<1 || h>6);
-if(busca_hora(h,d,horarios[i].ID_prof)==-1){
+if(busca_hora(h,d,horarios[i].ID_prof, B)==-1){
     o++;
 }
 else{
     printf("La hora escogida ya tiene una clase \n");
     do{
-    printf("ÀDesea salir de este menu? Marque 1 para si y 0 para no \n");
+    printf("Ã€Desea salir de este menu? Marque 1 para si y 0 para no \n");
     scanf("%i",&y);
     }while(y==1 || y==0);
     if(y==1){
@@ -133,7 +109,7 @@ horarios[i].dia_clase=d;
 horarios[i].hora_clase=h;
 }
 
-void modificar_hora(int ID_pro){
+void modificar_hora(int ID_pro, int M, int A, int B, int Y){
 int i,d=0,h=0,x=0;
 do{
 do{
@@ -147,14 +123,14 @@ do{
     printf("Introduzca la hora en un rango de 1 a 6 \n");
     scanf("%i",&h);
 }while(h<1 || h>6);
-x=busca_hora(d,h,ID_pro);
+x=busca_hora(d,h,ID_pro,B);
 if(x<1 || x>M){
     printf("Lo siento, no se ha encontrado o no existe clase en la hora a la que quiere acceder. Intentelo de nuevo :) \n");
     }
 }while(x<1 || x>M);
 printf("Se ha encontrado clase en la hora accedida\n");
 do{
-printf("¿Que desea modificar de esta clase?\n");
+printf("Â¿Que desea modificar de esta clase?\n");
 printf(" 1.La materia a la que dara clase el profesor \n 2.El grupo al que dara clase el profesor \n");
 printf(" 3.Tambien puede cambiar el dia y la hora de esta clase\n");
 printf(" Advertencia: Tenga en cuenta, que solo se podra cambiar esta clase a una hora que no tenga una clase previa asignada \n");
@@ -162,13 +138,13 @@ printf(" 4.Salir al anterior menu");
 scanf("%i",&i);
 }while(i<1 || i>4);
 switch(i){
-    case 1: modi_hora(i);
+    case 1: modi_hora(i,Y);
             break;
 
-    case 2: grupo_hora(i);
+    case 2: grupo_hora(i, A);
             break;
 
-    case 3: cambia_hora(i);
+    case 3: cambia_hora(i,B);
             break;
 
     case 4: return;
@@ -176,7 +152,7 @@ switch(i){
     }
 }
 
-int elige_grupo(char *ID){
+int elige_grupo(char *ID, int B){
 int i=0, j=0, k=1,p=2,dia_clas, ID_pro;
 long ID_p;
 ID_p=strtol(ID,NULL,10);
@@ -189,7 +165,7 @@ do{
 }while(dia_clas>5 || dia_clas<1);
 
 
-printf("Estas son las clases que tiene en este día:\n");
+printf("Estas son las clases que tiene en este dÃ­a:\n");
 do{
     printf("A la hora %i tiene ",k);
     j=0;
@@ -199,7 +175,7 @@ do{
             k++;
             j=1;
             do{
-                printf("ÀDesea elegir este grupo?\n Elige 1 para si y 0 para no \n");
+                printf("Ã€Desea elegir este grupo?\n Elige 1 para si y 0 para no \n");
                 scanf("%i",&p);
                 }while(p==0 || p==1);
             if(p==1){
@@ -214,7 +190,7 @@ k++;
     }while(k<=5);
 return -1;}
 
-void aniadir_hora(int ID_pro){
+void aniadir_hora(int ID_pro, int B, int A, int M, int Y){
 int a=0, b=0,i,l=1,c=3;
 do{
     printf("Introduzca el dia de la semana en que quiere aniadir la clase \n El numero debera ser del 1-5 donde sera lunes, martes, miercoles, jueves y viernes, respectivamente");
@@ -232,13 +208,13 @@ for(i=0;i<B;i++){
 if(l==0){
     printf("El profesor %i ya tiene clase el dia %i en la hora numero %i \n", ID_pro, a, b);
     do{
-        printf("¿Desea modificarla o introducir otros parametros o desea salir?. Introduce 1 para lo primero, 2 para lo segundo o 3 para lo tercero\n");
+        printf("Â¿Desea modificarla o introducir otros parametros o desea salir?. Introduce 1 para lo primero, 2 para lo segundo o 3 para lo tercero\n");
         scanf("%i",&c);
     }while(c<1 || c>3);
     switch(c){
-        case 1: modificar_hora(ID_pro);
+        case 1: modificar_hora(ID_pro,M,A,B,Y);
                 break;
-        case 2: aniadir_hora(ID_pro);
+        case 2: aniadir_hora(ID_pro,B,A,M,Y);
                 break;
         case 3: return;
                 break;
@@ -253,7 +229,7 @@ else{
     }
 }
 
-void eliminar_hora(int ID_pro){
+void eliminar_hora(int ID_pro, int B){
 int d=0,h=0,i=0,j=0,p;
 do{
 printf("Introduzca la hora \n");
@@ -263,17 +239,17 @@ do{
 printf("Introduzca el dia \n");
 scanf("%i",&d);
 }while(d<1 || d>5);
-i=busca_hora(h,d,ID_pro);
+i=busca_hora(h,d,ID_pro,B);
 if(i==-1){
     do{
-    printf("La hora seleccionada no existe\n ÀDesea introducir otra o volver al anterior menu? Pulse 1 para lo primero o 0 para lo segundo\n");
+    printf("La hora seleccionada no existe\n Ã€Desea introducir otra o volver al anterior menu? Pulse 1 para lo primero o 0 para lo segundo\n");
     scanf("%i",&j);
     }while(j!=0 && j!=1);               //Pendiente de revision !!!!!!!!!!!!!!!!!!!!!!
     if(j==0){
         return;
         }
     else{
-        eliminar_hora(ID_pro);
+        eliminar_hora(ID_pro,B);
         }
     }
 else{
@@ -287,7 +263,7 @@ else{
     }
 }
 
-int busca(int ID_pro){              //Devuelve 1 si existe la ID pasada y ademas es un profesor
+int busca(int ID_pro, int M){              //Devuelve 1 si existe la ID pasada y ademas es un profesor
 int i;
 for(i=0;i<M;i++){
     if(strcmp("profesor",usuar[i].Perfil_usuario)==0 && ID_pro==usuar[i].Id_usuario){
@@ -296,7 +272,7 @@ for(i=0;i<M;i++){
     }
 return 5;}
 
-void admin_hora(){
+void admin_hora(int A,int B, int Y, int M){
 printf("######################################################################################");
 int a=4,b=0;
 printf("Bienvenido a la opcion de horarios \n");
@@ -309,14 +285,14 @@ scanf("%i",&a);
 do{
 printf("Introduzca el ID de un profesor \n");
 scanf("%i",&b);
-}while((b<1 || b>999) && busca(b)!=1);
+}while((b<1 || b>999) && busca(b,M)!=1);
 
 switch(a){
-    case 1: modificar_hora(b);
+    case 1: modificar_hora(b,M,A,B,Y);
             break;
-    case 2: eliminar_hora(b);
+    case 2: eliminar_hora(b,B);
             break;
-    case 3: aniadir_hora(b);
+    case 3: aniadir_hora(b,B,A,M,Y);
             break;
     case 4: return;
             break;

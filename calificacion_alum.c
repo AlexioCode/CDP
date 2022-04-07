@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-int N=5;
+//int N=>calificaciones;
 typedef struct{
 int dia;
 int mes;
@@ -22,7 +22,7 @@ for(i=0;i<N;i++){
     if(nota[i].alum==alum && nota[i].materia==materia){
         printf("El dia %i del mes %i en el anno %i saco un %i en el %s\n",nota[i].fecha.dia, nota[i].fecha.mes, nota[i].fecha.anno, nota[i].not, nota[i].descrip);
         do{
-        printf("ÀDesea eliminar la nota? Introduzca 1 para Si, 0 para No\n");
+        printf("Ã€Desea eliminar la nota? Introduzca 1 para Si, 0 para No\n");
         scanf("%d",&j);
         }while(j>1 || j<0);
         if(j==1){
@@ -56,7 +56,7 @@ for(i=0;i<N;i++){
         printf("El dia %i del mes %i en el anno %i saco un %i en el %s\n",nota[i].fecha.dia, nota[i].fecha.mes, nota[i].fecha.anno, nota[i].not, nota[i].descrip);
         p++;
         do{
-        printf("¿Desea modificar la nota? Introduzca 1 para sí, 0 para no\n");
+        printf("Â¿Desea modificar la nota? Introduzca 1 para sÃ­, 0 para no\n");
         scanf("%d",&j);
         }while(j==1 || j==0);
         if(j==1){
@@ -127,7 +127,7 @@ do{
     printf("###################################################################################\n");
     printf("Bienvenido al menu de calificaciones \n");
     do{
-        printf("ÀQue desea hacer? \n Pulse el numero correspondiente a la accion que desee hacer \n");
+        printf("Ã€Que desea hacer? \n Pulse el numero correspondiente a la accion que desee hacer \n");
         printf("1.Listar las notas \n");
         printf("2.Modificar las notas \n");
         printf("3.Eliminar una nota \n");
@@ -147,7 +147,7 @@ do{
         case 5: return;
                 break;
             }
-    printf("ÀDesea hacer algo mas en este menu? \n Pulse 1 para Si, y 0 para No \n");
+    printf("Ã€Desea hacer algo mas en este menu? \n Pulse 1 para Si, y 0 para No \n");
     scanf("%d",&b);
     }while(b==1);
 printf("#####################################################################################################\n");
