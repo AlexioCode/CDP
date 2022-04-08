@@ -1,6 +1,8 @@
 #ifndef HORARIOS_H_INCLUDED
 #define HORARIOS_H_INCLUDED
 #include"usuarios.h"
+#include"Materias.h"
+#include"alumnos.h"
 typedef struct{
 int ID_prof;
 int dia_clase;
@@ -73,7 +75,7 @@ cabecera: void Guardar_Horarios(horari **horarios, int *tam)
 Precondicion: Le debe llegar la estructura de horarios rellenada y el tamanio del vector
 Postcondicion: Guarda en ficheros el vector de estructuras
 */
-void Guardar_Horarios(horari **horarios, int *tam);
+void Guardar_Horarios(horari **horarios, int tam);
 /*
 cabecera: int nLineas(char* fichero)
 Precondicion: Le debe llegar el nombre de un fichero
