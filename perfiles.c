@@ -9,54 +9,14 @@
 #include "perfiles.h"
 #include "usuarios.h"
 
-//char * login(usuario ** pv_usuarios)
-//precondicion: recibe punteros a vectores inicializados
-//postcondicion: devuelve el Id_usuario del usuario con ese usuario y contraseña, y llama al perfil correspondiente (de profesor o de administrador)
-char * login(alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
+//cabecera: void quita_salto_linea(char * cad)
+//precondicion: recibe una cadena inicializada
+//postcondicion: quita el salto de linea del final de una cadena si es que lo tiene
+void quita_salto_linea(char * cad)
 {
-    char user[6];
-    char passwd[9];
-    int n_usuario;
-    int encontrado = 0;
-
-    do
-    {
-        n_usuario = 0;
-        printf("\n------------------\nUsuario: ");
-        fflush(stdin);
-        fgets(user, 6, stdin);
-        printf("Contrasena: ");
-        fflush(stdin);
-        fgets(passwd, 9, stdin);    //ya tenemos un usuario y una contrasena leidos
-
-        quita_salto_linea(user);
-        quita_salto_linea(passwd);
-
-        while(n_usuario < num_usuarios && encontrado == 0)  //buscar si el usuario y la contrasena son validos
-        {
-            if((strcmp(user, (*pv_usuarios)[n_usuario].Usuario) == 0)
-            && (strcmp(passwd, (*pv_usuarios)[n_usuario].Contrasena) == 0))
-            {
-                encontrado = 1;
-                printf("\nBienvenido %s\n", (*pv_usuarios)[n_usuario].Nomb_usuario);
-            }
-            else
-            {
-                n_usuario++;
-            }
-        }
-
-        if(encontrado == 1)  //si el usuario y contrasena son validos, comprobamos si es profe o admin y llamamos a su funcion perfil
-        {
-            if(strcmp((*pv_usuarios)[n_usuario].Perfil_usuario, "profesor") == 0)
-                perfil_profesor((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);
-            else
-                perfil_administrador((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);
-            return (*pv_usuarios)[n_usuario].Id_usuario;
-        }
-        else
-            printf("Usuario o contrasena no validos");
-    }while(encontrado == 0);
+    int longitud = strlen(cad);
+    if (cad[longitud - 1] == '\n')
+        cad[longitud - 1] = '\0';
 }
 
 //cabecera: void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
@@ -149,12 +109,52 @@ void perfil_administrador(char * id_admin, alum ** alumnos, calificaciones ** v_
     }while(op2 == 's'); //por si quiere realizar otra operacion de administrador*/
 }
 
-//cabecera: void quita_salto_linea(char * cad)
-//precondicion: recibe una cadena inicializada
-//postcondicion: quita el salto de linea del final de una cadena si es que lo tiene
-void quita_salto_linea(char * cad)
+//char * login(usuario ** pv_usuarios)
+//precondicion: recibe punteros a vectores inicializados
+//postcondicion: devuelve el Id_usuario del usuario con ese usuario y contraseña, y llama al perfil correspondiente (de profesor o de administrador)
+char * login(alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 {
-    int longitud = strlen(cad);
-    if (cad[longitud - 1] == '\n')
-        cad[longitud - 1] = '\0';
+    char user[6];
+    char passwd[9];
+    int n_usuario;
+    int encontrado = 0;
+
+    do
+    {
+        n_usuario = 0;
+        printf("\n------------------\nUsuario: ");
+        fflush(stdin);
+        fgets(user, 6, stdin);
+        printf("Contrasena: ");
+        fflush(stdin);
+        fgets(passwd, 9, stdin);    //ya tenemos un usuario y una contrasena leidos
+
+        quita_salto_linea(user);
+        quita_salto_linea(passwd);
+
+        while(n_usuario < num_usuarios && encontrado == 0)  //buscar si el usuario y la contrasena son validos
+        {
+            if((strcmp(user, (*pv_usuarios)[n_usuario].Usuario) == 0)
+            && (strcmp(passwd, (*pv_usuarios)[n_usuario].Contrasena) == 0))
+            {
+                encontrado = 1;
+                printf("\nBienvenido %s\n", (*pv_usuarios)[n_usuario].Nomb_usuario);
+            }
+            else
+            {
+                n_usuario++;
+            }
+        }
+
+        if(encontrado == 1)  //si el usuario y contrasena son validos, comprobamos si es profe o admin y llamamos a su funcion perfil
+        {
+            if(strcmp((*pv_usuarios)[n_usuario].Perfil_usuario, "profesor") == 0)
+                perfil_profesor((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);       //llamo a perfil_profesor
+            else
+                perfil_administrador((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);  //llamo a perfil_admin
+            return (*pv_usuarios)[n_usuario].Id_usuario;
+        }
+        else
+            printf("Usuario o contrasena no validos");
+    }while(encontrado == 0);
 }
