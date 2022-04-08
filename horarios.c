@@ -28,13 +28,13 @@ Postcondicion: Modifica la materia a la que va a dar clase un profesor
 /*ARREGLAR*/
 void modi_hora(int i,materia *mater){
     int Y=tam_materia(); //Tama–o materia.txt
-    char nuevamater[];
+    char nuevamater[5];
      int o=0,l=0;
     do{
     printf("Introduzca el ID de la nueva materia o pulse 0 \n");
     scanf("%s",nuevamater);
-    }while(nuevamater<0 || nuevamater>9999);
-    if(nuevamater==0){
+    }while(strtol(nuevamater,NULL,10)<0 || strtol(nuevamater,NULL,10)>9999);
+    if(strtol(nuevamater,NULL,10)==0){
         return;
         }
     else{
