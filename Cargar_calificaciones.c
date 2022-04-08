@@ -1,20 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-typedef struct{
-int dia;
-int mes;
-int anno;
-}fec;
+#include"calificaciones.h"
 
-typedef struct{
-fec fecha;
-char descrip[30];
-int materia;
-int alum;
-int not;
-}calificaciones;
-calificaciones *nota;
 int nLineas(char* fichero){
     FILE *f=fopen(fichero, "r");
     char cadena[150];

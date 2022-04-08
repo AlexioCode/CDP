@@ -5,19 +5,7 @@
 #include "Materias.h"
 #include "usuarios.h"
 #include "alumnos.h"
-//int A=5,Y=5,M=5,B=5;
-//B=Horarios
-//M=Usuarios
-//A=Alumnos
-//Y=materias
-typedef struct{
-int ID_prof;
-int dia_clase;
-int hora_clase;
-int ID_materia;
-char grupo[10];
-}horari;
-horari *horarios;
+#include"horarios.h"
 
 int busca_hora(int hora,int dia, int ID_pro,int *B,horari *horarios){
 int i;

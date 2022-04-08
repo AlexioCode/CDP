@@ -13,7 +13,8 @@ int materia;
 int alum;
 int not;
 }calificaciones;
-calificaciones *nota;
+
+calificaciones * nota;
 
 /*
 cabecera: int borrar(int alum, int materia,calificaciones *nota,int *N)
@@ -31,7 +32,7 @@ void Guardar_calificaciones(calificaciones **nota, int *tam);
 cabecera: void cargar_calificaciones()
 Postcondicion: Traspasa la informacion del fichero "Calificaciones.txt" a la estructura de calificaciones
 */
-void cargar_calificaciones();
+calificaciones * cargar_calificaciones();
 /*
 cabecera: int nLineas(char* fichero)
 Precondicion: Le debe llegar el nombre de un fichero

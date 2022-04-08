@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include"horarios.h"
 typedef struct{
 int ID_prof;
 int dia_clase;

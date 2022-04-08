@@ -8,6 +8,7 @@ int ID_materia;
 char grupo[10];
 }horari;
 horari *horarios;
+
 //B=Horarios
 //M=Usuarios
 //A=Alumnos
