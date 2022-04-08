@@ -27,18 +27,19 @@ Postcondicion: Modifica la materia a la que va a dar clase un profesor
 */
 /*ARREGLAR*/
 void modi_hora(int i,materia *mater){
-    int Y=tam_materia(); //Tama–o materia.txt
-    int nuevamater,o,l;
+    int Y=tam_materia(); //Tamaâ€“o materia.txt
+    char nuevamater[];
+     int o=0,l=0;
     do{
     printf("Introduzca el ID de la nueva materia o pulse 0 \n");
-    scanf("%i",&nuevamater);
+    scanf("%s",nuevamater);
     }while(nuevamater<0 || nuevamater>9999);
     if(nuevamater==0){
         return;
         }
     else{
         do{
-            if(mater[l].id==nuevamater){
+            if(strcmp(mater[l].id,nuevamater)==0){
                     o=1;}
             l++;
             }while((o=0) && (l!=Y));
@@ -47,7 +48,7 @@ void modi_hora(int i,materia *mater){
                 modi_hora(i,Y, mater);
                 }
             else{
-                horarios[i].ID_materia=nuevamater;
+                strcpy(horarios[i].ID_materia,nuevamater);
             }
         }
 }
@@ -55,7 +56,7 @@ void modi_hora(int i,materia *mater){
    Precondicion: Le debe llegar la posicion del vector
    Postcondicion: Cambia el grupo al que dara clase el profesor */
 void grupo_hora(int i,r_alum *alum){
-    int A=tam_alumnos("alumnos.txt"); //Tama–o alumnos
+    int A=tam_alumnos("alumnos.txt"); //Tamaâ€“o alumnos
     int o,l,u;
     char nuevaclase[10];
     printf("Introduzca la clase a donde quiere mover la clase \n");
@@ -68,7 +69,7 @@ void grupo_hora(int i,r_alum *alum){
         if(o==0){
             printf("La clase introducida no se ha encontrado o no existe \n");
             do{
-            printf("ÀQuiere salir? Pulse 1 para si y 0 para no \n");
+            printf("Ã€Quiere salir? Pulse 1 para si y 0 para no \n");
             scanf("%i",&u);
             }while(u<0 || u>1);
             if(u==1){
@@ -105,7 +106,7 @@ void cambia_hora(int i, int B,horari *horarios){
         else{
             printf("La hora escogida ya tiene una clase \n");
             do{
-            printf("ÀDesea salir de este menu? Marque 1 para si y 0 para no \n");
+            printf("Ã€Desea salir de este menu? Marque 1 para si y 0 para no \n");
             scanf("%i",&salir);
             }while(salir!=1 || salir!=0);
 
@@ -145,7 +146,7 @@ void modificar_hora(int ID_pro, int B,horari *horarios,r_alum *alum,materia *mat
     
     printf("Se ha encontrado clase en la hora accedida\n");
     do{
-    printf("ÀQue desea modificar de esta clase?\n");
+    printf("Ã€Que desea modificar de esta clase?\n");
     printf(" 1.La materia a la que dara clase el profesor \n 2.El grupo al que dara clase el profesor \n");
     printf(" 3.Tambien puede cambiar el dia y la hora de esta clase\n");
     printf(" Advertencia: Tenga en cuenta, que solo se podra cambiar esta clase a una hora que no tenga una clase previa asignada \n");
@@ -183,7 +184,7 @@ int elige_grupo(char *ID, int B,horari *horarios){
     }while(dia_clas>5 || dia_clas<1);
 
 
-    printf("Estas son las clases que tiene en este día:\n");
+    printf("Estas son las clases que tiene en este dÃ­a:\n");
     do{
         printf("A la hora %i tiene ",k);
         j=0;
@@ -193,7 +194,7 @@ int elige_grupo(char *ID, int B,horari *horarios){
                 k++;
                 j=1;
                 do{
-                    printf("ÀDesea elegir este grupo?\n Elige 1 para si y 0 para no \n");
+                    printf("Ã€Desea elegir este grupo?\n Elige 1 para si y 0 para no \n");
                     scanf("%i",&p);
                     }while(p!=0 && p!=1);
                 if(p==1){
@@ -231,7 +232,7 @@ void aniadir_hora(int ID_pro, int B,horari *horarios,r_alum *alum,materia *mater
     if(l==0){
         printf("El profesor %i ya tiene clase el dia %i en la hora numero %i \n", ID_pro, a, b);
         do{
-            printf("ÀDesea modificarla, introducir otros parametros o desea salir?. Introduce 1 para lo primero, 2 para lo segundo o 3 para lo tercero\n");
+            printf("Ã€Desea modificarla, introducir otros parametros o desea salir?. Introduce 1 para lo primero, 2 para lo segundo o 3 para lo tercero\n");
             scanf("%i",&c);
         }while(c<1 || c>3);
         switch(c){
@@ -271,7 +272,7 @@ void eliminar_hora(int ID_pro, int B,horari *horarios){
     
     if(i==-1){
         do{
-            printf("La hora seleccionada no existe\n ÀDesea introducir otra o volver al anterior menu? Pulse 1 para lo primero o 0 para lo segundo\n");
+            printf("La hora seleccionada no existe\n Ã€Desea introducir otra o volver al anterior menu? Pulse 1 para lo primero o 0 para lo segundo\n");
             scanf("%i",&j);
         }while(j!=0 && j!=1);//Pendiente de revision !!!!!!!!!!!!!!!!!!!!!!
         
