@@ -2,14 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include"horarios.h"
-typedef struct{
-int ID_prof;
-int dia_clase;
-int hora_clase;
-int ID_materia;
-char grupo[10];
-}horari;
-horari *horarios;
+
+/* Cabecera: int nLineas(char* fichero)
+ Precondicion: Le debe llegar el nombre de un fichero
+ Postcondicion: Devuelve el numero de lineas (el tamanio de como debe ser el vector) que tiene el fichero */
 
 int nLineas(char* fichero){
     FILE *f=fopen(fichero, "r");
@@ -22,8 +18,9 @@ int nLineas(char* fichero){
         fclose(f);}
     return cont;}
 
+/* Cabecera: void cargar_horarios()
+Postcondicion: Guarda del fichero horarios.txt en la estructura */
 void cargar_horarios(){
-
     FILE *f=fopen("horarios.txt", "r");
 
     horarios=(horari*)malloc(sizeof(horari)*nLineas("horarios.txt"));
@@ -42,6 +39,6 @@ void cargar_horarios(){
         printf("Error al abrir el fichero Productos.txt\n");}
     int a;
     for(a=0;a<9;a++){   //Recorrer el vector de clientes
-        printf("Linea: %s-%s-%s-%s-%d\n ",horarios[a].ID_prof, horarios[a].dia_clase, horarios[a].hora_clase, horarios[a].ID_materia, horarios[a].grupo);
+        printf("Linea: %d-%d-%d-%d-%s\n ",horarios[a].ID_prof, horarios[a].dia_clase, horarios[a].hora_clase, horarios[a].ID_materia, horarios[a].grupo);
     }
 }
