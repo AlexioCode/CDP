@@ -19,10 +19,10 @@ void quita_salto_linea(char * cad)
         cad[longitud - 1] = '\0';
 }
 
-//cabecera: void perfil_profesor(char * id_prof, usuario ** pv_usuarios)
+//cabecera: void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: id_prof es el Id_usuario del profesor en cuestion y recibe punteros a vectores inicializados
 //postcondicion: realiza las funciones del perfil de profesor
-void perfil_profesor(char * id_prof, alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
+void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 {
     int op;
     int op2;
@@ -72,10 +72,10 @@ void perfil_profesor(char * id_prof, alum ** alumnos, calificaciones ** v_calif,
     }while(op2 == 3);   //si queremos volver al menu anterior
 }
 
-//cabecera: void perfil_administrador(char * id_admin, usuario ** pv_usuarios)
+//cabecera: void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: id_admin es el Id_usuario del administrador en cuestion y recibe punteros a vectores inicializados
 //postcondicion: realiza las funciones del perfil de administrador
-void perfil_administrador(char * id_admin, alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
+void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 {
     int op, op2;
     do
@@ -109,10 +109,10 @@ void perfil_administrador(char * id_admin, alum ** alumnos, calificaciones ** v_
     }while(op2 == 's'); //por si quiere realizar otra operacion de administrador*/
 }
 
-//char * login(usuario ** pv_usuarios)
+//char * login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: recibe punteros a vectores inicializados
 //postcondicion: devuelve el Id_usuario del usuario con ese usuario y contraseña, y llama al perfil correspondiente (de profesor o de administrador)
-char * login(alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
+char * login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 {
     char user[6];
     char passwd[9];
