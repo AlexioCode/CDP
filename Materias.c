@@ -27,7 +27,7 @@ int tam_materia()
     return n;
 }
 
-void cargar_materias()
+materia * cargar_materias()
 {
     int tam_max = tam_materia("materias.txt");
     int i;
@@ -56,6 +56,7 @@ void cargar_materias()
                 fclose(fich);
             }
         }
+    return p;
 }
 
 void guardar_materias(materia *p, int tam_max)
@@ -78,8 +79,8 @@ void guardar_materias(materia *p, int tam_max)
     }
 }
 
-
-void cambiar_id_mat(materia *p, char* id,char* nuevo_id){
+//Aun por corregir
+void cambiar_id_mat(materia *p, int tam_max){
     int i = 0;
     while ((p+i)->id == id)
     {
@@ -90,8 +91,8 @@ void cambiar_id_mat(materia *p, char* id,char* nuevo_id){
     }
 }
 
-
-void cambiar_nombre_mat(materia *p, char* nombre, char* nuevo_nombre){
+//Aun por corregir
+void cambiar_nombre_mat(materia *p, int tam_max){
     int i = 0;
     while((p+i)->nombre == nombre)
     {
@@ -99,8 +100,8 @@ void cambiar_nombre_mat(materia *p, char* nombre, char* nuevo_nombre){
         i++;
     }
 }
-
-void cambiar_siglas_mat(materia *p, char* siglas, char* nuevo_siglas){
+//Aun por corregir
+void cambiar_siglas_mat(materia *p, int tam_max){
     int i = 0;
     while((p+i)->siglas == siglas)
     {
@@ -121,17 +122,20 @@ void ver_materias(materia *p, int tam_max){    //muestra las materias de linea e
 }
 
 
-void baja_materia(materia *p, char* id){
-    int i=0;
-    while((p+i)->id == id)
+void baja_materia(materia *p, char* id, int * tam_max){
+    int i=0,j;
+    j = *tam_max;
+    while((p+i)->id == id && i<j)
     {
         free(p+i); //Libera la materia indicada con id
         i++;
     }
+    j--;
+    *tam_max = j;
 }
 
-int alta_materia(materia *p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas, int tam_max){
-    p = (materia *)realloc(p,sizeof(materia));
+int alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas, int tam_max){
+    *p = (materia *)realloc(p,sizeof(materia));
         if(p==NULL)
         {
             printf("ERROR al cargar datos");
@@ -139,9 +143,9 @@ int alta_materia(materia *p, char* nuevo_id, char* nuevo_nombre, char* nuevo_sig
         }
         else
         tam_max++;
-        strcpy((p+tam_max)->id, nuevo_id);
-        strcpy((p+tam_max)->nombre, nuevo_nombre);
-        strcpy((p+tam_max)->siglas, nuevo_siglas);
+        strcpy((*p+tam_max)->id, nuevo_id);
+        strcpy((*p+tam_max)->nombre, nuevo_nombre);
+        strcpy((*p+tam_max)->siglas, nuevo_siglas);
         return tam_max;
 }
 

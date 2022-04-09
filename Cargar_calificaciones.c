@@ -1,20 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-typedef struct{
-int dia;
-int mes;
-int anno;
-}fec;
-
-typedef struct{
-fec fecha;
-char descrip[30];
-int materia;
-int alum;
-int not;
-}calificaciones;
-calificaciones *nota;
+#include"calificaciones.h"
+/* Cabecera: int nLineas(char* fichero)
+   Precondicion: Le debe llegar el nombre de un fichero
+   Postcondicion: Devuelve el numero de lineas que tiene dicho fichero */
 int nLineas(char* fichero){
     FILE *f=fopen(fichero, "r");
     char cadena[150];
@@ -26,7 +16,9 @@ int nLineas(char* fichero){
         fclose(f);}
     return cont;}
 
-void cargar_calificaciones(){
+/* Cabecera: void cargar_calificaciones()
+   Postcondicion: Traspasa la informacion del fichero "Calificaciones.txt" a la estructura de calificaciones */
+calificaciones * cargar_calificaciones(){
 
     FILE *f=fopen("calificaciones.txt", "r");
 
@@ -46,6 +38,7 @@ void cargar_calificaciones(){
         printf("Error al abrir el fichero Productos.txt\n");}
     int a;
     for(a=0;a<9;a++){   //Recorrer el vector de clientes
-        printf("Linea: %s-%s-%s-%s-%d-%d-%d\n ",nota[a].fecha.dia, nota[a].fecha.mes, nota[a].fecha.anno, nota[a].descrip, nota[a].materia, nota[a].alum, nota[a].not);
+        printf("Linea: %d-%d-%d-%s-%d-%d-%d\n ",nota[a].fecha.dia, nota[a].fecha.mes, nota[a].fecha.anno, nota[a].descrip, nota[a].materia, nota[a].alum, nota[a].not);
     }
+    return nota;
 }
