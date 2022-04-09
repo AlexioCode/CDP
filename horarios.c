@@ -51,7 +51,9 @@ void modi_hora(int i,materia *mater){
                 modi_hora(i,mater);
                 }
             else{
-                strcpy(horarios[i].ID_materia,nuevamater);
+                int x;
+                X=(int)strtol(nuevamater,NULL,10)
+                horarios[i].ID_materia=x;
             }
         }
 }
