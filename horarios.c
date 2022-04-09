@@ -32,17 +32,20 @@ void modi_hora(int i,materia *mater){
      int o=0,l=0;
     do{
     printf("Introduzca el ID de la nueva materia o pulse 0 \n");
-    scanf("%s",nuevamater);
+    scanf("%c",nuevamater);
     }while(strtol(nuevamater,NULL,10)<0 || strtol(nuevamater,NULL,10)>9999);
+    
     if(strtol(nuevamater,NULL,10)==0){
         return;
         }
+    
     else{
         do{
             if(strcmp(mater[l].id,nuevamater)==0){
                     o=1;}
             l++;
-            }while((o=0) && (l!=Y));
+        }while((o!=0) && (l!=Y));
+        
             if(o==0){
                 printf("El ID introducido no se ha encontrado o no existe \n");
                 modi_hora(i,mater);
@@ -57,7 +60,7 @@ void modi_hora(int i,materia *mater){
    Postcondicion: Cambia el grupo al que dara clase el profesor */
 void grupo_hora(int i,r_alum *alum){
     int A=tam_alumnos("alumnos.txt"); //Tama–o alumnos
-    int o,l,u;
+    int o,l=0,u;
     char nuevaclase[10];
     printf("Introduzca la clase a donde quiere mover la clase \n");
     scanf("%s", nuevaclase);
@@ -89,7 +92,7 @@ void grupo_hora(int i,r_alum *alum){
    Precondicion:Le debe llegar la posicion del vector
    Postcondicion: Cambia una clase de hora a otra que hora que este libre */
 void cambia_hora(int i, int B,horari *horarios){
-    int o,dia,hora,salir;
+    int o=0,dia,hora,salir;
     do{
             do{
             printf("Indique el dia al que quiere cambiar la clase \n");
@@ -106,9 +109,9 @@ void cambia_hora(int i, int B,horari *horarios){
         else{
             printf("La hora escogida ya tiene una clase \n");
             do{
-            printf("ÀDesea salir de este menu? Marque 1 para si y 0 para no \n");
+            printf("¿Desea salir de este menu? Marque 1 para si y 0 para no \n");
             scanf("%i",&salir);
-            }while(salir!=1 || salir!=0);
+            }while(salir>1 || salir<0);
 
             if(salir==1)
                 return;
@@ -172,7 +175,7 @@ void modificar_hora(int ID_pro, int B,horari *horarios,r_alum *alum,materia *mat
    Precondicion: Le debe llegar la ID del profesor
    Postcondicion: Le dice que clases tiene ese dia y devuelve la posicion del vector de la clase elegida sino devuelve -1 */
 int elige_grupo(char *ID, int B,horari *horarios){
-    int i, j, k,p,dia_clas, ID_pro;
+    int i, j, k=0,p,dia_clas, ID_pro;
     long ID_p;
     ID_p=strtol(ID,NULL,10);
     ID_pro=(int)ID_p;
@@ -213,7 +216,7 @@ return -1;
    Precondicion: Le debe llegar la ID de un profesor
    Postcondicion: Le deja aniadir a un admin una clase a un profesor siempre que el hueco elegido este libre */
 void aniadir_hora(int ID_pro, int B,horari *horarios,r_alum *alum,materia *mater){
-    int a, b,i,l,c;
+    int a, b,i,l=0,c;
     do{
         printf("Introduzca el dia de la semana en que quiere aniadir la clase \n El numero debera ser del 1-5 donde sera lunes, martes, miercoles, jueves y viernes, respectivamente");
         scanf("%i",&a);

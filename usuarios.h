@@ -24,7 +24,7 @@ void escribir_usuarios(usuario ** v_usuarios);
 //cabecera: void guardar_usuarios(usuario ** v_usuarios)
 //precondicion: recibe una direccion a un vector de usuarios inicializado
 //postcondicion: guarda la informacion de usuarios en el fichero usuarios.txt
-void guardar_usuarios(usuario ** v_usuarios)
+void guardar_usuarios(usuario ** v_usuarios);
 
 //cabecera: int n_lineas(char * fichero)
 //precondicion: fichero es el nombre del fichero cuyo numero de lineas quieres contar
