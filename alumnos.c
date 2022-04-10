@@ -11,7 +11,7 @@ r_alum *alum;//Estructura
 //Cabecera: int tam_alumnos(char *fichero)
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Tamaño del fichero alumnos.txt
-int tam_alumnos(char *fichero){
+int tam_alumnos(r_alum ** v_alumno){
     int n = 0;
     char c;
     FILE *fich;
@@ -34,7 +34,7 @@ int tam_alumnos(char *fichero){
 //Cabecera: void cargar_estructura (char *fichero)
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
-void cargar_estructura (char *fichero){
+void cargar_estructura (r_alum ** v_alumno){
     int A= tam_alumnos("alumnos.txt");
     char cadena[150];
     unsigned i=0;
@@ -64,7 +64,7 @@ void cargar_estructura (char *fichero){
 //Cabecera: void Guardar_Alumnos(r_alum *alum)
 // Precondición: estructura realizada
 //Postcondición: estructura cargada en fichero
-void Guardar_Alumnos(r_alum *alum){
+void Guardar_Alumnos(r_alum **v_alumno){
 int A= tam_alumnos("alumnos.txt");
 int cont;
 FILE *f;
