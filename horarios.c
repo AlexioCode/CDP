@@ -52,7 +52,7 @@ void modi_hora(int i,materia *mater){
                 }
             else{
                 int x;
-                X=(int)strtol(nuevamater,NULL,10)
+                x=(int)strtol(nuevamater,NULL,10);
                 horarios[i].ID_materia=x;
             }
         }
