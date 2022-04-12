@@ -56,3 +56,54 @@
 	<string.h>
 	"usuarios.h"
 
+1649775562 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\alumnos.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"alumnos.h"
+	"Materias.h"
+
+1649775623 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\alumnos.h
+	"Materias.h"
+
+1649695089 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\materias.h
+	<stdlib.h>
+
+1649695089 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\cargar_calificaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"calificaciones.h"
+
+1649695090 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\calificaciones.h
+
+1649695089 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\cargar_horarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"horarios.h"
+
+1649695090 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\horarios.h
+	"usuarios.h"
+	"Materias.h"
+	"alumnos.h"
+
+1649695090 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\usuarios.h
+
+1649695089 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\guardar_calificaciones.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"calificaciones.h"
+
+1649695090 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\horarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	"Materias.h"
+	"alumnos.h"
+	"horarios.h"
+	"usuarios.h"
+

@@ -11,7 +11,7 @@ r_alum *alum;//Estructura
 //Cabecera: int tam_alumnos(char *fichero)
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Tamaño del fichero alumnos.txt
-int tam_alumnos(r_alum ** v_alumno){
+int tam_alumnos(char *fichero){
     int n = 0;
     char c;
     FILE *fich;
@@ -34,7 +34,7 @@ int tam_alumnos(r_alum ** v_alumno){
 //Cabecera: void cargar_estructura (char *fichero)
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
-void cargar_estructura (r_alum ** v_alumno){
+void cargar_estructura (char *fichero){
     int A= tam_alumnos("alumnos.txt");
     char cadena[150];
     unsigned i=0;
@@ -43,7 +43,7 @@ void cargar_estructura (r_alum ** v_alumno){
     f=fopen("alumnos.txt", "r");//Abrimos fichero
     alum=(r_alum*)malloc(sizeof(r_alum)*A);
     r_alum aux;
-    
+
     if(f){  //Controla si se ha podido abrir el fichero
         while(!feof(f)){
             fgets(cadena, 150, f);
@@ -126,11 +126,11 @@ void baja(r_alum *alum){
     for(i=0; i<A;i++){ //Recorremos desde i hasta A(tamaño del fichero)
         if(strcmp(alum[i].Id_alum,alumno)==0){ //Si coincide el id de la estructura con el introducido:
             printf("El alumno %s se llama %s",alum[i].Id_alum,alum[i].Nombre_alum); //Escribir su id y nombre:
-            
+
             do{printf("¿Desea dar de baja al alumno? Introduzca Si / No"); //Aseguramos que se quiera dar de baja
                 scanf("%c",res);
             }while((strcmp(res,"Si")!=0) && (strcmp(res,"No")!=0));
-            
+
             if((strcmp(res,"Si")==0)){ //Si introduce 'Si' damos de baja
                 alum= (r_alum*) malloc(sizeof(alum)*(A-1));//Reservamos nuevo espacio de memoria
                 for(j=i;j<(A-1);j++){
@@ -206,9 +206,9 @@ void modalum(r_alum *alum){
                     modalum(alum); //Llamamos de nuevo a la función, vuelve a empezar
         else
                 return;     //Si escribe "No" sale de la función
-                    
+
     }
-       
+
 
 //Cabecera:void listaalumprof (r_alum *alum)
 //Precondición: Recibe estructura inicializada
