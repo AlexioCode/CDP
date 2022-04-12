@@ -109,10 +109,10 @@ void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** 
     }while(op2 == 's'); //por si quiere realizar otra operacion de administrador*/
 }
 
-//char * login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
+//void login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: recibe punteros a vectores inicializados
 //postcondicion: devuelve el Id_usuario del usuario con ese usuario y contraseña, y llama al perfil correspondiente (de profesor o de administrador)
-char * login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
+void login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 {
     char user[6];
     char passwd[9];
@@ -151,7 +151,6 @@ char * login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, m
                 perfil_profesor((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);       //llamo a perfil_profesor
             else
                 perfil_administrador((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);  //llamo a perfil_admin
-            return (*pv_usuarios)[n_usuario].Id_usuario;
         }
         else
             printf("Usuario o contrasena no validos");
