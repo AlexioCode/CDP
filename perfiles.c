@@ -134,8 +134,7 @@ char * login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, m
 
         while(n_usuario < num_usuarios && encontrado == 0)  //buscar si el usuario y la contrasena son validos
         {
-            if((strcmp(user, (*pv_usuarios)[n_usuario].Usuario) == 0)
-            && (strcmp(passwd, (*pv_usuarios)[n_usuario].Contrasena) == 0))
+            if((strcmp(user, (*pv_usuarios)[n_usuario].Usuario) == 0) && (strcmp(passwd, (*pv_usuarios)[n_usuario].Contrasena) == 0))
             {
                 encontrado = 1;
                 printf("\nBienvenido %s\n", (*pv_usuarios)[n_usuario].Nomb_usuario);

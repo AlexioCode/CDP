@@ -17,10 +17,10 @@ typedef struct{
 //Postcondición: Tamaño del fichero alumnos.txt
 int tam_alumnos(char *fichero);
 
-//Cabecera: void cargar_estructura (char *fichero)
+//Cabecera: void cargar_estructura ()
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
-void cargar_estructura (char *fichero);
+void cargar_estructura ();
 
 //Cabecera: void Guardar_Alumnos(r_alum *alum)
 // Precondici—n: estructura realizada

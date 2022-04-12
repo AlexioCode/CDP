@@ -31,10 +31,10 @@ int tam_alumnos(char *fichero){
     return n;
 }//Fin tam_alumnos
 
-//Cabecera: void cargar_estructura (char *fichero)
+//Cabecera: void cargar_estructura ()
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
-void cargar_estructura (char *fichero){
+void cargar_estructura (){
     int A= tam_alumnos("alumnos.txt");
     char cadena[150];
     unsigned i=0;
