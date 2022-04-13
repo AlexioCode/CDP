@@ -10,16 +10,26 @@
 
 int main()
 {
-    int n=nLineas("calificaciones.txt");
-    int a=nLineas("alumnos.txt");
-    int y=nLineas("materia.txt");
-    int m=nLineas("usuarios.txt");
-    int b=nLineas("horarios.txt");
+    /*
+    n=tam_calificaciones
+    a=tam_alumnos
+    y=tam_materias
+    m=tam_usuarios
+    b=tam_horarios
+    c=tam_matriculas
+    */
+    int n=n_lineas("calificaciones.txt");
+    int a=n_lineas("Alumnos.txt");
+    int y=n_lineas("Materias.txt");
+    int m=n_Lineas("usuarios.txt");
+    int b=n_lineas("horarios.txt");
+    int c=n_lineas("Matriculas.txt");
     int *N=&n;
     int *A=&a;
     int *Y=&y;
     int *M=&m;
     int *B=&b;
+    int *C=&c;
     usuario * v_usuarios;
     calificaciones * nota;
     horari *horarios;
@@ -32,7 +42,7 @@ int main()
     cargar_usuarios(&v_usuarios);
     cargar_estructura();
     cargar_estructura();
-    login(&v_usuarios);
+    login(&alum,&nota, &horarios, &p1, &p2, &v_usuarios, N, A, Y, M, B, C);
 
 
     return 0;}

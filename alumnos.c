@@ -82,31 +82,30 @@ fclose(f); //Cierre del fichero.
 //Cabecera:void alta(r_alum* alum)
 //Precondición: Recibe la estructura inicializada.
 //Postcondición: Da de alta al alumno seleccionado.
-void alta(r_alum* alum){
-    int A= tam_alumnos("alumnos.txt");
+void alta(r_alum* alum,int* A){
     char res[3];
-    alum= (r_alum*) malloc(sizeof(alum)*(A+1));//Aumentamos la reserva +1
+    alum= (r_alum*) malloc(sizeof(alum)*(*(A+1)));//Aumentamos la reserva +1
     printf("Introduzca los datos siguientes del alumno que quiere añadir:");
     printf("Id: ");
-    scanf("%s",alum[A+1].Id_alum);
+    scanf("%s",alum[*(A+1)].Id_alum);
     printf("Nombre: ");
-    scanf("%s",alum[A+1].Nombre_alum);
+    scanf("%s",alum[*(A+1)].Nombre_alum);
     printf("Dirección: ");
-    scanf("%c",alum[A+1].Direc_alum);
+    scanf("%c",alum[*(A+1)].Direc_alum);
     printf("Localidad: ");
-    scanf("%c",alum[A+1].Local_alum);
+    scanf("%c",alum[*(A+1)].Local_alum);
     printf("Curso: ");
-    scanf("%c",alum[A+1].Curso);
+    scanf("%c",alum[*(A+1)].Curso);
     printf("Grupo:");
-    scanf("%c",alum[A+1].Grupo);
+    scanf("%c",alum[*(A+1)].Grupo);
     printf("Alumno añadido");
 
     do{
         printf("¿Quiere dar de alta a otro alumno? Si / No");
-        scanf("%c",res);
+        scanf("%s",res);
     }while((strcmp(res,"Si")!=0) && (strcmp(res,"No")!=0));//Aseguramos que solo se introduzca un Si o No
     if(strcmp(res,"Si")==0)
-            alta(alum); //Si escribe "Si" vuelve a empezar
+            alta(alum,A); //Si escribe "Si" vuelve a empezar
         else{
                 return;     //Si escribe "No" sale de la función
             }
@@ -117,23 +116,23 @@ void alta(r_alum* alum){
 //Cabecera:void baja(r_alum *alum)
 //Precondición: Recibe la estructura inicializada
 //Postcondición: Da de baja al alumno seleccionado.
-void baja(r_alum *alum){
-    int A= tam_alumnos("alumnos.txt"); //Tamaño del fichero en A
+void baja(r_alum *alum,int* A){
     int i,j;
     char alumno[7],res[3],res2[3];
     printf("Introduzca el ID del alumno que quiera dar de baja:");
-    scanf("%c",alumno); //Introducir alumno que se requiera dar de baja
-    for(i=0; i<A;i++){ //Recorremos desde i hasta A(tamaño del fichero)
+    scanf("%s",alumno); //Introducir alumno que se requiera dar de baja
+    for(i=0; i<*A;i++){ //Recorremos desde i hasta A(tamaño del fichero)
         if(strcmp(alum[i].Id_alum,alumno)==0){ //Si coincide el id de la estructura con el introducido:
             printf("El alumno %s se llama %s",alum[i].Id_alum,alum[i].Nombre_alum); //Escribir su id y nombre:
 
             do{printf("¿Desea dar de baja al alumno? Introduzca Si / No"); //Aseguramos que se quiera dar de baja
-                scanf("%c",res);
+                scanf("%s",res);
             }while((strcmp(res,"Si")!=0) && (strcmp(res,"No")!=0));
 
             if((strcmp(res,"Si")==0)){ //Si introduce 'Si' damos de baja
-                alum= (r_alum*) malloc(sizeof(alum)*(A-1));//Reservamos nuevo espacio de memoria
-                for(j=i;j<(A-1);j++){
+                alum= (r_alum*) malloc(sizeof(alum)*(*(A-1)));//Reservamos nuevo espacio de memoria
+                A--;
+                for(j=i;j<*A;j++){
                     alum[j]=alum[j+1]; //Sustituyo posicion del alumo por la siguiente
                 }
                 printf("Alumno dado de baja");
@@ -145,10 +144,10 @@ void baja(r_alum *alum){
 //VOLVER A PREGUNTAR POR SI QUIERE DAR DE BAJA A ALGUIEN MAS
     do{
         printf("¿Quiere dar de baja a otro alumno? Si / No");
-        scanf("%c", res2);
+        scanf("%s", res2);
     }while((strcmp(res2,"Si")!=0) && (strcmp(res2,"No")!=0));
     if(strcmp(res2,"Si")==0)//Si dice "Si", llamamos de nuevo a la función
-        baja(alum); //Vuelve a empezar
+        baja(alum,A); //Vuelve a empezar
     else{
         return;     //Si escribe "No" sale de la función
         }
@@ -158,13 +157,12 @@ void baja(r_alum *alum){
 //Cabecera:void modalum(r_alum *alum)
 //Precondición: Recibe estructura inicializada
 //Postcondición: Alumno que ha seleccionado el usuario modificado
-void modalum(r_alum *alum){
-    int A= tam_alumnos("alumnos.txt"); //Tamaño del fichero
+void modalum(r_alum *alum,int* A){
     int mod,j;
     char nuevoid[6],res[3];
     printf("Introduzca el ID del alumno que quiere modificar: ");
     scanf("%s",nuevoid);
-    for(j=0;j<A;j++){ //Recorremos
+    for(j=0;j<*A;j++){ //Recorremos
         if(strcmp(alum[j].Id_alum,nuevoid)==0){ //Si coincide, hemos encontrado al alumno
             printf("¿Qué quiere modificar del alumno seleccionado?"); //Preguntamos:
 
@@ -203,7 +201,7 @@ void modalum(r_alum *alum){
             scanf("%c",res);
         }while((strcmp(res,"Si")!=0) && (strcmp(res,"No")!=0));//Aseguramos que solo entre Si o No
         if(strcmp(res,"Si")==0) //Si res= "Si"
-                    modalum(alum); //Llamamos de nuevo a la función, vuelve a empezar
+                    modalum(alum,A); //Llamamos de nuevo a la función, vuelve a empezar
         else
                 return;     //Si escribe "No" sale de la función
 
@@ -214,19 +212,18 @@ void modalum(r_alum *alum){
 //Precondición: Recibe estructura inicializada
 //Postcondición: Devuelve lista de alumnos con opción a modificar alguno de ellos
 
-void listaalumprof (r_alum *alum){
-    int A= tam_alumnos("alumnos.txt"); //Tamaño fichero
+void listaalumprof (r_alum *alum,int* A){
     int i;
     char res[3];
-    for(i=0;i<A;i++){ //Recorremos el fichero y listamos los alumnos
+    for(i=0;i<*A;i++){ //Recorremos el fichero y listamos los alumnos
         printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo );
         }//Fin for
     do{
         printf("¿Quiere modificar algún dato?"); //damos la opción de modificar algún dato de la lista
-        scanf("%c",res);
+        scanf("%s",res);
     }while((strcmp(res,"Si")!=0) && (strcmp(res,"No")!=0)); //Aseguramos que solo se introduce Si o No
     if(strcmp(res,"Si")==0) //Si pone "Si"
-        modalum(alum); //Llamamos a la función modificar alumnos
+        modalum(alum,A); //Llamamos a la función modificar alumnos
     else{
         return;//Si pone "No", salimos
     }
@@ -235,8 +232,7 @@ void listaalumprof (r_alum *alum){
 //Cabecera:void listaalumadm (r_alum *alum)
 //Precondición: Recibe estructura inicializada
 //Postcondición: Devuelve lista de alumnos con opción a modificar alguno de ellos
-void listaalumadm (r_alum *alum){
-    int A= tam_alumnos("alumnos.txt"); //Tamaño del vector
+void listaalumadm (r_alum *alum,int* A){
     int i,res;
     char mod[3];
     do{
@@ -245,17 +241,17 @@ void listaalumadm (r_alum *alum){
     }while(res<1 || res>4); //Aseguramos que mete un número del 1 al 4
     switch (res) { //Damos opciones
         case 1:
-            alta(alum); //Dar de alta
+            alta(alum,A); //Dar de alta
             break;
         case 2:
-            baja(alum);//Dar de baja
+            baja(alum,A);//Dar de baja
             break;
         case 3:
-            modalum(alum);//modificar
+            modalum(alum,A);//modificar
             break;
         default: //Caso 4
             //Listar
-            for(i=0;i<A;i++){
+            for(i=0;i<*A;i++){
                 printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo );
             } //Fin for
             //Fin caso 4
@@ -267,7 +263,7 @@ void listaalumadm (r_alum *alum){
         scanf("%c",mod);
     }while((strcmp(mod,"Si")!=0) && (strcmp(mod,"No")!=0));//Aseguramos que se introduzca Si o No
     if(strcmp(mod,"Si")==0) //Si pone "Si"
-        modalum(alum); //volvemos a llamar a la función
+        modalum(alum,A); //volvemos a llamar a la función
     else{
         return;//Si pone "No", salimos
     }
@@ -276,11 +272,10 @@ void listaalumadm (r_alum *alum){
 //Cabecera:ficha_alumno(char* id_alumno,r_alum *alum )
 //Precondición: Recibe estructura inicializada y el id de un alumno en concreto
 //Postcondición: Devuelve lista de un alumno con opcion a modificar datos
-void ficha_alumno(char* id_alumno,r_alum *alum ){
-    int A= tam_alumnos("alumnos.txt"); //Tamaño del vector
+void ficha_alumno(char* id_alumno,r_alum *alum, int* A){
     int i;
     char mod[3],res[3], nuevo_id[7];
-    for(i=0;i<A;i++){ //Recorremos estructura
+    for(i=0;i<*A;i++){ //Recorremos estructura
         if(strcmp(id_alumno,alum[i].Id_alum)==0){
             printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo);
         }
@@ -288,19 +283,19 @@ void ficha_alumno(char* id_alumno,r_alum *alum ){
     //Preguntamos si quiere realizar algo más
     do{
         printf("¿Quiere modificar algún dato?");
-        scanf("%c",mod);
+        scanf("%s",mod);
     }while((strcmp(mod,"Si")!=0) && (strcmp(mod,"No")!=0));//Aseguramos que se introduzca Si o No
     if(strcmp(mod,"Si")==0) //Si pone "Si"modalum(r_alum *alum)
-        modalum(alum); //volvemos a llamar a la función
+        modalum(alum,A); //volvemos a llamar a la función
     else{
         do{
             printf("¿Quiere buscar otro alumno?"); //Si no quiere modificar datos, preguntamos por otra búsqueda
-            scanf("%c",res);
+            scanf("%s",res);
         }while((strcmp(res,"Si")!=0) && (strcmp(res,"No")!=0));//Aseguramos que se introduzca Si o No
         if(strcmp(res,"Si")==0){ //Si es que "Si", ingresamos otro id
             printf("Ingrese el id de otro alumno: ");
             scanf("%c",nuevo_id);
-            ficha_alumno(nuevo_id,alum ); //Volvemos a llamar a la función
+            ficha_alumno(nuevo_id,alum,A); //Volvemos a llamar a la función
         }
         else
             return; //Si pone "No", salimos
@@ -309,12 +304,10 @@ void ficha_alumno(char* id_alumno,r_alum *alum ){
 //Cabecera: void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat)
 //Precondición: Recibe estructura inicializada, grupo de un alumno y materia
 //Postcondición: Devuelve lista de alumnos del grupo determinado en la materia determinada
-void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat){
-    int A= tam_alumnos("alumnos.txt"); //Tamaño del vector en alumnos
-    int tam_max = tam_materia("materias.txt");//Tamaño del vector en materias
+void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat,int* A, int* Y){
     int i,j;
-    for(i=0;i<A;i++){//Recorremos alumnos
-        for(j=0;j<tam_max;j++){ //Recorremos materias}
+    for(i=0;i<*A;i++){//Recorremos alumnos
+        for(j=0;j<*Y;j++){ //Recorremos materias
             if((strcmp(grupo,alum[i].Grupo)==0)&&(strcmp(idmateria, r_mat[j].id)==0)){
                 printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo);
             }

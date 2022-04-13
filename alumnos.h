@@ -30,35 +30,35 @@ void Guardar_Alumnos(r_alum **alum);
 //Cabecera:void alta(r_alum* alum)
 //Precondici—n: Recibe la estructura inicializada
 //Postcondici—n: Da de alta al alumno seleccionado.
-void alta(r_alum* alum);
+void alta(r_alum* alum,int* A);
 
 //Cabecera:void baja(r_alum *alum)
 //Precondici—n: Recibe la estructura inicializada
 //Postcondici—n: Da de baja al alumno seleccionado.
-void baja(r_alum *alum);
+void baja(r_alum *alum,int* A);
 
 //Cabecera:void modalum(r_alum *alum)
 //Precondici—n: Recibe estructura inicializada
 //Postcondici—n: Alumno que ha seleccionado el usuario modificado
-void modalum(r_alum *alum);
+void modalum(r_alum *alum,int* A);
 
 //Cabecera:void listaalumprof (r_alum *alum)
 //Precondici—n: Recibe estructura inicializada
 //Postcondici—n: Devuelve lista de alumnos con opci—n a modificar alguno de ellos
-void listaalumprof (r_alum *alum);
+void listaalumprof (r_alum *alum,int* A);
 
 //Cabecera:void listaalumadm (r_alum *alum)
 //Precondici—n: Recibe estructura inicializada
 //Postcondici—n: Devuelve lista de alumnos con opci—n a modificar alguno de ellos
-void listaalumadm (r_alum *alum);
+void listaalumadm (r_alum *alum, int* A);
 
 //Cabecera:ficha_alumno(char* id_alumno,r_alum *alum )
 //Precondici—n: Recibe estructura inicializada y el id de un alumno en concreto
 //Postcondici—n: Devuelve lista de un alumno con opcion a modificar datos
-void ficha_alumno(char* id_alumno,r_alum *alum );
+void ficha_alumno(char* id_alumno,r_alum *alum, int* A);
 
 //Cabecera: void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat)
 //Precondici—n: Recibe estructura inicializada, grupo de un alumno y materia
 //Postcondici—n: Devuelve lista de alumnos del grupo determinado en la materia determinada
-void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat);
+void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat, int* A, int* Y);
 #endif //Perfiles_H_included

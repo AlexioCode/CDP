@@ -22,7 +22,7 @@ void quita_salto_linea(char * cad)
 //cabecera: void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: id_prof es el Id_usuario del profesor en cuestion y recibe punteros a vectores inicializados
 //postcondicion: realiza las funciones del perfil de profesor
-void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
+void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios, int *N, int *A, int *Y, int *M, int *B, int *C)
 {
     int op;
     int op2;
@@ -36,7 +36,7 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
     {
         do
         {
-            pos_grupo = elige_grupo(id_prof);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
+            pos_grupo = elige_grupo(id_prof,B,v_fechas);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
             strcpy(grupo, horarios[pos_grupo].grupo);
             strcpy(Id_materia, horarios[pos_grupo].ID_materia);
             strcpy(siglas_materia, id_siglas_materia(Id_materia));
@@ -49,7 +49,7 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
 
         if(op == 1)                 //Opcion elegida: lista de alumnos
         {
-            mostrar_alumnos_grupo_materia(grupo, Id_materia);
+            mostrar_alumnos_grupo_materia(grupo, Id_materia,r_alum,materias,A,Y);
             printf("Selecciona un alumno (Identificador escolar): ");
             fflush(stdin);
             fgets(Id_alumno, 7, stdin);
@@ -59,11 +59,11 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
                 printf("\n1. Ficha del alumno\n2. Calificaciones del alumno\n3. Volver\n\n");
                 scanf("%i", &op2);
                 if(op2 == 1)
-                    ficha_alumno(Id_alumno, alumnos);
+                    ficha_alumno(Id_alumno, alumnos,A);
                 if(op2 == 2)
                 {
-                    ver_nota(Id_alumno, Id_materia);
-                    calif_profe(Id_alumno, Id_materia);
+                    ver_nota(Id_alumno, Id_materia,nota,N);
+                    calif_profe(Id_alumno, Id_materia,nota,N);
                 }
                 if(op2 != 1 && op2 != 2 && op2 != 3)
                     printf("Opcion incorrecta");
@@ -75,7 +75,7 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
 //cabecera: void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: id_admin es el Id_usuario del administrador en cuestion y recibe punteros a vectores inicializados
 //postcondicion: realiza las funciones del perfil de administrador
-void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
+void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios, int *N, int *A, int *Y, int *M, int *B, int *C)
 {
     int op, op2;
     do
@@ -87,16 +87,16 @@ void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** 
             switch(op)
             {
                 case 1:
-                    admin_usuarios(pv_usuarios);
+                    admin_usuarios(pv_usuarios, M);
                     break;
                 case 2:
-                    listaalumadm(alumnos);
+                    listaalumadm(alumnos,A);
                     break;
                 case 3:
-                    admin_materias(materias);
+                    admin_materias(materias,Y);
                     break;
                 case 4:
-                    admin_hora(v_fechas);
+                    admin_hora(B,v_fechas,alum,pv_usuarios,materias,A,M,Y);
                     break;
                 default:
                     printf("Opcion no valida\n");
@@ -112,8 +112,8 @@ void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** 
 //void login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: recibe punteros a vectores inicializados
 //postcondicion: llama al perfil correspondiente (de profesor o de administrador)
-void login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
-{
+
+void login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios, int *N, int *A, int *Y, int *M, int *B, int *C){
     char user[6];
     char passwd[9];
     int n_usuario;
@@ -148,9 +148,9 @@ void login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, mat
         if(encontrado == 1)  //si el usuario y contrasena son validos, comprobamos si es profe o admin y llamamos a su funcion perfil
         {
             if(strcmp((*pv_usuarios)[n_usuario].Perfil_usuario, "profesor") == 0)
-                perfil_profesor((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);       //llamo a perfil_profesor
+                perfil_profesor((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios, N, A, Y, M, B, C);       //llamo a perfil_profesor
             else
-                perfil_administrador((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);  //llamo a perfil_admin
+                perfil_administrador((*pv_usuarios)[n_usuario].Id_usuario, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios, N, A, Y, M, B, C);  //llamo a perfil_admin
         }
         else
             printf("Usuario o contrasena no validos");
