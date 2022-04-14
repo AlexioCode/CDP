@@ -23,13 +23,11 @@ int main()
     int n=n_lineas("calificaciones.txt");
     int a=n_lineas("Alumnos.txt");
     int y=n_lineas("Materias.txt");
-    int m=n_Lineas("usuarios.txt");
     int b=n_lineas("horarios.txt");
     int c=n_lineas("Matriculas.txt");
     int *N=&n;
     int *A=&a;
     int *Y=&y;
-    int *M=&m;
     int *B=&b;
     int *C=&c;
     usuario * v_usuarios;
