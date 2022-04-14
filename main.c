@@ -44,7 +44,13 @@ int main()
     cargar_usuarios(&v_usuarios);
     cargar_estructura();
     cargar_estructura();
-    login(&alum,&nota, &horarios, &p1, &p2, &v_usuarios, N, A, Y, M, B, C);
+    login(&alum,&nota, &horarios, &p1, &p2, &v_usuarios, N, A, Y, B, C);
 
-
-    return 0;}
+    free(v_usuarios);
+    free(nota);
+    free(horarios);
+    free(p1);
+    free(p2);
+    free(alum);
+    return 0;
+    }
