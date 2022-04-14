@@ -60,10 +60,10 @@ void cargar_usuarios(usuario ** usuarios)
 //cabecera: void escribir_usuarios(usuario ** v_usuarios)
 //precondicion: recibe la direccion de un vector inicializado de usuarios
 //postcondicion: escribe por pantalla los usuarios que hay cargados en las estructuras
-void escribir_usuarios(usuario ** v_usuarios,int* M)
+void escribir_usuarios(usuario ** v_usuarios)
 {
     int n_usuario;
-    for(n_usuario = 0; n_usuario < *M ; n_usuario++)
+    for(n_usuario = 0; n_usuario < num_usuarios ; n_usuario++)
     {
         printf("\nId de usuario: %s\n", (*v_usuarios)[n_usuario].Id_usuario);
         printf("Nombre de usuario: %s\n", (*v_usuarios)[n_usuario].Nomb_usuario);
@@ -101,9 +101,9 @@ void guardar_usuarios(usuario ** v_usuarios)
 //cabecera: void alta_usuario(usuario ** pv_usuarios)
 //precondicion: pv_usuarios es un puntero a vector de usuarios inicializado
 //postcondicion: añade un usuario al vector de usuarios
-void alta_usuario(usuario ** pv_usuarios,int* M)
+void alta_usuario(usuario ** pv_usuarios)
 {
-    *M++;     //numero de usuarios + 1 porque se ha añadido un usuario nuevo
+    num_usuarios++;     //numero de usuarios + 1 porque se ha añadido un usuario nuevo
     char id[4];
     char nombre_usuario[21];
     char perfil_usuario[14];
@@ -114,7 +114,7 @@ void alta_usuario(usuario ** pv_usuarios,int* M)
         printf("\nNo hay espacio para mas usuarios\n");
     else
     {    //si cabe otro usuario
-        (*pv_usuarios) = (usuario *) realloc(*pv_usuarios, *M * sizeof(usuario));
+        (*pv_usuarios) = (usuario *) realloc(*pv_usuarios, num_usuarios * sizeof(usuario));
 
         if(id[2] == '9')    //nuevo id = id + 1
         {
@@ -132,40 +132,40 @@ void alta_usuario(usuario ** pv_usuarios,int* M)
         }
         else
             id[2] = id[2] + 1;
-        strcpy((*pv_usuarios)[*(M-1)].Id_usuario, id);
+        strcpy((*pv_usuarios)[num_usuarios-1].Id_usuario, id);
 
         printf("\nIntroduzca nombre completo del nuevo usuario: ");
         fflush(stdin);
         fgets(nombre_usuario, 21, stdin);
         quita_salto_linea(nombre_usuario);
-        strcpy((*pv_usuarios)[*(M-1)].Nomb_usuario, nombre_usuario);
+        strcpy((*pv_usuarios)[num_usuarios - 1].Nomb_usuario, nombre_usuario);
 
         printf("Perfil (administrador/profesor): ");
         fflush(stdin);
         fgets(perfil_usuario, 14, stdin);
         quita_salto_linea(perfil_usuario);
-        strcpy((*pv_usuarios)[*(M-1)].Perfil_usuario, perfil_usuario);
+        strcpy((*pv_usuarios)[num_usuarios - 1].Perfil_usuario, perfil_usuario);
 
         printf("Introduzca usuario para acceder al sistema: ");
         fflush(stdin);
         fgets(usuario_usuario, 6, stdin);
         quita_salto_linea(usuario_usuario);
-        strcpy((*pv_usuarios)[*(M-1)].Usuario, usuario_usuario);
+        strcpy((*pv_usuarios)[num_usuarios - 1].Usuario, usuario_usuario);
 
         printf("Introduzca una contrasena: ");
         fflush(stdin);
         fgets(usuario_contrasena, 14, stdin);
         //no le quito el \n del final porque termina la linea
-        strcpy((*pv_usuarios)[*(M-1)].Contrasena, usuario_contrasena);
+        strcpy((*pv_usuarios)[num_usuarios - 1].Contrasena, usuario_contrasena);
 
-        printf("Usuario %s leido correctamente\n\n", (*pv_usuarios)[*(M-1)].Id_usuario);
+        printf("Usuario %s leido correctamente\n\n", (*pv_usuarios)[num_usuarios - 1].Id_usuario);
     }
 }
 
 //cabecera: void baja_usuario(usuario ** pv_usuarios)
 //precondicion: pv_usuarios es un puntero a vector de usuarios inicializado
 //postcondicion: da de baja a un usuario del vector de usuarios
-void baja_usuario(usuario ** pv_usuarios,int* M)
+void baja_usuario(usuario ** pv_usuarios)
 {
     char id[4];
     int n_usuario = 0;
@@ -173,7 +173,7 @@ void baja_usuario(usuario ** pv_usuarios,int* M)
     printf("\nIntroduce el id del usuario a dar de baja: ");
     fflush(stdin);
     fgets(id, 4, stdin);
-    while((encontrado == 0) || (n_usuario!=*M))
+    while((encontrado == 0) || (n_usuario!=num_usuarios))
     {
         if (strcmp(id, (*pv_usuarios)[n_usuario].Id_usuario) == 0)
             encontrado = 1;
@@ -182,7 +182,7 @@ void baja_usuario(usuario ** pv_usuarios,int* M)
     }
     if(encontrado == 1)     //si encuentra el id en el vector
     {
-        while(n_usuario < *(M - 1))
+        while(n_usuario < num_usuarios-1)
         {
             strcpy((*pv_usuarios)[n_usuario].Nomb_usuario, (*pv_usuarios)[n_usuario + 1].Nomb_usuario);
             strcpy((*pv_usuarios)[n_usuario].Perfil_usuario, (*pv_usuarios)[n_usuario + 1].Perfil_usuario);
@@ -190,7 +190,7 @@ void baja_usuario(usuario ** pv_usuarios,int* M)
             strcpy((*pv_usuarios)[n_usuario].Contrasena, (*pv_usuarios)[n_usuario + 1].Contrasena);
             n_usuario++;
         }
-            (*pv_usuarios) = (usuario *) realloc(*pv_usuarios, *(M-1) * sizeof(usuario));    //le quitamos al vector la reserva del último elemento
+            (*pv_usuarios) = (usuario *) realloc(*pv_usuarios, (num_usuarios - 1) * sizeof(usuario));    //le quitamos al vector la reserva del último elemento
     }
     else
         printf("\nNo se ha encontrado al usuario con ese Id");
@@ -198,7 +198,7 @@ void baja_usuario(usuario ** pv_usuarios,int* M)
 //cabecera: void modificar_usuario(usuario ** pv_usuarios)
 //precondicion: pv_usuarios es un puntero a vector de usuarios inicializado
 //postcondicion: nos permite modificar los campos del usuario cuyo id introduzcamos
-void modificar_usuario(usuario ** pv_usuarios,int* num_usuarios)
+void modificar_usuario(usuario ** pv_usuarios)
 {
     char id[4];
     int op;
@@ -267,7 +267,7 @@ void modificar_usuario(usuario ** pv_usuarios,int* num_usuarios)
 //cabecera: void admin_usuarios(usuario ** pv_usuarios)
 //precondicion: pv_usuarios es un puntero a un vector de usuarios
 //postcondicion: nos permite seleccionar cual de las 4 funciones de administrar usuarios queremos llamar
-void admin_usuarios(usuario ** pv_usuarios,int* M)
+void admin_usuarios(usuario ** pv_usuarios)
 {
     int op;
     do
@@ -277,16 +277,16 @@ void admin_usuarios(usuario ** pv_usuarios,int* M)
         switch(op)
         {
             case 1:
-                alta_usuario(pv_usuarios,M);
+                alta_usuario(pv_usuarios);
                 break;
             case 2:
-                baja_usuario(pv_usuarios,M);
+                baja_usuario(pv_usuarios);
                 break;
             case 3:
-                modificar_usuario(pv_usuarios,M);
+                modificar_usuario(pv_usuarios);
                 break;
             case 4:
-                escribir_usuarios(pv_usuarios,M);
+                escribir_usuarios(pv_usuarios);
                 break;
         }
         if(op < 1 || op > 4)
