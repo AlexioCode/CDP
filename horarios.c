@@ -110,7 +110,7 @@ void cambia_hora(int i, int *B,horari *horarios){
             printf("La hora escogida ya tiene una clase \n");
             do{
             printf("¿Desea salir de este menu? Marque 1 para si y 0 para no \n");
-            scanf("%i",&salir);
+            scanf("%d",&salir);
             }while(salir>1 || salir<0);
 
             if(salir==1)
@@ -174,7 +174,7 @@ void modificar_hora(int ID_pro, int* B,horari *horarios,r_alum *alum,materia *ma
 /* Cabecera: int elige_grupo(char *ID, int *B,horari *horarios)
    Precondicion: Le debe llegar la ID del profesor
    Postcondicion: Le dice que clases tiene ese dia y devuelve la posicion del vector de la clase elegida sino devuelve -1 */
-int elige_grupo(char *ID, int *B,horari *horarios){
+int elige_grupo(char* ID, int* B,horari* horarios){
     int i, j, k=0,p,dia_clas, ID_pro;
     long ID_p;
     ID_p=strtol(ID,NULL,10);

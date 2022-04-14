@@ -2,8 +2,7 @@
 #define USUARIOS_H_INCLUDED
 
 int num_usuarios;   //variable global que contiene en todo momento el numero de usuarios que hay en el vector de usuarios
-typedef struct
-{
+typedef struct{
     char Id_usuario[4];
     char Nomb_usuario[21];
     char Perfil_usuario[14];

@@ -89,7 +89,7 @@
 	"Materias.h"
 	"alumnos.h"
 
-1649871296 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\usuarios.h
+1649951157 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\usuarios.h
 
 1649695089 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\guardar_calificaciones.c
 	<stdlib.h>
@@ -97,7 +97,7 @@
 	<string.h>
 	"calificaciones.h"
 
-1649869288 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\horarios.c
+1649952374 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\horarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -111,11 +111,9 @@
 	<stdio.h>
 	<stdlib.h>
 
-1649784455 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\main ppal.c
+1649951477 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\main ppal.c
 	<stdlib.h>
 	<stdio.h>
-	<string.h>
-	<math.h>
 	"horarios.h"
 	"alumnos.h"
 	"materias.h"
@@ -130,9 +128,11 @@
 1649695089 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\matriculas.h
 	<stdlib.h>
 
-1649865199 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\main.c
+1649951476 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
+	<math.h>
 	"usuarios.h"
 	"alumnos.h"
 	"horarios.h"
