@@ -10,7 +10,6 @@
 //void login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: recibe punteros a vectores inicializados
 //postcondicion: llama al perfil correspondiente (de profesor o de administrador)
-void login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios, int *N, int *A, int *Y, int *M, int *B, int *C);
-void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios, int *N, int *A, int *Y, int *M, int *B, int *C);
-void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios, int *N, int *A, int *Y, int *M, int *B, int *C);
+void login(r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios, int *N, int *A, int *Y, int *B, int *C);
+
 #endif // PERFILES_H_INCLUDED
