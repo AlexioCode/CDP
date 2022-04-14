@@ -28,7 +28,6 @@ int main()
     int *N=&n;
     int *A=&a;
     int *Y=&y;
-    int *M=&m;
     int *B=&b;
     int *C=&c;
     usuario * v_usuarios;
