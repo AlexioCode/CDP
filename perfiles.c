@@ -49,17 +49,17 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
 
         if(op == 1)                 //Opcion elegida: lista de alumnos
         {
-            mostrar_alumnos_grupo_materia(grupo, Id_materia,r_alum,materias,A,Y);
-            printf("Selecciona un alumno (Identificador escolar): ");
+            mostrar_alumnos_grupo_materia(grupo, Id_materia,r_alum,materias);
+            printf("Selecciona un alumno (Identificador escolar): \n");
             fflush(stdin);
             fgets(Id_alumno, 7, stdin);
-            printf("\nMenu: Lista de alumnos:\nALUMNO: %s", Id_alumno);
+            printf("Menu: Lista de alumnos:\nALUMNO: %s \n", Id_alumno);
             do
             {
                 printf("\n1. Ficha del alumno\n2. Calificaciones del alumno\n3. Volver\n\n");
                 scanf("%i", &op2);
                 if(op2 == 1)
-                    ficha_alumno(Id_alumno, alumnos,A);
+                    ficha_alumno(Id_alumno, alumnos);
                 if(op2 == 2)
                 {
                     ver_nota(Id_alumno, Id_materia,nota,N);
