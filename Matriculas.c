@@ -26,7 +26,7 @@ int tam_matricula()
     return n;
 }
 
-void cargar_matriculas()
+char* cargar_matriculas()
 {
     int tam_max = tam_matricula("matriculas.txt");
     int i;
@@ -55,6 +55,7 @@ void cargar_matriculas()
                 fclose(fich);
             }
         }
+    return p;
 }
 
 void guardar_matriculas(matricula *p, int tam_max)
@@ -77,9 +78,12 @@ void guardar_matriculas(matricula *p, int tam_max)
     }
 }
 
-void cambiar_id_matriculas(matricula *p, char *matid,char *nuevo_matid){
+void cambiar_id_matriculas(matricula *p){
     int i = 0;
-    while ((p+i)->matid == matid)
+    char* nuevo_matid;
+    puts("Introduce nuevo id (max/4)");
+    nuevo_matid = gets(stdin);
+    while ((p+i)->matid == nuevo_matid && i<5)
     {
         strcpy((p+i)->matid, nuevo_matid);
         i++;
@@ -87,9 +91,12 @@ void cambiar_id_matriculas(matricula *p, char *matid,char *nuevo_matid){
 }
 
 
-void cambiar_alumid_matriculas(matricula *p, char *alumid, char *nuevo_alumid){
+void cambiar_alumid_matriculas(matricula *p){
     int i = 0;
-    while((p+i)->alumid == alumid)
+    char* nuevo_alumid;
+    puts("Introduce nuevo id de alumno (max/6)");
+    nuevo_alumid = gets(stdin);
+    while((p+i)->alumid == nuevo_alumid && i<7)
     {
         strcpy((p+i)->alumid, nuevo_alumid);
         i++;
@@ -101,18 +108,21 @@ void ver_matriculas(matricula *p, int tam_max){   //muestra las matriculas de li
     for(i=0; 0< tam_max; i++){
         printf("%s",(p+i)->matid);
         printf("-");
-        puts((p+i)->alumid);
+        printf("%s\n",(p+i)->alumid);
     }
 }
 
 
-void baja_matricula(matricula *p, char *matid){         //Libera la matricula indicada con id
-    int i=0;
-    while((p+i)->matid == matid)
+int baja_matricula(matricula *p, char *matid, int tam_max){         //Libera la matricula indicada con id
+    int i=0,j;
+    j = tam_max;
+    while((p+i)->matid == matid && i<j)
     {
         free(p+i);
         i++;
     }
+    j--;
+    return j;
 }
 
 int alta_matricula(matricula *p, char *nuevo_matid, char *nuevo_alumid, int tam_max){

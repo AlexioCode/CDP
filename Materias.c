@@ -27,7 +27,7 @@ int tam_materia()
     return n;
 }
 
-materia * cargar_materias()
+char* cargar_materias()
 {
     int tam_max = tam_materia("materias.txt");
     int i;
@@ -79,31 +79,64 @@ void guardar_materias(materia *p, int tam_max)
     }
 }
 
-//Aun por corregir
-void cambiar_id_mat(materia *p, int tam_max){
-    int i = 0;
-    while ((p+i)->id == id)
+void admin_materias(materia *p, int tam_max)
+{
+    int op,i=7;
+    ver_materias(p, tam_max);
+    puts("1.cambiar id");
+    puts("2.cambiar nombre");
+    puts("3.cambiar siglas");
+    puts("Seleciona que hacer(1/2/3)");
+    scanf("%d",&op);
+    while(i==7)
     {
+        switch(op)
+        {
+            case 1:
+                i=0;
+                cambiar_id_mat(p);
+            case 2:
+                i=0;
+                cambiar_nombre_mat(p);
+            case 3:
+                i=0;
+                cambiar_siglas_mat(p);
+            default:
+                puts("ERROR, valor introducido incorrecto, vuelva a probar");
+        }
+    }
+}
 
+void cambiar_id_mat(materia *p){
+    int i = 0;
+    char* nuevo_id;
+    puts("Introduce nuevo id (max/4)");
+    nuevo_id = gets(stdin);
+    while ((p+i)->id == nuevo_id && i<5)
+    {
         strcpy((p+i)->id, nuevo_id);
-
         i++;
     }
 }
 
-//Aun por corregir
-void cambiar_nombre_mat(materia *p, int tam_max){
+void cambiar_nombre_mat(materia *p){
     int i = 0;
-    while((p+i)->nombre == nombre)
+    char* nuevo_nombre;
+    puts("Introduce nuevo nombre (max/50)");
+    nuevo_nombre = gets(stdin);
+    while ((p+i)->nombre == nuevo_nombre && i<51)
     {
-        strcpy((p+i)->nombre, nuevo_nombre);
+        strcpy((p+i)->id, nuevo_nombre);
         i++;
     }
 }
-//Aun por corregir
-void cambiar_siglas_mat(materia *p, int tam_max){
+
+void cambiar_siglas_mat(materia *p){
     int i = 0;
-    while((p+i)->siglas == siglas)
+    char* nuevo_siglas;
+    puts("Introduce nuevas siglas (max/3)");
+    nuevo_siglas = gets(stdin);
+    while ((p+i)->siglas == nuevo_siglas && i<4)
     {
         strcpy((p+i)->siglas, nuevo_siglas);
         i++;
@@ -121,17 +154,17 @@ void ver_materias(materia *p, int tam_max){    //muestra las materias de linea e
     }
 }
 
-
-void baja_materia(materia *p, char* id, int * tam_max){
+int baja_materia(materia *p, char* id, int tam_max){
     int i=0,j;
-    j = *tam_max;
+    j = tam_max;
     while((p+i)->id == id && i<j)
+
     {
         free(p+i); //Libera la materia indicada con id
         i++;
     }
     j--;
-    *tam_max = j;
+    return j;
 }
 
 int alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas, int tam_max){
@@ -149,5 +182,13 @@ int alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_s
         return tam_max;
 }
 
-
+char* id_siglas_materia(materia *p, char* id_materia)
+{
+    int i=0;
+    while((p+i)->id == id_materia && i<5)
+    {
+            i++;
+    }
+    return(p+i)->siglas;
+}
 
