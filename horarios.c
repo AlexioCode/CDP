@@ -47,7 +47,7 @@ void modi_hora(int i,materia* mater){
 
             if(o==0){
                 printf("El ID introducido no se ha encontrado o no existe \n");
-                modi_hora(i,mater, Y);
+                modi_hora(i,mater);
                 }
             else{
                 int x;
