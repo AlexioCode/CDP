@@ -31,7 +31,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="CDP.cpp" />
 		<Unit filename="Cargar_calificaciones.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -60,14 +59,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="calificaciones.h" />
-		<Unit filename="ej1.cpp" />
 		<Unit filename="horarios.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="horarios.h" />
-		<Unit filename="main PPal.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -81,9 +76,6 @@
 		<Unit filename="usuarios.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
-			<code_completion />
-			<envvars />
-			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
