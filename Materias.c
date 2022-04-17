@@ -27,9 +27,9 @@ int tam_materia()
     return n;
 }
 
-char* cargar_materias()
+materia* cargar_materias()
 {
-    int tam_max = tam_materia("materias.txt");
+    int tam_mat = tam_materia("materias.txt");
     int i;
     materia *p;
     FILE *fich;
@@ -49,7 +49,7 @@ char* cargar_materias()
             }
             else
             {
-                for (i = 0; i < tam_max; i++)
+                for (i = 0; i < tam_mat; i++)
                 {
                     fscanf(fich, "%[^-]-%[^-]-%[^\n]\n", p[i].id, p[i].nombre, p[i].siglas);    // %[^-]-%[^-]-%[^\n] esta ideado para leer una linea entera y guardar los valores correspondientes entre '-'
                 }
@@ -59,7 +59,7 @@ char* cargar_materias()
     return p;
 }
 
-void guardar_materias(materia *p, int tam_max)
+void guardar_materias(materia *p)
 {
 
     FILE * fich;
@@ -71,7 +71,7 @@ void guardar_materias(materia *p, int tam_max)
     }
     else
     {
-        for(i = 0; i < tam_max; i++)
+        for(i = 0; i < tam_mat; i++)
         {
             fprintf(fich, "%s-%s-%s\n", p[i].id, p[i].nombre, p[i].siglas);  //Los datos se guardan con el estandar de estar separados por '-' en cada linea
         }
@@ -79,10 +79,10 @@ void guardar_materias(materia *p, int tam_max)
     }
 }
 
-void admin_materias(materia *p, int tam_max)
+void admin_materias(materia *p)
 {
     int op,i=7;
-    ver_materias(p, tam_max);
+    ver_materias(p, tam_mat);
     puts("1.cambiar id");
     puts("2.cambiar nombre");
     puts("3.cambiar siglas");
@@ -143,9 +143,9 @@ void cambiar_siglas_mat(materia *p){
     }
 }
 
-void ver_materias(materia *p, int tam_max){    //muestra las materias de linea en linea de forma: id-nombre-siglas
+void ver_materias(materia *p, int tam_mat){    //muestra las materias de linea en linea de forma: id-nombre-siglas
     int i;
-    for(i=0; 0< tam_max; i++){
+    for(i=0; 0< tam_mat; i++){
         printf("%s",(p+i)->id);
         printf("-");
         printf("%s",(p+i)->nombre);
@@ -154,9 +154,9 @@ void ver_materias(materia *p, int tam_max){    //muestra las materias de linea e
     }
 }
 
-int baja_materia(materia *p, char* id, int tam_max){
+void baja_materia(materia *p, char* id){
     int i=0,j;
-    j = tam_max;
+    j = tam_mat;
     while((p+i)->id == id && i<j)
 
     {
@@ -164,10 +164,10 @@ int baja_materia(materia *p, char* id, int tam_max){
         i++;
     }
     j--;
-    return j;
+    tam_mat = j;
 }
 
-int alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas, int tam_max){
+void alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas){
     *p = (materia *)realloc(p,sizeof(materia));
         if(p==NULL)
         {
@@ -175,11 +175,10 @@ int alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_s
             exit(1);
         }
         else
-        tam_max++;
-        strcpy((*p+tam_max)->id, nuevo_id);
-        strcpy((*p+tam_max)->nombre, nuevo_nombre);
-        strcpy((*p+tam_max)->siglas, nuevo_siglas);
-        return tam_max;
+        tam_mat++;
+        strcpy((*p+tam_mat)->id, nuevo_id);
+        strcpy((*p+tam_mat)->nombre, nuevo_nombre);
+        strcpy((*p+tam_mat)->siglas, nuevo_siglas);
 }
 
 char* id_siglas_materia(materia *p, char* id_materia)
