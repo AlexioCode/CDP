@@ -4,43 +4,14 @@
 #include<math.h>
 #include "alumnos.h"
 #include "Materias.h"
-
-
-r_alum *alum;//Estructura
-
-//cabecera: int n_lineas(char * fichero)
-//precondicion: fichero es el nombre del fichero cuyo numero de lineas quieres contar
-//postcondicon: devuelve el numero de lineas que tiene fichero
-int n_lineas(char * fichero)
-{
-    int n = 0;
-    char c;
-    FILE *fich;
-    if((fich = fopen("alumnos.txt", "r")) == NULL)
-    {
-        printf("No se ha podido abrir el fichero %s", fichero);
-        exit(1);
-    }
-    else
-    {
-        c = getc(fich);
-        while(c != EOF)
-        {
-            c = getc(fich);
-            if(c == '\n')   //una linea por cada caracter '\n'
-                n++;
-        }
-        fclose(fich);
-    }
-    return n;
-}
+#include "usuarios.h"
 
 //Cabecera: void cargar_estructura ()
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
 void cargar_estructura (r_alum ** v_alumno){
     tam_alum = n_lineas("alumnos.txt");//variable global que guarda el numero de usuarios que hay en el vector de alumnos
-    
+
     char cadena[150];
     unsigned i=0;
     FILE *f;
@@ -52,7 +23,7 @@ void cargar_estructura (r_alum ** v_alumno){
         while(!feof(f)){
             fgets(cadena, 150, f);
             sscanf(cadena,"%[^-]/%[^-]/%[^-]/%[^-]/%s[^-]/%s[^-]/",aux.Id_alum, aux.Nombre_alum, aux.Direc_alum, aux.Local_alum, aux.Curso, aux.Grupo);
-            alum[i]=aux;
+            *v_alumno[i]=aux;
             i++;
                         }
             fclose(f);
@@ -64,7 +35,7 @@ void cargar_estructura (r_alum ** v_alumno){
 //Cabecera: void Guardar_Alumnos(r_alum *alum)
 // Precondición: estructura realizada
 //Postcondición: estructura cargada en fichero
-void Guardar_Alumnos(r_alum **v_alumno){
+void Guardar_Alumnos(r_alum *v_alumno){
 int cont;
 FILE *f;
 f=fopen("alumnos.txt","w");
@@ -73,7 +44,7 @@ f=fopen("alumnos.txt","w");
         exit(-1);
     } //Fin if
     for (cont=0;cont<tam_alum;cont++){
-        fprintf(f,"%s-%s-%s-%s-%s-%s\n ",alum[cont].Id_alum, alum[cont].Nombre_alum, alum[cont].Direc_alum, alum[cont].Local_alum, alum[cont].Curso, alum[cont].Grupo);
+        fprintf(f,"%s-%s-%s-%s-%s-%s\n ",v_alumno[cont].Id_alum, v_alumno[cont].Nombre_alum, v_alumno[cont].Direc_alum, v_alumno[cont].Local_alum, v_alumno[cont].Curso, v_alumno[cont].Grupo);
     }//Fin for
 fclose(f); //Cierre del fichero.
 }//Fin Guardar_alumnos
@@ -107,7 +78,7 @@ void alta(r_alum* alum){
     if(strcmp(res,"Si")==0)
             alta(alum); //Si escribe "Si" vuelve a empezar
         else{
-                Guardar_Alumnos(&alum);
+                Guardar_Alumnos(alum);
                 return;     //Si escribe "No" sale de la función
             }
 }
@@ -150,7 +121,7 @@ void baja(r_alum *alum){
     if(strcmp(res2,"Si")==0)//Si dice "Si", llamamos de nuevo a la función
         baja(alum); //Vuelve a empezar
     else{
-        Guardar_Alumnos(&alum);
+        Guardar_Alumnos(alum);
         return;     //Si escribe "No" sale de la función
         }
 }//Fin función
@@ -205,7 +176,7 @@ void modalum(r_alum *alum){
         if(strcmp(res,"Si")==0) //Si res= "Si"
                     modalum(alum); //Llamamos de nuevo a la función, vuelve a empezar
         else
-                Guardar_Alumnos(&alum);
+                Guardar_Alumnos(alum);
                 return;     //Si escribe "No" sale de la función
 
     }
@@ -228,7 +199,7 @@ void listaalumprof (r_alum *alum){
     if(strcmp(res,"Si")==0) //Si pone "Si"
         modalum(alum); //Llamamos a la función modificar alumnos
     else{
-        Guardar_Alumnos(&alum);
+        Guardar_Alumnos(alum);
         return;//Si pone "No", salimos
     }
 }
@@ -269,7 +240,7 @@ void listaalumadm (r_alum *alum){
     if(strcmp(mod,"Si")==0) //Si pone "Si"
         modalum(alum); //volvemos a llamar a la función
     else{
-        Guardar_Alumnos(&alum);
+        Guardar_Alumnos(alum);
         return;//Si pone "No", salimos
     }
 }//Fin programa
@@ -303,7 +274,7 @@ void ficha_alumno(char* id_alumno,r_alum *alum){
             ficha_alumno(nuevo_id,alum); //Volvemos a llamar a la función
         }
         else{
-            Guardar_Alumnos(&alum);
+            Guardar_Alumnos(alum);
             return; //Si pone "No", salimos
         }
     }

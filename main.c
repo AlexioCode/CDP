@@ -23,22 +23,22 @@ int main(){
     calificaciones * v_calificaciones;
 
     /*CARGAMOS*/
-    cargar_estructura(&v_alumno);
-    cargar_horarios(&v_horarios);
+    cargar_estructura(v_alumno);
+    cargar_horarios(v_horarios);
     v_materias= cargar_materias();
     v_matriculas=cargar_matriculas();
-    cargar_calificaciones(&v_calificaciones);
-    cargar_usuarios(&v_usuarios);
+    cargar_calificaciones(v_calificaciones);
+    cargar_usuarios(v_usuarios);
 
     /*Login*/
-    login(&v_alumno,&v_calificaciones,&v_horarios,&v_materias,&v_matriculas,&v_usuarios);
+    login(v_alumno,v_calificaciones,v_horarios,v_materias,v_matriculas,v_usuarios);
 
     /*GUARDAMOS*/
-    guardar_materias(&v_materias);
-    guardar_usuarios(&v_usuarios);
-    Guardar_Alumnos(&v_alumno);
-    Guardar_Horarios(&v_horarios); //arreglar
-    Guardar_calificaciones(&v_calificaciones);
+    guardar_materias(v_materias);
+    guardar_usuarios(v_usuarios);
+    Guardar_Alumnos(v_alumno);
+    Guardar_Horarios(v_horarios);
+    Guardar_calificaciones(v_calificaciones);
 
     /*Liberar*/
     free(v_alumno);
