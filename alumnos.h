@@ -2,6 +2,8 @@
 #define ALUMNOS_H_INCLUDED
 #include "Materias.h"
 
+int tam_alum;
+
 //Estructura
 typedef struct{
 	char Id_alum[7]; //Identificador escolar
@@ -11,21 +13,22 @@ typedef struct{
 	char Curso[30]; // Curso al que pertenece
 	char Grupo[10];
 } r_alum;
+r_alum *alum;//Estructura
 
-//Cabecera: int tam_alumnos(char *fichero)
-//Precondición: Puntero a fichero
-//Postcondición: Tamaño del fichero alumnos.txt
-int tam_alumnos(char *fichero);
+//cabecera: int n_lineas(char * fichero)
+//precondicion: fichero es el nombre del fichero cuyo numero de lineas quieres contar
+//postcondicon: devuelve el numero de lineas que tiene fichero
+int n_lineas(char * fichero);
 
-//Cabecera: void cargar_estructura ()
+//Cabecera: void cargar_estructura (char *fichero)
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
-void cargar_estructura ();
+void cargar_estructura (r_alum ** v_alumno);
 
 //Cabecera: void Guardar_Alumnos(r_alum *alum)
 // Precondici—n: estructura realizada
 //Postcondici—n: estructura cargada en fichero
-void Guardar_Alumnos(r_alum **alum);
+void Guardar_Alumnos(r_alum **v_alumno);
 
 //Cabecera:void alta(r_alum* alum)
 //Precondición: Recibe la estructura inicializada
@@ -55,7 +58,7 @@ void listaalumadm (r_alum *alum);
 //Cabecera:ficha_alumno(char* id_alumno,r_alum *alum )
 //Precondición: Recibe estructura inicializada y el id de un alumno en concreto
 //Postcondición: Devuelve lista de un alumno con opcion a modificar datos
-void ficha_alumno(char* id_alumno,r_alum *alum);
+void ficha_alumno(char* id_alumno,r_alum *alum );
 
 //Cabecera: void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat)
 //Precondición: Recibe estructura inicializada, grupo de un alumno y materia
