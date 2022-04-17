@@ -4,6 +4,7 @@
 #include<math.h>
 #include "alumnos.h"
 #include "Materias.h"
+#include "calificaciones.h"
 
 
 r_alum *alum;//Estructura

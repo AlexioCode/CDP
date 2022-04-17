@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<calificaciones.h>
-#include<alumnos.h>
-#include<Materias.h>
+#include "calificaciones.h"
+#include "alumnos.h"
+#include "Materias.h"
 //tam_calif=calificaciones
 typedef struct{
 int dia;
