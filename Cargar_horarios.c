@@ -22,4 +22,8 @@ void cargar_horarios(){
         fclose(f);}
     else{
         printf("Error al abrir el fichero Productos.txt\n");}
+    int a;
+    for(a=0;a<9;a++){   //Recorrer el vector de clientes
+        printf("Linea: %d-%d-%d-%d-%s\n ",horarios[a].ID_prof, horarios[a].dia_clase, horarios[a].hora_clase, horarios[a].ID_materia, horarios[a].grupo);
+    }
 }

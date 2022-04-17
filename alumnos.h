@@ -23,7 +23,7 @@ int n_lineas(char * fichero);
 //Cabecera: void cargar_estructura (char *fichero)
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
-void cargar_estructura (r_alum * v_alumno);
+void cargar_estructura (r_alum ** v_alumno);
 
 //Cabecera: void Guardar_Alumnos(r_alum *alum)
 // Precondici—n: estructura realizada
