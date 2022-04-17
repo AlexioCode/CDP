@@ -8,39 +8,43 @@
 
 r_alum *alum;//Estructura
 
-//Cabecera: int tam_alumnos(char *fichero)
-//Precondici—n: Puntero a fichero
-//Postcondici—n: Tamaño del fichero alumnos.txt
-int tam_alumnos(char *fichero){
+//cabecera: int n_lineas(char * fichero)
+//precondicion: fichero es el nombre del fichero cuyo numero de lineas quieres contar
+//postcondicon: devuelve el numero de lineas que tiene fichero
+int n_lineas(char * fichero)
+{
     int n = 0;
     char c;
     FILE *fich;
-    if((fich = fopen("alumnos.txt", "r")) == NULL){ //Si no encontramos fichero, salimos
-        printf("No se ha podido abrir el fichero %s",fichero);
+    if((fich = fopen("alumnos.txt", "r")) == NULL)
+    {
+        printf("No se ha podido abrir el fichero %s", fichero);
         exit(1);
-    }//Fin if
-    else{ //Recorremos ficheros y contamos
+    }
+    else
+    {
         c = getc(fich);
-        while(c != EOF){
+        while(c != EOF)
+        {
             c = getc(fich);
-        if(c == '\n')   //una linea por cada caracter '\n'
-            n++;
-        }//Fin while
+            if(c == '\n')   //una linea por cada caracter '\n'
+                n++;
+        }
         fclose(fich);
-    }//Fin else
+    }
     return n;
-}//Fin tam_alumnos
+}
 
 //Cabecera: void cargar_estructura ()
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
 void cargar_estructura (){
-    int A= tam_alumnos("alumnos.txt");
+    tam_alum = n_lineas("alumnos.txt");
     char cadena[150];
     unsigned i=0;
     FILE *f;
     f=fopen("alumnos.txt", "r");//Abrimos fichero
-    alum=(r_alum*)malloc(sizeof(r_alum)*A);
+    alum=(r_alum*)malloc(sizeof(r_alum)*tam_alumnos);
     r_alum aux;
 
     if(f){  //Controla si se ha podido abrir el fichero
@@ -60,7 +64,6 @@ void cargar_estructura (){
 // Precondición: estructura realizada
 //Postcondición: estructura cargada en fichero
 void Guardar_Alumnos(r_alum **v_alumno){
-int A= tam_alumnos("alumnos.txt");
 int cont;
 FILE *f;
 f=fopen("alumnos.txt","w");
@@ -68,7 +71,7 @@ f=fopen("alumnos.txt","w");
         printf("Alumnos.txt no pudo abrirse.\n");
         exit(-1);
     } //Fin if
-    for (cont=0;cont<A;cont++){
+    for (cont=0;cont<tam_alum;cont++){
         fprintf(f,"%s-%s-%s-%s-%s-%s\n ",alum[cont].Id_alum, alum[cont].Nombre_alum, alum[cont].Direc_alum, alum[cont].Local_alum, alum[cont].Curso, alum[cont].Grupo);
     }//Fin for
 fclose(f); //Cierre del fichero.
@@ -78,22 +81,21 @@ fclose(f); //Cierre del fichero.
 //Precondición: Recibe la estructura inicializada.
 //Postcondición: Da de alta al alumno seleccionado.
 void alta(r_alum* alum){
-    int A=tam_alumnos("Alumnos.txt");
     char res[3];
-    alum= (r_alum*) malloc(sizeof(alum)*(A+1));//Aumentamos la reserva +1
+    alum= (r_alum*) malloc(sizeof(alum)*(tam_alumnos+1));//Aumentamos la reserva +1
     printf("Introduzca los datos siguientes del alumno que quiere añadir:");
     printf("Id: ");
-    scanf("%s",alum[A+1].Id_alum);
+    scanf("%s",alum[tam_alum+1].Id_alum);
     printf("Nombre: ");
-    scanf("%s",alum[A+1].Nombre_alum);
+    scanf("%s",alum[tam_alum+1].Nombre_alum);
     printf("Dirección: ");
-    scanf("%c",alum[A+1].Direc_alum);
+    scanf("%c",alum[tam_alum+1].Direc_alum);
     printf("Localidad: ");
-    scanf("%c",alum[A+1].Local_alum);
+    scanf("%c",alum[tam_alum+1].Local_alum);
     printf("Curso: ");
-    scanf("%c",alum[A+1].Curso);
+    scanf("%c",alum[tam_alum+1].Curso);
     printf("Grupo:");
-    scanf("%c",alum[A+1].Grupo);
+    scanf("%c",alum[tam_alum+1].Grupo);
     printf("Alumno añadido");
 
     do{
@@ -113,12 +115,11 @@ void alta(r_alum* alum){
 //Precondición: Recibe la estructura inicializada
 //Postcondición: Da de baja al alumno seleccionado.
 void baja(r_alum *alum){
-    int A=tam_alumnos("Alumnos.txt");
     int i,j;
     char alumno[7],res[3],res2[3];
     printf("Introduzca el ID del alumno que quiera dar de baja:");
     scanf("%s",alumno); //Introducir alumno que se requiera dar de baja
-    for(i=0; i<A;i++){ //Recorremos desde i hasta A(tamaño del fichero)
+    for(i=0; i<tam_alumnos;i++){ //Recorremos desde i hasta A(tamaño del fichero)
         if(strcmp(alum[i].Id_alum,alumno)==0){ //Si coincide el id de la estructura con el introducido:
             printf("El alumno %s se llama %s",alum[i].Id_alum,alum[i].Nombre_alum); //Escribir su id y nombre:
 
@@ -127,9 +128,9 @@ void baja(r_alum *alum){
             }while((strcmp(res,"Si")!=0) && (strcmp(res,"No")!=0));
 
             if((strcmp(res,"Si")==0)){ //Si introduce 'Si' damos de baja
-                alum= (r_alum*) malloc(sizeof(alum)*(A-1));//Reservamos nuevo espacio de memoria
+                alum= (r_alum*) malloc(sizeof(alum)*(tam_alumnos-1));//Reservamos nuevo espacio de memoria
                 A--;
-                for(j=i;j<A;j++){
+                for(j=i;j<tam_alum;j++){
                     alum[j]=alum[j+1]; //Sustituyo posicion del alumo por la siguiente
                 }
                 printf("Alumno dado de baja");
@@ -156,12 +157,11 @@ void baja(r_alum *alum){
 //Precondición: Recibe estructura inicializada
 //Postcondición: Alumno que ha seleccionado el usuario modificado
 void modalum(r_alum *alum){
-    int A=tam_alumnos("Alumnos.txt");
     int mod,j;
     char nuevoid[6],res[3];
     printf("Introduzca el ID del alumno que quiere modificar: ");
     scanf("%s",nuevoid);
-    for(j=0;j<A;j++){ //Recorremos
+    for(j=0;j<tam_alum;j++){ //Recorremos
         if(strcmp(alum[j].Id_alum,nuevoid)==0){ //Si coincide, hemos encontrado al alumno
             printf("¿Qué quiere modificar del alumno seleccionado?"); //Preguntamos:
 
@@ -214,9 +214,8 @@ void modalum(r_alum *alum){
 
 void listaalumprof (r_alum *alum){
     int i;
-    int A=tam_alumnos("Alumnos.txt");
     char res[3];
-    for(i=0;i<A;i++){ //Recorremos el fichero y listamos los alumnos
+    for(i=0;i<tam_alum;i++){ //Recorremos el fichero y listamos los alumnos
         printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo );
         }//Fin for
     do{
@@ -235,7 +234,6 @@ void listaalumprof (r_alum *alum){
 //Precondición: Recibe estructura inicializada
 //Postcondición: Devuelve lista de alumnos con opción a modificar alguno de ellos
 void listaalumadm (r_alum *alum){
-    int A=tam_alumnos("Alumnos.txt");
     int i,res;
     char mod[3];
     do{
@@ -254,7 +252,7 @@ void listaalumadm (r_alum *alum){
             break;
         default: //Caso 4
             //Listar
-            for(i=0;i<A;i++){
+            for(i=0;i<tam_alum;i++){
                 printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo );
             } //Fin for
             //Fin caso 4
@@ -277,7 +275,6 @@ void listaalumadm (r_alum *alum){
 //Precondición: Recibe estructura inicializada y el id de un alumno en concreto
 //Postcondición: Devuelve lista de un alumno con opcion a modificar datos
 void ficha_alumno(char* id_alumno,r_alum *alum){
-    int A=tam_alumnos("Alumnos.txt");
     int i;
     char mod[3],res[3], nuevo_id[7];
     for(i=0;i<A;i++){ //Recorremos estructura
@@ -312,11 +309,9 @@ void ficha_alumno(char* id_alumno,r_alum *alum){
 //Precondición: Recibe estructura inicializada, grupo de un alumno y materia
 //Postcondición: Devuelve lista de alumnos del grupo determinado en la materia determinada
 void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat){
-    int A=tam_alumnos("Alumnos.txt");
-    int Y=tam_materia("Materias.txt");
     int i,j;
-    for(i=0;i<A;i++){//Recorremos alumnos
-        for(j=0;j<Y;j++){ //Recorremos materias
+    for(i=0;i<tam_alum;i++){//Recorremos alumnos
+        for(j=0;j<tam_mat;j++){ //Recorremos materias
             if((strcmp(grupo,alum[i].Grupo)==0)&&(strcmp(idmateria, r_mat[j].id)==0)){
                 printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo);
             }
