@@ -96,7 +96,7 @@ do{
 }while(a<0 || a>10);
 nota[tam_calif-1].not=a;
 printf("Introduzca una descripcion del examen\n");
-fgets(nota[*(tam_calif-1)].descrip, N, stdin);}
+fgets(nota[(tam_calif-1)].descrip, tam_calif, stdin);}
 
 void aniadir_not(int alu, int materia,calificaciones *nota){
 nota=realloc(nota,sizeof(calificaciones*)*(tam_calif+1));
