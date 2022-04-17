@@ -36,7 +36,7 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
     {
         do
         {
-            pos_grupo = elige_grupo(id_prof, tam_horari, *v_fechas);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
+            pos_grupo = elige_grupo(id_prof, *v_fechas);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
             strcpy(grupo, horarios[pos_grupo].grupo);
             sprintf(Id_materia, NULL, horarios[pos_grupo].ID_materia);
             strcpy(siglas_materia, id_siglas_materia(Id_materia));
@@ -62,8 +62,8 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
                     ficha_alumno(Id_alumno, alumnos);
                 if(op2 == 2)
                 {
-                    ver_nota(Id_alumno, Id_materia,nota,tam_calif);
-                    calif_profe(Id_alumno, Id_materia,nota,tam_calif);
+                    ver_nota(Id_alumno, Id_materia,nota);
+                    calif_profe(Id_alumno, Id_materia,nota);
                 }
                 if(op2 != 1 && op2 != 2 && op2 != 3)
                     printf("Opcion incorrecta");

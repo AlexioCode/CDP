@@ -1,10 +1,18 @@
 # depslib dependency file v1.0
-1648064556 source:c:\users\alexa\desktop\cdp\main.c
-	<stdio.h>
+1650188951 source:c:\users\alexa\desktop\cdp\main.c
 	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"horarios.h"
+	"alumnos.h"
+	"Materias.h"
+	"Matriculas.h"
+	"calificaciones.h"
 	"usuarios.h"
+	"perfiles.h"
 
-1648070242 source:c:\users\alexa\desktop\cdp\usuarios.c
+1649948462 source:c:\users\alexa\desktop\cdp\usuarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -22,10 +30,15 @@
 	"calificaciones.txt"
 	"horarios.txt"
 
-1648055339 c:\users\alexa\desktop\cdp\perfiles.h
+1650190978 c:\users\alexa\desktop\cdp\perfiles.h
+	"alumnos.h"
+	"calificaciones.h"
+	"horarios.h"
+	"Materias.h"
+	"Matriculas.h"
 	"usuarios.h"
 
-1648057975 c:\users\alexa\desktop\cdp\usuarios.h
+1649950887 c:\users\alexa\desktop\cdp\usuarios.h
 
 1648136482 source:c:\users\usuario\desktop\cdp\main.c
 	<stdio.h>
@@ -150,6 +163,65 @@
 	"usuarios.h"
 
 1650141640 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\materias.c
+	<stdio.h>
+	<string.h>
+	"Materias.h"
+
+1649500862 source:c:\users\alexa\desktop\cdp\cargar_calificaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"calificaciones.h"
+
+1650190718 c:\users\alexa\desktop\cdp\calificaciones.h
+
+1649500862 source:c:\users\alexa\desktop\cdp\cargar_horarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"horarios.h"
+
+1650189860 c:\users\alexa\desktop\cdp\horarios.h
+	"usuarios.h"
+	"Materias.h"
+	"alumnos.h"
+
+1650191277 c:\users\alexa\desktop\cdp\materias.h
+	<stdlib.h>
+
+1650187714 c:\users\alexa\desktop\cdp\alumnos.h
+	"Materias.h"
+
+1649500862 source:c:\users\alexa\desktop\cdp\guardar_calificaciones.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"calificaciones.h"
+
+1650191424 source:c:\users\alexa\desktop\cdp\matriculas.c
+	<stdio.h>
+	<string.h>
+	"Matriculas.h"
+
+1650191424 c:\users\alexa\desktop\cdp\matriculas.h
+	<stdlib.h>
+
+1650191424 source:c:\users\alexa\desktop\cdp\alumnos.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"alumnos.h"
+	"Materias.h"
+
+1650191330 source:c:\users\alexa\desktop\cdp\calificacion_alum.c
+	<stdio.h>
+	<stdlib.h>
+	"calificaciones.h"
+	"alumnos.h"
+	"Materias.h"
+
+1650191176 source:c:\users\alexa\desktop\cdp\materias.c
 	<stdio.h>
 	<string.h>
 	"Materias.h"
