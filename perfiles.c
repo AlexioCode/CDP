@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "alumnos.h"
-#include "calificaciones.txt"
-#include "horarios.txt"
-#include "Materias.txt"
-#include "Matriculas.txt"
+#include "calificaciones.h"
+#include "horarios.h"
+#include "Materias.h"
+#include "Matriculas.h"
 #include "perfiles.h"
 #include "usuarios.h"
 
