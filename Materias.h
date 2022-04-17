@@ -2,6 +2,7 @@
 #ifndef MATERIAS_H_INCLUDED
 #define MATERIAS_H_INCLUDED
 
+int tam_mat;
 typedef struct{
     char id[5];
     char nombre[51];
@@ -10,21 +11,21 @@ typedef struct{
 
 //int tam_materias()
 //Tener el fichero materias.txt
-//Devuelve el tamaÒo m·ximo del fichero, el mismo que el numero de materias
+//Devuelve el tama√±o m√°ximo del fichero, el mismo que el numero de materias
 int tam_materia();
 
 //char* cargar_materias()
 //Tener el ficher materias.txt
 //Devuelve el puntero al primer elemento del vector materias
-char* cargar_materias();
-//void guardar_materias(materia *p, int tam_max);
-//Tener el fichero materias.txt, puntero al vector de materias y tener el tamaÒo m·ximo (tam_materia/alta_materia)
+materia* cargar_materias();
+//void guardar_materias(materia *p, int tam_mat);
+//Tener el fichero materias.txt, puntero al vector de materias y tener el tama√±o m√°ximo (tam_materia/alta_materia)
 //
-void guardar_materias(materia *p, int tam_max);
-//void admin_materias(materia *p, int tam_max);
-//Puntero al vector de materias y tener el tamaÒo m·ximo (tam_materia/alta_materia)
-//Llama a una funciÛn seg˙n el valor dado
-void admin_materias(materia *p, int tam_max);
+void guardar_materias(materia *p);
+//void admin_materias(materia *p, int tam_mat);
+//Puntero al vector de materias y tener el tama√±o m√°ximo (tam_materia/alta_materia)
+//Llama a una funci√≥n seg√∫n el valor dado
+void admin_materias(materia *p);
 //void cambiar_id_mat(materia *p);
 //Puntero al vector de materias
 //
@@ -37,18 +38,18 @@ void cambiar_nombre_mat(materia *p);
 //Puntero al vector de materias
 //
 void cambiar_siglas_mat(materia *p);
-//void ver_materias(materia *p, int tam_max);
-//Puntero al vector de materias y tener el tamaÒo m·ximo (tam_materia/alta_materia)
+//void ver_materias(materia *p, int tam_mat);
+//Puntero al vector de materias y tener el tama√±o m√°ximo (tam_materia/alta_materia)
 //
-void ver_materias(materia *p, int tam_max);
+void ver_materias(materia *p, int tam_mat);
 //void baja_materia(materia *p, char* id);
 //Puntero al vector de materias e id de la materia de baja
 //
-int baja_materia(materia *p, char* id, int tam_max);
-//int alta_materia(materia *p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas, int tam_max);
-//id, nombre y siglas de la materia, puntero al vector de materias y tener el tamaÒo m·ximo (tam_materia/alta_materia)
-//Devuelve el tamaÒo aumentado en uno
-int alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas, int tam_max);
+void baja_materia(materia *p, char* id);
+//int alta_materia(materia *p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas, int tam_mat);
+//id, nombre y siglas de la materia, puntero al vector de materias y tener el tama√±o m√°ximo (tam_materia/alta_materia)
+//Devuelve el tama√±o aumentado en uno
+void alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_siglas);
 //char* id_siglas_materia(materia *p, char* id_materia);
 //puntero al vector de materias e id de la materia
 //Devuelve las siglas de la materia
