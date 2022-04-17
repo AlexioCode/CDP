@@ -39,7 +39,7 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
             pos_grupo = elige_grupo(id_prof, *v_fechas);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
             strcpy(grupo, horarios[pos_grupo].grupo);
             sprintf(Id_materia, NULL, horarios[pos_grupo].ID_materia);
-            strcpy(siglas_materia, id_siglas_materia(Id_materia));
+            strcpy(siglas_materia, id_siglas_materia(&materias, Id_materia));
             printf("\nMenu:\nGRUPO %s MATERIA %s\n--------------\n"
                 "1. Lista de alumnos\n2. Cambiar de grupo\n\n", grupo, siglas_materia);
             scanf("%i", &op);
@@ -49,7 +49,7 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
 
         if(op == 1)                 //Opcion elegida: lista de alumnos
         {
-            mostrar_alumnos_grupo_materia(grupo, Id_materia,r_alum,materias);
+            mostrar_alumnos_grupo_materia(grupo, Id_materia, alumnos, materias);
             printf("Selecciona un alumno (Identificador escolar): \n");
             fflush(stdin);
             fgets(Id_alumno, 7, stdin);
@@ -90,13 +90,13 @@ void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** 
                     admin_usuarios(pv_usuarios);
                     break;
                 case 2:
-                    listaalumadm(alumnos, tam_alum);
+                    listaalumadm(alumnos);
                     break;
                 case 3:
-                    admin_materias(materias, tam_mat);
+                    admin_materias(materias);
                     break;
                 case 4:
-                    admin_hora(tam_horari, v_fechas, alum, pv_usuarios, materias, tam_alum, tam_mat);
+                    admin_hora(v_fechas, alum, pv_usuarios, materias);
                     break;
                 default:
                     printf("Opcion no valida\n");
