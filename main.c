@@ -21,10 +21,10 @@ int main(){
     r_alum  * v_alumno;
     usuario *v_usuarios;
     calificaciones * v_calificaciones;
-    
+
     int N =nLineas("calificaciones.txt");
     int A =nLineas("horarios.txt");
-    
+
     /*CARGAMOS*/
     cargar_estructura(&v_alumno);
     cargar_horarios(&v_horarios);
@@ -32,17 +32,17 @@ int main(){
     v_matriculas=cargar_matriculas();
     v_calificaciones= cargar_calificaciones();
     cargar_usuarios(&v_usuarios);
-    
+
     /*Login*/
     login(&v_alumno,&v_calificaciones,&v_horarios,&v_materias,&v_matriculas,&v_usuarios);
-    
+
     /*GUARDAMOS*/
-    guardar_materias(&v_materias,tam_materia());
+    guardar_materias(v_materias,tam_materia());
     guardar_usuarios(&v_usuarios);
     Guardar_Alumnos(&v_alumno);
     Guardar_Horarios(&v_horarios, A); //arreglar
     Guardar_calificaciones(&v_calificaciones, N);
-    
+
     /*Liberar*/
     free(v_alumno);
     free(v_materias);
@@ -50,5 +50,5 @@ int main(){
     free(v_matriculas);
     free(v_calificaciones);
     free(v_horarios);
-    
+
     return 0;}

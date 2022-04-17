@@ -149,3 +149,8 @@
 	"Matriculas.h"
 	"usuarios.h"
 
+1650141640 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\materias.c
+	<stdio.h>
+	<string.h>
+	"Materias.h"
+
