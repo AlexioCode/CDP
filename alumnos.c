@@ -9,7 +9,7 @@
 //Cabecera: void cargar_estructura ()
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
-void cargar_estructura (r_alum ** v_alumno){
+void cargar_estructura (r_alum * v_alumno){
     tam_alum = n_lineas("alumnos.txt");//variable global que guarda el numero de usuarios que hay en el vector de alumnos
 
     char cadena[150];
@@ -23,14 +23,13 @@ void cargar_estructura (r_alum ** v_alumno){
         while(!feof(f)){
             fgets(cadena, 150, f);
             sscanf(cadena,"%[^-]/%[^-]/%[^-]/%[^-]/%s[^-]/%s[^-]/",aux.Id_alum, aux.Nombre_alum, aux.Direc_alum, aux.Local_alum, aux.Curso, aux.Grupo);
-            *v_alumno[i]=aux;
+            v_alumno[i]=aux;
             i++;
                         }
             fclose(f);
         }//Fin while
     else
-    printf("Error al abrir el fichero alumnos.txt\n");
-    }//Fin cargar_estructura
+    printf("Error al abrir el fichero alumnos.txt\n");}//Fin cargar_estructura
 
 //Cabecera: void Guardar_Alumnos(r_alum *alum)
 // Precondición: estructura realizada

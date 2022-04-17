@@ -23,9 +23,5 @@ calificaciones * cargar_calificaciones(){
         fclose(f);}
     else{
         printf("Error al abrir el fichero Productos.txt\n");}
-    int a;
-    for(a=0;a<9;a++){   //Recorrer el vector de clientes
-        printf("Linea: %d-%d-%d-%s-%d-%d-%d\n ",nota[a].fecha.dia, nota[a].fecha.mes, nota[a].fecha.anno, nota[a].descrip, nota[a].materia, nota[a].alum, nota[a].not);
-    }
     return nota;
 }

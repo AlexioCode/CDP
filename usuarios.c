@@ -45,15 +45,10 @@ void cargar_usuarios(usuario * usuarios)
     }
     else
     {
-        for (n_usuario = 0; n_usuario < num_usuarios; n_usuario++)
-        {
-            fscanf(fich, "%[^-]-%[^-]-%[^-]-%[^-]-%[^\n]\n", usuarios[n_usuario].Id_usuario,
-                   usuarios[n_usuario].Nomb_usuario, usuarios[n_usuario].Perfil_usuario,
-                   usuarios[n_usuario].Usuario, usuarios[n_usuario].Contrasena);
-            printf("Usuario %i leido\n", n_usuario + 1);
+        for (n_usuario = 0; n_usuario < num_usuarios; n_usuario++){
+            fscanf(fich, "%[^-]-%[^-]-%[^-]-%[^-]-%[^\n]\n", usuarios[n_usuario].Id_usuario,usuarios[n_usuario].Nomb_usuario, usuarios[n_usuario].Perfil_usuario,usuarios[n_usuario].Usuario, usuarios[n_usuario].Contrasena);
         }
-        fclose(fich);
-    }
+        fclose(fich);}
 }
 
 //cabecera: void escribir_usuarios(usuario ** v_usuarios)
@@ -135,7 +130,7 @@ void alta_usuario(usuario * pv_usuarios)
         printf("\nIntroduzca nombre completo del nuevo usuario: ");
         fflush(stdin);
         fgets(nombre_usuario, 21, stdin);
-        quita_salto_linea(&nombre_usuario);
+        quita_salto_linea(nombre_usuario);
         strcpy(pv_usuarios[num_usuarios - 1].Nomb_usuario, nombre_usuario);
 
         printf("Perfil (administrador/profesor): ");

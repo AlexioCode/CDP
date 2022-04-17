@@ -55,8 +55,7 @@ matricula* cargar_matriculas()
                 fclose(fich);
             }
         }
-    return p;
-}
+    return p;}
 
 void guardar_matriculas(matricula *p)
 {
