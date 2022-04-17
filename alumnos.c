@@ -45,7 +45,7 @@ void cargar_estructura (r_alum ** v_alumno){
     unsigned i=0;
     FILE *f;
     f=fopen("alumnos.txt", "r");//Abrimos fichero
-    v_alumno=(r_alum*)malloc(sizeof(r_alum)*tam_alumnos);
+    v_alumno=(r_alum*)malloc(sizeof(r_alum)*tam_alum);
     r_alum aux;
 
     if(f){  //Controla si se ha podido abrir el fichero
