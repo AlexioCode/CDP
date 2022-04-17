@@ -78,7 +78,7 @@ if(p==0){
 
 void eliminar_nota(int alum, int materia,calificaciones *nota){
 int i;
-i=borrar(alum,materia,&nota);
+i=borrar(alum,materia,nota);
 if(i>0){
     nota=realloc(nota,sizeof(calificaciones*)*(tam_calif-1));
     }
