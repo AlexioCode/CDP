@@ -40,6 +40,7 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
             strcpy(grupo, horarios[pos_grupo].grupo);
             sprintf(Id_materia, NULL, horarios[pos_grupo].ID_materia);
             strcpy(siglas_materia, id_siglas_materia(&materias, Id_materia));
+
             printf("\nMenu:\nGRUPO %s MATERIA %s\n--------------\n"
                 "1. Lista de alumnos\n2. Cambiar de grupo\n\n", grupo, siglas_materia);
             scanf("%i", &op);
@@ -62,8 +63,8 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
                     ficha_alumno(Id_alumno, alumnos);
                 if(op2 == 2)
                 {
-                    ver_nota(Id_alumno, Id_materia,nota);
-                    calif_profe(Id_alumno, Id_materia,nota);
+                    ver_nota(Id_alumno, Id_materia, nota);
+                    calif_profe(Id_alumno, Id_materia, nota);
                 }
                 if(op2 != 1 && op2 != 2 && op2 != 3)
                     printf("Opcion incorrecta");
