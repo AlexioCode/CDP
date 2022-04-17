@@ -1,23 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<calificaciones.h>
-#include<alumnos.h>
-#include<Materias.h>
-//tam_calif=calificaciones
-typedef struct{
-int dia;
-int mes;
-int anno;
-}fec;
-
-typedef struct{
-fec fecha;
-char descrip[30];
-int materia;
-int alum;
-int not;
-}calificaciones;
-calificaciones *nota;
+#include "calificaciones.h"
+#include "alumnos.h"
+#include "Materias.h"
 
 int borrar(int alum, int materia,calificaciones *nota){
 int i,j=0,k,u=0;
