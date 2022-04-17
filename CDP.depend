@@ -12,7 +12,7 @@
 	"usuarios.h"
 	"perfiles.h"
 
-1650211907 source:c:\users\alexa\desktop\cdp\usuarios.c
+1650215247 source:c:\users\alexa\desktop\cdp\usuarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -38,7 +38,7 @@
 	"Matriculas.h"
 	"usuarios.h"
 
-1650211907 c:\users\alexa\desktop\cdp\usuarios.h
+1650215444 c:\users\alexa\desktop\cdp\usuarios.h
 
 1648136482 source:c:\users\usuario\desktop\cdp\main.c
 	<stdio.h>
