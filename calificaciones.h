@@ -15,6 +15,8 @@ int alum;
 int not;
 }calificaciones;
 
+calificaciones * nota;
+
 /*
 cabecera: int borrar(int alum, int materia,calificaciones *nota,int N)
 Precondicion: Le debe llegar el ID de un alumno y de una materia

@@ -4,7 +4,6 @@
 #include<math.h>
 #include "alumnos.h"
 #include "Materias.h"
-#include "calificaciones.h"
 
 
 r_alum *alum;//Estructura
@@ -41,7 +40,7 @@ int n_lineas(char * fichero)
 //Postcondici—n: Estructura cargada en fichero
 void cargar_estructura (r_alum ** v_alumno){
     tam_alum = n_lineas("alumnos.txt");//variable global que guarda el numero de usuarios que hay en el vector de usuarios
-
+    
     char cadena[150];
     unsigned i=0;
     FILE *f;
@@ -133,9 +132,7 @@ void baja(r_alum *alum){
             if((strcmp(res,"Si")==0)){ //Si introduce 'Si' damos de baja
                 tam_alum = tam_alum-1;
                 alum= (r_alum*) malloc(sizeof(r_alum)*(tam_alum-1));//Reservamos nuevo espacio de memoria
-
                 tam_alum--;
-                tam_calif--;
                 for(j=i;j<tam_alum;j++){
                     alum[j]=alum[j+1]; //Sustituyo posicion del alumo por la siguiente
                 }
