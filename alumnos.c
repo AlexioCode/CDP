@@ -83,7 +83,8 @@ fclose(f); //Cierre del fichero.
 //Postcondición: Da de alta al alumno seleccionado.
 void alta(r_alum* alum){
     char res[3];
-    alum= (r_alum*) malloc(sizeof(alum)*(tam_alum+1));//Aumentamos la reserva +1
+    tam_alum=tam_alum+1;
+    alum= (r_alum*) malloc(sizeof(r_alum)*(tam_alum+1));//Aumentamos la reserva +1
     printf("Introduzca los datos siguientes del alumno que quiere añadir:");
     printf("Id: ");
     scanf("%s",alum[tam_alum+1].Id_alum);
