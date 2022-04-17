@@ -76,7 +76,13 @@ cabecera: void Guardar_Horarios(horari **horarios, int *tam)
 Precondicion: Le debe llegar la estructura de horarios rellenada y el tamanio del vector
 Postcondicion: Guarda en ficheros el vector de estructuras
 */
-void Guardar_Horarios(horari *horarios);
+void Guardar_Horarios(horari **horarios);
+/*
+cabecera: int nLineas(char* fichero)
+Precondicion: Le debe llegar el nombre de un fichero
+Postcondicion: Devuelve el numero de lineas (el tamanio de como debe ser el vector) que tiene el fichero
+*/
+int nLineas(char* fichero);
 /*
 cabecera: void cargar_horarios()
 Postcondicion: Guarda del fichero horarios.txt en la estructura

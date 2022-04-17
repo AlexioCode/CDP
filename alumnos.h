@@ -28,7 +28,7 @@ void cargar_estructura (r_alum ** v_alumno);
 //Cabecera: void Guardar_Alumnos(r_alum *alum)
 // Precondici—n: estructura realizada
 //Postcondici—n: estructura cargada en fichero
-void Guardar_Alumnos(r_alum *v_alumno);
+void Guardar_Alumnos(r_alum **v_alumno);
 
 //Cabecera:void alta(r_alum* alum)
 //Precondición: Recibe la estructura inicializada

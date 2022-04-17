@@ -2,14 +2,27 @@
 #include <stdlib.h>
 #include <string.h>
 #include"calificaciones.h"
-#include "usuarios.h"
+/* Cabecera: int nLineas(char* fichero)
+   Precondicion: Le debe llegar el nombre de un fichero
+   Postcondicion: Devuelve el numero de lineas que tiene dicho fichero */
+int nLineas(char* fichero){
+    FILE *f=fopen(fichero, "r");
+    char cadena[150];
+    int cont=0;
+    if(f){
+        while(!feof(f))
+        {fgets(cadena, 150, f);
+            cont++;}
+        fclose(f);}
+    return cont;}
+
 /* Cabecera: void cargar_calificaciones()
    Postcondicion: Traspasa la informacion del fichero "Calificaciones.txt" a la estructura de calificaciones */
 calificaciones * cargar_calificaciones(){
 
     FILE *f=fopen("calificaciones.txt", "r");
 
-    nota=(calificaciones*)malloc(sizeof(calificaciones)*n_lineas("calificaciones.txt"));
+    nota=(calificaciones*)malloc(sizeof(calificaciones)*nLineas("calificaciones.txt"));
     calificaciones aux;
     char cadena[150];
     unsigned i=0;

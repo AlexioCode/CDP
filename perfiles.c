@@ -22,7 +22,7 @@ void quita_salto_linea(char * cad)
 //cabecera: void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: id_prof es el Id_usuario del profesor en cuestion y recibe punteros a vectores inicializados
 //postcondicion: realiza las funciones del perfil de profesor
-void perfil_profesor(char * id_prof, r_alum * alumnos, calificaciones * v_calif, horari * v_fechas, materia * materias, matricula * v_matriculas, usuario * pv_usuarios)
+void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 {
     int op;
     int op2;
@@ -36,10 +36,10 @@ void perfil_profesor(char * id_prof, r_alum * alumnos, calificaciones * v_calif,
     {
         do
         {
-            pos_grupo = elige_grupo(id_prof, v_fechas);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
+            pos_grupo = elige_grupo(id_prof, *v_fechas);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
             strcpy(grupo, horarios[pos_grupo].grupo);
             sprintf(Id_materia, NULL, horarios[pos_grupo].ID_materia);
-            strcpy(siglas_materia, id_siglas_materia(materias, Id_materia));
+            strcpy(siglas_materia, id_siglas_materia(&materias, Id_materia));
 
             printf("\nMenu:\nGRUPO %s MATERIA %s\n--------------\n"
                 "1. Lista de alumnos\n2. Cambiar de grupo\n\n", grupo, siglas_materia);
@@ -76,7 +76,8 @@ void perfil_profesor(char * id_prof, r_alum * alumnos, calificaciones * v_calif,
 //cabecera: void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: id_admin es el Id_usuario del administrador en cuestion y recibe punteros a vectores inicializados
 //postcondicion: realiza las funciones del perfil de administrador
-void perfil_administrador(char * id_admin, r_alum * alumnos, calificaciones * v_calif, horari * v_fechas, materia * materias, matricula * v_matriculas, usuario * pv_usuarios){
+void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
+{
     int op, op2;
     do
     {

@@ -28,12 +28,18 @@ cabecera: void Guardar_calificaciones(calificaciones **nota, int N)
 Precondicion: Le debe llegar el tamanio del vector de tipo calificaciones y esta misma
 Postcondicion: Traspasa la informacion de la estructura al fichero "Calificaciones.txt" con un formato predeterminado
 */
-void Guardar_calificaciones(calificaciones *nota);
+void Guardar_calificaciones(calificaciones **nota);
 /*
 cabecera: calificaciones * cargar_calificaciones()
 Postcondicion: Traspasa la informacion del fichero "Calificaciones.txt" a la estructura de calificaciones
 */
 calificaciones * cargar_calificaciones();
+/*
+cabecera: int nLineas(char* fichero)
+Precondicion: Le debe llegar el nombre de un fichero
+Postcondicion: Devuelve el numero de lineas que tiene dicho fichero
+*/
+int nLineas(char* fichero);
 /*
 cabecera: void ver_nota(int alum, int materia,calificaciones *nota,int N)
 Precondicion: Le debe llegar la ID del alumno y de una materia
