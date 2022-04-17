@@ -3,6 +3,16 @@
 #include <string.h>
 #include "usuarios.h"
 
+//cabecera: void quita_salto_linea(char * cad)
+//precondicion: recibe una cadena inicializada
+//postcondicion: quita el salto de linea del final de una cadena si es que lo tiene
+void quita_salto_linea(char * cad)
+{
+    int longitud = strlen(cad);
+    if (cad[longitud - 1] == '\n')
+        cad[longitud - 1] = '\0';
+}
+
 //cabecera: int n_lineas(char * fichero)
 //precondicion: fichero es el nombre del fichero cuyo numero de lineas quieres contar
 //postcondicon: devuelve el numero de lineas que tiene fichero

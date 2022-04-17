@@ -10,6 +10,11 @@ typedef struct{
     char Contrasena[9];
 }usuario;
 
+//cabecera: void quita_salto_linea(char * cad)
+//precondicion: recibe una cadena inicializada
+//postcondicion: quita el salto de linea del final de una cadena si es que lo tiene
+void quita_salto_linea(char * cad);
+
 //cabecera: void cargar_usuarios(usuario ** usuarios)
 //precondicion: recibe la direccion de un vector inicializado de usuarios
 //postcondicion: carga los usuarios del fichero usuarios.txt y lo vuelca al vector usuarios

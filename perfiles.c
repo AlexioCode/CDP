@@ -9,16 +9,6 @@
 #include "perfiles.h"
 #include "usuarios.h"
 
-//cabecera: void quita_salto_linea(char * cad)
-//precondicion: recibe una cadena inicializada
-//postcondicion: quita el salto de linea del final de una cadena si es que lo tiene
-void quita_salto_linea(char * cad)
-{
-    int longitud = strlen(cad);
-    if (cad[longitud - 1] == '\n')
-        cad[longitud - 1] = '\0';
-}
-
 //cabecera: void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_calif, horari ** v_fechas, materia ** materias, matricula ** v_matriculas, usuario ** pv_usuarios)
 //precondicion: id_prof es el Id_usuario del profesor en cuestion y recibe punteros a vectores inicializados
 //postcondicion: realiza las funciones del perfil de profesor
