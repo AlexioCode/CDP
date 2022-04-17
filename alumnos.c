@@ -45,7 +45,7 @@ void cargar_estructura (r_alum ** v_alumno){
     unsigned i=0;
     FILE *f;
     f=fopen("alumnos.txt", "r");//Abrimos fichero
-    alum=(r_alum*)malloc(sizeof(r_alum)*tam_alumnos);
+    v_alumno=(r_alum*)malloc(sizeof(r_alum)*tam_alum);
     r_alum aux;
 
     if(f){  //Controla si se ha podido abrir el fichero
@@ -83,7 +83,8 @@ fclose(f); //Cierre del fichero.
 //Postcondición: Da de alta al alumno seleccionado.
 void alta(r_alum* alum){
     char res[3];
-    alum= (r_alum*) malloc(sizeof(alum)*(tam_alumnos+1));//Aumentamos la reserva +1
+    tam_alum=tam_alum+1;
+    alum= (r_alum*) malloc(sizeof(r_alum)*(tam_alum+1));//Aumentamos la reserva +1
     printf("Introduzca los datos siguientes del alumno que quiere añadir:");
     printf("Id: ");
     scanf("%s",alum[tam_alum+1].Id_alum);
@@ -120,7 +121,7 @@ void baja(r_alum *alum){
     char alumno[7],res[3],res2[3];
     printf("Introduzca el ID del alumno que quiera dar de baja:");
     scanf("%s",alumno); //Introducir alumno que se requiera dar de baja
-    for(i=0; i<tam_alumnos;i++){ //Recorremos desde i hasta A(tamaño del fichero)
+    for(i=0; i<tam_alum;i++){ //Recorremos desde i hasta A(tamaño del fichero)
         if(strcmp(alum[i].Id_alum,alumno)==0){ //Si coincide el id de la estructura con el introducido:
             printf("El alumno %s se llama %s",alum[i].Id_alum,alum[i].Nombre_alum); //Escribir su id y nombre:
 
@@ -129,7 +130,8 @@ void baja(r_alum *alum){
             }while((strcmp(res,"Si")!=0) && (strcmp(res,"No")!=0));
 
             if((strcmp(res,"Si")==0)){ //Si introduce 'Si' damos de baja
-                alum= (r_alum*) malloc(sizeof(alum)*(tam_alumnos-1));//Reservamos nuevo espacio de memoria
+                tam_alum = tam_alum-1;
+                alum= (r_alum*) malloc(sizeof(r_alum)*(tam_alum-1));//Reservamos nuevo espacio de memoria
                 A--;
                 for(j=i;j<tam_alum;j++){
                     alum[j]=alum[j+1]; //Sustituyo posicion del alumo por la siguiente
