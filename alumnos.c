@@ -39,7 +39,7 @@ int n_lineas(char * fichero)
 //Precondici—n: Puntero a fichero
 //Postcondici—n: Estructura cargada en fichero
 void cargar_estructura (r_alum ** v_alumno){
-    tam_alum = n_lineas("alumnos.txt");//variable global que guarda el numero de usuarios que hay en el vector de usuarios
+    tam_alum = n_lineas("alumnos.txt");//variable global que guarda el numero de usuarios que hay en el vector de alumnos
     
     char cadena[150];
     unsigned i=0;

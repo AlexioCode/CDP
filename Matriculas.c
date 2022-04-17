@@ -26,9 +26,9 @@ int tam_matricula()
     return n;
 }
 
-char* cargar_matriculas()
+matricula* cargar_matriculas()
 {
-    int tam_max = tam_matricula("matriculas.txt");
+    int tam_matric = tam_matricula("matriculas.txt");
     int i;
     matricula *p;
     FILE *fich;
@@ -48,7 +48,7 @@ char* cargar_matriculas()
             }
             else
             {
-                for (i = 0; i < tam_max; i++)
+                for (i = 0; i < tam_matric; i++)
                 {
                     fscanf(fich, "%[^-]-%[^\n]\n", p[i].matid, p[i].alumid);    // %[^-]-%[^\n] esta ideado para leer una linea entera y guardar los valores correspondientes entre '-'
                 }
@@ -58,7 +58,7 @@ char* cargar_matriculas()
     return p;
 }
 
-void guardar_matriculas(matricula *p, int tam_max)
+void guardar_matriculas(matricula *p)
 {
 
     FILE * fich;
@@ -70,7 +70,7 @@ void guardar_matriculas(matricula *p, int tam_max)
     }
     else
     {
-        for(i = 0; i < tam_max; i++)
+        for(i = 0; i < tam_matric; i++)
         {
             fprintf(fich, "%s-%s\n", p[i].matid, p[i].alumid);  //Los datos se guardan con el estandar de estar separados por '-' en cada linea
         }
@@ -103,9 +103,9 @@ void cambiar_alumid_matriculas(matricula *p){
     }
 }
 
-void ver_matriculas(matricula *p, int tam_max){   //muestra las matriculas de linea en linea de forma: id-alumid
+void ver_matriculas(matricula *p, int tam_matric){   //muestra las matriculas de linea en linea de forma: id-alumid
     int i;
-    for(i=0; 0< tam_max; i++){
+    for(i=0; 0< tam_matric; i++){
         printf("%s",(p+i)->matid);
         printf("-");
         printf("%s\n",(p+i)->alumid);
@@ -113,19 +113,19 @@ void ver_matriculas(matricula *p, int tam_max){   //muestra las matriculas de li
 }
 
 
-int baja_matricula(matricula *p, char *matid, int tam_max){         //Libera la matricula indicada con id
+void baja_matricula(matricula *p, char *matid){         //Libera la matricula indicada con id
     int i=0,j;
-    j = tam_max;
+    j = tam_matric;
     while((p+i)->matid == matid && i<j)
     {
         free(p+i);
         i++;
     }
     j--;
-    return j;
+    tam_matric = j;
 }
 
-int alta_matricula(matricula *p, char *nuevo_matid, char *nuevo_alumid, int tam_max){
+void alta_matricula(matricula *p, char *nuevo_matid, char *nuevo_alumid){
     p = (matricula *)realloc(p,sizeof(matricula));
         if(p==NULL)
         {
@@ -133,10 +133,9 @@ int alta_matricula(matricula *p, char *nuevo_matid, char *nuevo_alumid, int tam_
             exit(1);
         }
             else
-            tam_max++;
-            strcpy((p+tam_max)->matid, nuevo_matid);
-            strcpy((p+tam_max)->alumid, nuevo_alumid);
-            return tam_max;
+            tam_matric++;
+            strcpy((p+tam_matric)->matid, nuevo_matid);
+            strcpy((p+tam_matric)->alumid, nuevo_alumid);
 }
 
 
