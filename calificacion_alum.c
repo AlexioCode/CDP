@@ -63,14 +63,13 @@ if(p==0){
 
 void eliminar_nota(int alum, int materia,calificaciones *nota){
 int i;
-i=borrar(alum,materia,&nota);
+i=borrar(alum,materia,nota);
 if(i>0){
     nota=realloc(nota,sizeof(calificaciones*)*(tam_calif-1));
     }
 }
 
-void anadir_not(int alum, int materia,calificaciones *nota){
-char descrip[30];
+void anadir_not(int alum, int materia,calificaciones* nota){
 int a=1,b=1,c=2022;
 printf("Indica el anno en el que quiere poner la nota\n");
 scanf("%d",&c);
@@ -96,11 +95,11 @@ do{
 }while(a<0 || a>10);
 nota[tam_calif-1].not=a;
 printf("Introduzca una descripcion del examen\n");
-fgets(nota[*(tam_calif-1)].descrip, N, stdin);}
+fgets(nota[tam_calif-1].descrip, tam_calif, stdin);}
 
 void aniadir_not(int alu, int materia,calificaciones *nota){
 nota=realloc(nota,sizeof(calificaciones*)*(tam_calif+1));
-anadir_not(alu,materia,&nota);
+anadir_not(alu,materia,nota);
 }
 
 void calif_profe(char *al, char *mat,calificaciones *nota){
@@ -123,13 +122,13 @@ do{
         scanf("%d",&a);
     }while(a<6 && a>0);
     switch(a){
-        case 1: ver_nota(alum,materia,&nota);
+        case 1: ver_nota(alum,materia,nota);
                 break;
-        case 2: mod_nota(alum, materia,&nota);
+        case 2: mod_nota(alum, materia,nota);
                 break;
-        case 3: eliminar_nota(alum, materia,&nota);
+        case 3: eliminar_nota(alum, materia,nota);
                 break;
-        case 4: aniadir_not(alum, materia,&nota);
+        case 4: aniadir_not(alum, materia,nota);
                 break;
         case 5: return;
                 break;
