@@ -34,7 +34,7 @@ int main(){
     login(&v_alumno,&v_calificaciones,&v_horarios,&v_materias,&v_matriculas,&v_usuarios);
 
     /*GUARDAMOS*/
-    guardar_materias(v_materias);
+    guardar_materias(&v_materias);
     guardar_usuarios(&v_usuarios);
     Guardar_Alumnos(&v_alumno);
     Guardar_Horarios(&v_horarios); //arreglar
