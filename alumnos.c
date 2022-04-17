@@ -45,7 +45,7 @@ void cargar_estructura (r_alum ** v_alumno){
     unsigned i=0;
     FILE *f;
     f=fopen("alumnos.txt", "r");//Abrimos fichero
-    v_alumno=(r_alum*)malloc(sizeof(r_alum)*tam_alum);
+    v_alumno=(r_alum**)malloc(sizeof(r_alum)*tam_alum);
     r_alum aux;
 
     if(f){  //Controla si se ha podido abrir el fichero
@@ -107,7 +107,7 @@ void alta(r_alum* alum){
     if(strcmp(res,"Si")==0)
             alta(alum); //Si escribe "Si" vuelve a empezar
         else{
-                Guardar_Alumnos(alum);
+                Guardar_Alumnos(&alum);
                 return;     //Si escribe "No" sale de la función
             }
 }
@@ -132,7 +132,7 @@ void baja(r_alum *alum){
             if((strcmp(res,"Si")==0)){ //Si introduce 'Si' damos de baja
                 tam_alum = tam_alum-1;
                 alum= (r_alum*) malloc(sizeof(r_alum)*(tam_alum-1));//Reservamos nuevo espacio de memoria
-                A--;
+                tam_alum--;
                 for(j=i;j<tam_alum;j++){
                     alum[j]=alum[j+1]; //Sustituyo posicion del alumo por la siguiente
                 }
@@ -150,7 +150,7 @@ void baja(r_alum *alum){
     if(strcmp(res2,"Si")==0)//Si dice "Si", llamamos de nuevo a la función
         baja(alum); //Vuelve a empezar
     else{
-        Guardar_Alumnos(alum);
+        Guardar_Alumnos(&alum);
         return;     //Si escribe "No" sale de la función
         }
 }//Fin función
@@ -205,7 +205,7 @@ void modalum(r_alum *alum){
         if(strcmp(res,"Si")==0) //Si res= "Si"
                     modalum(alum); //Llamamos de nuevo a la función, vuelve a empezar
         else
-                Guardar_Alumnos(alum);
+                Guardar_Alumnos(&alum);
                 return;     //Si escribe "No" sale de la función
 
     }
@@ -228,7 +228,7 @@ void listaalumprof (r_alum *alum){
     if(strcmp(res,"Si")==0) //Si pone "Si"
         modalum(alum); //Llamamos a la función modificar alumnos
     else{
-        Guardar_Alumnos(alum);
+        Guardar_Alumnos(&alum);
         return;//Si pone "No", salimos
     }
 }
@@ -269,7 +269,7 @@ void listaalumadm (r_alum *alum){
     if(strcmp(mod,"Si")==0) //Si pone "Si"
         modalum(alum); //volvemos a llamar a la función
     else{
-        Guardar_Alumnos(alum);
+        Guardar_Alumnos(&alum);
         return;//Si pone "No", salimos
     }
 }//Fin programa
@@ -280,7 +280,7 @@ void listaalumadm (r_alum *alum){
 void ficha_alumno(char* id_alumno,r_alum *alum){
     int i;
     char mod[3],res[3], nuevo_id[7];
-    for(i=0;i<A;i++){ //Recorremos estructura
+    for(i=0;i<tam_alum;i++){ //Recorremos estructura
         if(strcmp(id_alumno,alum[i].Id_alum)==0){
             printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo);
         }
@@ -303,7 +303,7 @@ void ficha_alumno(char* id_alumno,r_alum *alum){
             ficha_alumno(nuevo_id,alum); //Volvemos a llamar a la función
         }
         else{
-            Guardar_Alumnos(alum);
+            Guardar_Alumnos(&alum);
             return; //Si pone "No", salimos
         }
     }
