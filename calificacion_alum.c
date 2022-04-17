@@ -1,23 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<calificaciones.h>
-#include<alumnos.h>
-#include<Materias.h>
-//tam_calif=calificaciones
-typedef struct{
-int dia;
-int mes;
-int anno;
-}fec;
-
-typedef struct{
-fec fecha;
-char descrip[30];
-int materia;
-int alum;
-int not;
-}calificaciones;
-calificaciones *nota;
+#include "calificaciones.h"
+#include "alumnos.h"
+#include "Materias.h"
 
 int borrar(int alum, int materia,calificaciones *nota){
 int i,j=0,k,u=0;
@@ -78,7 +63,7 @@ if(p==0){
 
 void eliminar_nota(int alum, int materia,calificaciones *nota){
 int i;
-i=borrar(alum,materia,&nota);
+i=borrar(alum,materia,nota);
 if(i>0){
     nota=realloc(nota,sizeof(calificaciones*)*(tam_calif-1));
     }
