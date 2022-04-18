@@ -39,6 +39,6 @@ void baja_matricula(matricula *p, char *matid);
 //int alta_matricula(matricula *p, char *matid, char *alumid, int tam_matric);
 //id e id del alumno de la matricula, puntero al vector de matricula y tener el tamaño máximo (tam_matricula/alta_matricula)
 //Devuelve el tamaño aumentado en uno
-void alta_matricula(matricula *p, char *matid, char *alumid);
+void alta_matricula(matricula ** p, char *matid, char *alumid);
 
 #endif // MATRICULAS_H_INCLUDED
