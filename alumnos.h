@@ -63,5 +63,5 @@ void ficha_alumno(char* id_alumno,r_alum *alum );
 //Cabecera: void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat)
 //Precondici—n: Recibe estructura inicializada, grupo de un alumno y materia
 //Postcondici—n: Devuelve lista de alumnos del grupo determinado en la materia determinada
-void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat);
+void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum **alum, materia **r_mat);
 #endif //Perfiles_H_included

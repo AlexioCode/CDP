@@ -12,13 +12,13 @@
 	"usuarios.h"
 	"perfiles.h"
 
-1650225510 source:c:\users\alexa\desktop\cdp\usuarios.c
+1650280895 source:c:\users\alexa\desktop\cdp\usuarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"usuarios.h"
 
-1650211907 source:c:\users\alexa\desktop\cdp\perfiles.c
+1650281160 source:c:\users\alexa\desktop\cdp\perfiles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -175,21 +175,21 @@
 
 1650211335 c:\users\alexa\desktop\cdp\calificaciones.h
 
-1650269781 source:c:\users\alexa\desktop\cdp\cargar_horarios.c
+1650270246 source:c:\users\alexa\desktop\cdp\cargar_horarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"horarios.h"
 
-1650270047 c:\users\alexa\desktop\cdp\horarios.h
+1650281592 c:\users\alexa\desktop\cdp\horarios.h
 	"usuarios.h"
 	"Materias.h"
 	"alumnos.h"
 
-1650191277 c:\users\alexa\desktop\cdp\materias.h
+1650281180 c:\users\alexa\desktop\cdp\materias.h
 	<stdlib.h>
 
-1650211335 c:\users\alexa\desktop\cdp\alumnos.h
+1650281367 c:\users\alexa\desktop\cdp\alumnos.h
 	"Materias.h"
 
 1650211335 source:c:\users\alexa\desktop\cdp\guardar_calificaciones.c
@@ -206,7 +206,7 @@
 1650191424 c:\users\alexa\desktop\cdp\matriculas.h
 	<stdlib.h>
 
-1650268821 source:c:\users\alexa\desktop\cdp\alumnos.c
+1650281449 source:c:\users\alexa\desktop\cdp\alumnos.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -221,7 +221,7 @@
 	"alumnos.h"
 	"Materias.h"
 
-1650191176 source:c:\users\alexa\desktop\cdp\materias.c
+1650281512 source:c:\users\alexa\desktop\cdp\materias.c
 	<stdio.h>
 	<string.h>
 	"Materias.h"

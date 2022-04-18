@@ -181,13 +181,13 @@ void alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_
         strcpy((*p+tam_mat)->siglas, nuevo_siglas);
 }
 
-char* id_siglas_materia(materia *p, char* id_materia)
+char* id_siglas_materia(materia **p, char* id_materia)
 {
     int i=0;
-    while((p+i)->id == id_materia && i<5)
+    while(((*p)+i)->id == id_materia && i<5)
     {
             i++;
     }
-    return(p+i)->siglas;
+    return((*p)+i)->siglas;
 }
 

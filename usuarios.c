@@ -175,15 +175,12 @@ void alta_usuario(usuario ** pv_usuarios)
 //cabecera: void baja_usuario(usuario ** pv_usuarios)
 //precondicion: pv_usuarios es un puntero a vector de usuarios inicializado
 //postcondicion: da de baja a un usuario del vector de usuarios
-void baja_usuario(usuario ** pv_usuarios)
+void baja_usuario(usuario ** pv_usuarios, char * id)
 {
-    char id[4];
     int n_usuario = 0;
     int encontrado = 0;
-    printf("\nIntroduce el id del usuario a dar de baja: ");
-    fflush(stdin);
-    fgets(id, 4, stdin);
-    while((encontrado == 0) || (n_usuario!=num_usuarios))
+
+    while((encontrado == 0) || (n_usuario < num_usuarios))  //buscar el n_usuario con ese id
     {
         if (strcmp(id, (*pv_usuarios)[n_usuario].Id_usuario) == 0)
             encontrado = 1;
@@ -200,7 +197,8 @@ void baja_usuario(usuario ** pv_usuarios)
             strcpy((*pv_usuarios)[n_usuario].Contrasena, (*pv_usuarios)[n_usuario + 1].Contrasena);
             n_usuario++;
         }
-            (*pv_usuarios) = (usuario *) realloc(*pv_usuarios, (num_usuarios - 1) * sizeof(usuario));    //le quitamos al vector la reserva del último elemento
+        num_usuarios--;
+        (*pv_usuarios) = (usuario *) realloc(*pv_usuarios, (num_usuarios) * sizeof(usuario));    //le quitamos al vector la reserva del último elemento
     }
     else
         printf("\nNo se ha encontrado al usuario con ese Id");
@@ -280,6 +278,7 @@ void modificar_usuario(usuario ** pv_usuarios)
 void admin_usuarios(usuario ** pv_usuarios)
 {
     int op;
+    char id[4];
     do
     {
         printf("\n1. Dar de alta\n2. Dar de baja\n3. Modificar usuario\n4. Listar usuarios\n\n");
@@ -290,7 +289,10 @@ void admin_usuarios(usuario ** pv_usuarios)
                 alta_usuario(pv_usuarios);
                 break;
             case 2:
-                baja_usuario(pv_usuarios);
+                printf("\nIntroduce el id del usuario a dar de baja: ");
+                fflush(stdin);
+                fgets(id, 4, stdin);
+                baja_usuario(pv_usuarios, id);
                 break;
             case 3:
                 modificar_usuario(pv_usuarios);

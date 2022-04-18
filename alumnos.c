@@ -311,12 +311,12 @@ void ficha_alumno(char* id_alumno,r_alum *alum){
 //Cabecera: void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat)
 //Precondición: Recibe estructura inicializada, grupo de un alumno y materia
 //Postcondición: Devuelve lista de alumnos del grupo determinado en la materia determinada
-void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum *alum, materia *r_mat){
+void mostrar_alumnos_grupo_materia(char *grupo, char *idmateria, r_alum **alum, materia **r_mat){
     int i,j;
     for(i=0;i<tam_alum;i++){//Recorremos alumnos
         for(j=0;j<tam_mat;j++){ //Recorremos materias
-            if((strcmp(grupo,alum[i].Grupo)==0)&&(strcmp(idmateria, r_mat[j].id)==0)){
-                printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo);
+            if((strcmp(grupo,(*alum)[i].Grupo)==0)&&(strcmp(idmateria, (*r_mat)[j].id)==0)){
+                printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, (*alum)[i].Id_alum, (*alum)[i].Nombre_alum, (*alum)[i].Direc_alum, (*alum)[i].Local_alum, (*alum)[i].Curso, (*alum)[i].Grupo);
             }
         }
     }
