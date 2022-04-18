@@ -40,7 +40,7 @@ int n_lineas(char * fichero)
 //Postcondici—n: Estructura cargada en fichero
 void cargar_estructura (r_alum ** v_alumno){
     tam_alum = n_lineas("alumnos.txt");//variable global que guarda el numero de usuarios que hay en el vector de alumnos
-    
+
     char cadena[150];
     unsigned i=0;
     FILE *f;
@@ -52,7 +52,7 @@ void cargar_estructura (r_alum ** v_alumno){
         while(!feof(f)){
             fgets(cadena, 150, f);
             sscanf(cadena,"%[^-]/%[^-]/%[^-]/%[^-]/%s[^-]/%s[^-]/",aux.Id_alum, aux.Nombre_alum, aux.Direc_alum, aux.Local_alum, aux.Curso, aux.Grupo);
-            alum[i]=aux;
+            (*v_alumno)[i]=aux;
             i++;
                         }
             fclose(f);
