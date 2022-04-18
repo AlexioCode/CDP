@@ -3,9 +3,10 @@
 #include <string.h>
 #include"horarios.h"
 
-/* Cabecera: int nLineas(char* fichero)
- Precondicion: Le debe llegar el nombre de un fichero
- Postcondicion: Devuelve el numero de lineas (el tamanio de como debe ser el vector) que tiene el fichero */
+/*
+// Cabecera: int nLineas(char* fichero)
+// Precondicion: Le debe llegar el nombre de un fichero
+// Postcondicion: Devuelve el numero de lineas (el tamanio de como debe ser el vector) que tiene el fichero
 
 int nLineas(char* fichero){
     FILE *f=fopen(fichero, "r");
@@ -17,6 +18,7 @@ int nLineas(char* fichero){
             cont++;}
         fclose(f);}
     return cont;}
+*/
 
 /* Cabecera: void cargar_horarios()
 Postcondicion: Guarda del fichero horarios.txt en la estructura */

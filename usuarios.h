@@ -30,10 +30,10 @@ void escribir_usuarios(usuario ** v_usuarios);
 //postcondicion: guarda la informacion de usuarios en el fichero usuarios.txt
 void guardar_usuarios(usuario ** v_usuarios);
 
-//cabecera: int n_lineas(char * fichero)
+//cabecera: int n_lineas_usuarios(char * fichero)
 //precondicion: fichero es el nombre del fichero cuyo numero de lineas quieres contar
 //postcondicon: devuelve el numero de lineas que tiene fichero
-int n_lineas(char * fichero);
+int n_lineas_usuarios(char * fichero);
 
 //cabecera: void admin_usuarios(usuario ** pv_usuarios)
 //precondicion: pv_usuarios es un puntero a un vector de usuarios

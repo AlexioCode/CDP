@@ -83,9 +83,12 @@ Precondicion: Le debe llegar el nombre de un fichero
 Postcondicion: Devuelve el numero de lineas (el tamanio de como debe ser el vector) que tiene el fichero
 */
 int nLineas(char* fichero);
+
 /*
-cabecera: void cargar_horarios()
-Postcondicion: Guarda del fichero horarios.txt en la estructura
-*/
+//cabecera: void cargar_horarios()
+//Postcondicion: Guarda del fichero horarios.txt en la estructura
+
 void cargar_horarios();
+*/
+
 #endif  //HORARIOS_H_INCLUDED

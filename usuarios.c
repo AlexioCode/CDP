@@ -13,10 +13,10 @@ void quita_salto_linea(char * cad)
         cad[longitud - 1] = '\0';
 }
 
-//cabecera: int n_lineas(char * fichero)
+//cabecera: int n_lineas_usuarios(char * fichero)
 //precondicion: fichero es el nombre del fichero cuyo numero de lineas quieres contar
 //postcondicon: devuelve el numero de lineas que tiene fichero
-int n_lineas(char * fichero)
+int n_lineas_usuarios(char * fichero)
 {
     int n = 0;
     char c;
@@ -45,7 +45,7 @@ int n_lineas(char * fichero)
 //postcondicion: carga los usuarios del fichero usuarios.txt y lo vuelca al vector usuarios
 void cargar_usuarios(usuario ** usuarios)
 {
-    num_usuarios = n_lineas("usuarios.txt");    //variable global que guarda el numero de usuarios que hay en el vector de usuarios
+    num_usuarios = n_lineas_usuarios("usuarios.txt");    //variable global que guarda el numero de usuarios que hay en el vector de usuarios
     FILE *fich;
     *usuarios = (usuario *) malloc (sizeof(usuario) * num_usuarios); //la reserva de memoria la hago al principio porque ya sé el número de usuarios del fichero "usuarios.txt"
     int n_usuario;
