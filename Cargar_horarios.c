@@ -39,4 +39,4 @@ void cargar_horarios(horari** horarios){
         fclose(f);}
     else{
         printf("Error al abrir el fichero Productos.txt\n");}
-}
+return;}
