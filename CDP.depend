@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1650270187 source:c:\users\alexa\desktop\cdp\main.c
+1650310520 source:c:\users\alexa\desktop\cdp\main.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -18,7 +18,7 @@
 	<string.h>
 	"usuarios.h"
 
-1650281160 source:c:\users\alexa\desktop\cdp\perfiles.c
+1650311124 source:c:\users\alexa\desktop\cdp\perfiles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -178,18 +178,18 @@
 
 1650211335 c:\users\alexa\desktop\cdp\calificaciones.h
 
-1650270246 source:c:\users\alexa\desktop\cdp\cargar_horarios.c
+1650310520 source:c:\users\alexa\desktop\cdp\cargar_horarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"horarios.h"
 
-1650281592 c:\users\alexa\desktop\cdp\horarios.h
+1650310520 c:\users\alexa\desktop\cdp\horarios.h
 	"usuarios.h"
 	"Materias.h"
 	"alumnos.h"
 
-1650281180 c:\users\alexa\desktop\cdp\materias.h
+1650310520 c:\users\alexa\desktop\cdp\materias.h
 	<stdlib.h>
 
 1650281367 c:\users\alexa\desktop\cdp\alumnos.h
@@ -201,7 +201,7 @@
 	<string.h>
 	"calificaciones.h"
 
-1650211317 source:c:\users\alexa\desktop\cdp\matriculas.c
+1650310520 source:c:\users\alexa\desktop\cdp\matriculas.c
 	<stdio.h>
 	<string.h>
 	"Matriculas.h"
@@ -209,7 +209,7 @@
 1650191424 c:\users\alexa\desktop\cdp\matriculas.h
 	<stdlib.h>
 
-1650281449 source:c:\users\alexa\desktop\cdp\alumnos.c
+1650310520 source:c:\users\alexa\desktop\cdp\alumnos.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -224,12 +224,12 @@
 	"alumnos.h"
 	"Materias.h"
 
-1650281512 source:c:\users\alexa\desktop\cdp\materias.c
+1650310520 source:c:\users\alexa\desktop\cdp\materias.c
 	<stdio.h>
 	<string.h>
 	"Materias.h"
 
-1650191635 source:c:\users\alexa\desktop\cdp\horarios.c
+1650310520 source:c:\users\alexa\desktop\cdp\horarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

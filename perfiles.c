@@ -53,8 +53,8 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
                     ficha_alumno(Id_alumno, *alumnos);
                 if(op2 == 2)
                 {
-                    ver_nota((int)strtol(Id_alumno,NULL,10),(int)strtol(Id_materia,NULL,10), *nota);
-                    calif_profe(Id_alumno, Id_materia, *nota);
+                    ver_nota((int)strtol(Id_alumno,NULL,10),(int)strtol(Id_materia,NULL,10), *v_calif);
+                    calif_profe(Id_alumno, Id_materia, *v_calif);
                 }
                 if(op2 != 1 && op2 != 2 && op2 != 3)
                     printf("Opcion incorrecta");
@@ -78,7 +78,7 @@ void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** 
             switch(op)
             {
                 case 1:
-                    admin_usuarios(*pv_usuarios);
+                    admin_usuarios(pv_usuarios);
                     break;
                 case 2:
                     listaalumadm(*alumnos);
@@ -87,7 +87,7 @@ void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** 
                     admin_materias(*materias);
                     break;
                 case 4:
-                    admin_hora(v_fechas, alum, pv_usuarios, materias);
+                    admin_hora(*v_fechas, *alumnos, *pv_usuarios, *materias);
                     break;
                 default:
                     printf("Opcion no valida\n");
