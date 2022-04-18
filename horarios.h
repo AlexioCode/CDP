@@ -85,10 +85,8 @@ Postcondicion: Devuelve el numero de lineas (el tamanio de como debe ser el vect
 int nLineas(char* fichero);
 
 /*
-//cabecera: void cargar_horarios()
+//cabecera: void cargar_horarios(horari** horarios)
 //Postcondicion: Guarda del fichero horarios.txt en la estructura
-
-void cargar_horarios();
 */
-
+void cargar_horarios(horari** horarios);
 #endif  //HORARIOS_H_INCLUDED

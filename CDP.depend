@@ -80,10 +80,10 @@
 1650301821 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\alumnos.h
 	"Materias.h"
 
-1650301821 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\materias.h
+1650304042 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\materias.h
 	<stdlib.h>
 
-1650216875 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\cargar_calificaciones.c
+1650316241 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\cargar_calificaciones.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -91,13 +91,13 @@
 
 1650216875 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\calificaciones.h
 
-1650302783 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\cargar_horarios.c
+1650316734 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\cargar_horarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"horarios.h"
 
-1650302159 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\horarios.h
+1650316709 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\horarios.h
 	"usuarios.h"
 	"Materias.h"
 	"alumnos.h"
@@ -144,7 +144,7 @@
 1650195216 c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\matriculas.h
 	<stdlib.h>
 
-1650302601 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\main.c
+1650316709 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\main.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -165,7 +165,7 @@
 	"Matriculas.h"
 	"usuarios.h"
 
-1650301821 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\materias.c
+1650304271 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\materias.c
 	<stdio.h>
 	<string.h>
 	"Materias.h"
@@ -251,7 +251,7 @@
 	<stdlib.h>
 	<string.h>
 
-1650302467 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\perfiles.c
+1650315132 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\perfiles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -263,7 +263,7 @@
 	"perfiles.h"
 	"usuarios.h"
 
-1650301821 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\usuarios.c
+1650316271 source:c:\users\danie\onedrive\escritorio\universidad\primer curso\2º semestre\metodología de la programación\prácticas\cuaderno digital\cdp\usuarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
