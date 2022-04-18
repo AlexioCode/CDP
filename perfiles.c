@@ -27,9 +27,9 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
         do
         {
             pos_grupo = elige_grupo(id_prof, *v_fechas);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
-            strcpy(grupo, horarios[pos_grupo].grupo);
-            sprintf(Id_materia, NULL, horarios[pos_grupo].ID_materia);
-            strcpy(siglas_materia, id_siglas_materia(&materias, Id_materia));
+            strcpy(grupo, (*v_fechas)[pos_grupo].grupo);
+            sprintf(Id_materia, NULL, (*v_fechas)[pos_grupo].ID_materia);   //el que haya puesto esto que lo arregle
+            strcpy(siglas_materia, id_siglas_materia(materias, Id_materia));
 
             printf("\nMenu:\nGRUPO %s MATERIA %s\n--------------\n"
                 "1. Lista de alumnos\n2. Cambiar de grupo\n\n", grupo, siglas_materia);
