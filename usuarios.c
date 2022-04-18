@@ -79,7 +79,7 @@ void escribir_usuarios(usuario ** v_usuarios)
         printf("Nombre de usuario: %s\n", (*v_usuarios)[n_usuario].Nomb_usuario);
         printf("Perfil de usuario: %s\n", (*v_usuarios)[n_usuario].Perfil_usuario);
         printf("Usuario: %s\n", (*v_usuarios)[n_usuario].Usuario);
-        printf("Contrasenia: %s\n\n", (*v_usuarios)[n_usuario].Contrasena);
+        printf("Contrasena: %s\n\n", (*v_usuarios)[n_usuario].Contrasena);
     }
 }
 
