@@ -80,9 +80,9 @@ void guardar_matriculas(matricula *p)
 
 void cambiar_id_matriculas(matricula *p){
     int i = 0;
-    char* nuevo_matid;
+    char nuevo_matid[4];
     puts("Introduce nuevo id (max/4)");
-    scanf("%s",nuevo_matid);
+    gets(nuevo_matid);
     while ((p+i)->matid == nuevo_matid && i<5)
     {
         strcpy((p+i)->matid, nuevo_matid);
@@ -93,9 +93,9 @@ void cambiar_id_matriculas(matricula *p){
 
 void cambiar_alumid_matriculas(matricula *p){
     int i = 0;
-    char* nuevo_alumid;
+    char nuevo_alumid[6];
     puts("Introduce nuevo id de alumno (max/6)");
-    nuevo_alumid = gets(stdin);
+    gets(nuevo_alumid);
     while((p+i)->alumid == nuevo_alumid && i<7)
     {
         strcpy((p+i)->alumid, nuevo_alumid);
@@ -125,8 +125,8 @@ void baja_matricula(matricula *p, char *matid){         //Libera la matricula in
     tam_matric = j;
 }
 
-void alta_matricula(matricula *p, char *nuevo_matid, char *nuevo_alumid){
-    p = (matricula *)realloc(p,sizeof(matricula));
+void alta_matricula(matricula ** p, char *nuevo_matid, char *nuevo_alumid){
+    *p = (matricula *)realloc(p,sizeof(matricula));
         if(p==NULL)
         {
             printf("ERROR al cargar datos");
@@ -134,8 +134,8 @@ void alta_matricula(matricula *p, char *nuevo_matid, char *nuevo_alumid){
         }
             else
             tam_matric++;
-            strcpy((p+tam_matric)->matid, nuevo_matid);
-            strcpy((p+tam_matric)->alumid, nuevo_alumid);
+            strcpy((*p+tam_matric)->matid, nuevo_matid);
+            strcpy((*p+tam_matric)->alumid, nuevo_alumid);
 }
 
 
