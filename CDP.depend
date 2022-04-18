@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1650310520 source:c:\users\alexa\desktop\cdp\main.c
+1650312210 source:c:\users\alexa\desktop\cdp\main.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -12,7 +12,7 @@
 	"usuarios.h"
 	"perfiles.h"
 
-1650280895 source:c:\users\alexa\desktop\cdp\usuarios.c
+1650312127 source:c:\users\alexa\desktop\cdp\usuarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
