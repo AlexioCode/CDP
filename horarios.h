@@ -23,13 +23,13 @@ cabecera: void modi_hora(int i,int *Y,materia *mater)
 Precondicion: Le debe llegar una posicion del vector
 Postcondicion: Modifica la materia a la que va a dar clase un profesor
 */
-void modi_hora(int i,materia *mater);
+void modi_hora(int i,materia *mater,horari* horarios);
 /*
 cabecera: void grupo_hora(int i, int *A,r_alum *alum)
 Precondicion: Le debe llegar la posicion del vector
 Postcondicion: Cambia el grupo al que dara clase el profesor
 */
-void grupo_hora(int i,r_alum *alum);
+void grupo_hora(int i,r_alum *alum,horari* horarios);
 /*
 cabecera: void cambia_hora(int i, int B,horari *horarios)
 Precondicion:Le debe llegar la posicion del vector

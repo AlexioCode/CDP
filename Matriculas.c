@@ -82,7 +82,7 @@ void cambiar_id_matriculas(matricula *p){
     int i = 0;
     char* nuevo_matid;
     puts("Introduce nuevo id (max/4)");
-    nuevo_matid = gets(stdin);
+    scanf("%s",nuevo_matid);
     while ((p+i)->matid == nuevo_matid && i<5)
     {
         strcpy((p+i)->matid, nuevo_matid);

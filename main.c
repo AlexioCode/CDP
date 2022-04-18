@@ -22,12 +22,12 @@ int main(){
     calificaciones * v_calificaciones;
 
     /*CARGAMOS*/
-    cargar_estructura(&v_alumno);printf("\n\nEso era cargar alumnos\n\n");
-    cargar_horarios(&v_horarios);printf("\n\nEso era cargar horarios\n\n");
-    v_materias= cargar_materias();printf("\n\nEso era cargar materias\n\n");
-    v_matriculas=cargar_matriculas();printf("\n\nEso era cargar matriculas\n\n");
-    cargar_calificaciones(&v_calificaciones);printf("\n\nEso era cargar calificaciones\n\n");
-    cargar_usuarios(&v_usuarios);printf("\n\nEso era cargar usuarios\n\n");
+    cargar_estructura(&v_alumno);
+    cargar_horarios(&v_horarios);
+    v_materias= cargar_materias();
+    v_matriculas=cargar_matriculas();
+    cargar_calificaciones(&v_calificaciones);
+    cargar_usuarios(&v_usuarios);
 
     /*Login*/
     login(&v_alumno,&v_calificaciones,&v_horarios,&v_materias,&v_matriculas,&v_usuarios);

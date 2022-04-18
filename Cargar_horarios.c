@@ -25,14 +25,14 @@ Postcondicion: Guarda del fichero horarios.txt en la estructura */
 void cargar_horarios(horari ** horarios){
     FILE *f=fopen("horarios.txt", "r");
 
-    horarios=(horari*)malloc(sizeof(horari)*nLineas("horarios.txt"));
+    horarios=(horari**)malloc(sizeof(horari*)*nLineas("horarios.txt"));
     horari aux;
     char cadena[150];
     unsigned i=0;
     if(f){ //Controla si se ha podido abrir el fichero
         while(!feof(f)){
             fgets(cadena, 150, f);
-            sscanf(cadena,"%d[^-]-%d[^-]-%d[^-]-%d[^-]-%[^-]",&aux.ID_prof , &aux.dia_clase, &aux.hora_clase, &aux.ID_materia, aux.grupo);
+            sscanf(cadena,"%d[^-]-%d[^-]-%d[^-]-%d[^-]-%s[^-]",&aux.ID_prof , &aux.dia_clase, &aux.hora_clase, &aux.ID_materia, aux.grupo);
             (*horarios)[i]=aux;
             i++;
             }

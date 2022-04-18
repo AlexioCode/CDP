@@ -4,7 +4,7 @@
 #include <math.h>
 #include "Materias.h"
 #include "alumnos.h"
-#include"horarios.h"
+#include "horarios.h"
 #include "usuarios.h"
 
 /* Cabecera: int busca_hora(int hora,int dia, int ID_pro,int *B,horari *horarios)
@@ -26,7 +26,7 @@ Precondicion: Le debe llegar una posicion del vector
 Postcondicion: Modifica la materia a la que va a dar clase un profesor
 */
 /*ARREGLAR*/
-void modi_hora(int i,materia* mater){
+void modi_hora(int i,materia* mater,horari *horarios){
     char nuevamater[5];
      int o=0,l=0;
     do{
@@ -47,7 +47,7 @@ void modi_hora(int i,materia* mater){
 
             if(o==0){
                 printf("El ID introducido no se ha encontrado o no existe \n");
-                modi_hora(i,mater);
+                modi_hora(i,mater,horarios);
                 }
             else{
                 int x;
@@ -59,7 +59,7 @@ void modi_hora(int i,materia* mater){
 /* Cabecera: void grupo_hora(int i, int *A,r_alum *alum)
    Precondicion: Le debe llegar la posicion del vector
    Postcondicion: Cambia el grupo al que dara clase el profesor */
-void grupo_hora(int i,r_alum *alum){
+void grupo_hora(int i,r_alum *alum,horari* horarios){
     int o,l=0,u;
     char nuevaclase[10];
     printf("Introduzca la clase a donde quiere mover la clase \n");
@@ -79,7 +79,7 @@ void grupo_hora(int i,r_alum *alum){
                 return;
             }
             else{
-                grupo_hora(i,alum);
+                grupo_hora(i,alum,horarios);
             }
         }
         else{
@@ -157,10 +157,10 @@ void modificar_hora(int ID_pro,horari *horarios,r_alum *alum,materia *mater){
     scanf("%i",&i);
     }while(i<1 || i>4);
     switch(i){
-        case 1: modi_hora(i,mater);
+        case 1: modi_hora(i,mater,horarios);
                 break;
 
-        case 2: grupo_hora(i,alum);
+        case 2: grupo_hora(i,alum,horarios);
                 break;
 
         case 3: cambia_hora(i, horarios);
