@@ -59,7 +59,7 @@ materia* cargar_materias()
     return p;
 }
 
-void guardar_materias(materia **p)
+void guardar_materias(materia *p)
 {
 
     FILE * fich;
@@ -73,7 +73,7 @@ void guardar_materias(materia **p)
     {
         for(i = 0; i < tam_mat; i++)
         {
-            fprintf(fich, "%s-%s-%s\n", (*p)[i].id, (*p)[i].nombre, (*p)[i].siglas);  //Los datos se guardan con el estandar de estar separados por '-' en cada linea
+            fprintf(fich, "%s-%s-%s\n", p[i].id, p[i].nombre, p[i].siglas);  //Los datos se guardan con el estandar de estar separados por '-' en cada linea
         }
         fclose(fich);
     }
@@ -111,7 +111,7 @@ void cambiar_id_mat(materia *p){
     int i = 0;
     char nuevo_id[4];
     puts("Introduce nuevo id (max/4)");
-    scanf("%s",nuevo_id);
+    gets(nuevo_id);
     while ((p+i)->id == nuevo_id && i<5)
     {
         strcpy((p+i)->id, nuevo_id);
@@ -123,7 +123,7 @@ void cambiar_nombre_mat(materia *p){
     int i = 0;
     char nuevo_nombre[50];
     puts("Introduce nuevo nombre (max/50)");
-    scanf("%s",nuevo_nombre);
+    gets(nuevo_nombre);
     while ((p+i)->nombre == nuevo_nombre && i<51)
     {
         strcpy((p+i)->id, nuevo_nombre);
@@ -135,7 +135,7 @@ void cambiar_siglas_mat(materia *p){
     int i = 0;
     char nuevo_siglas[3];
     puts("Introduce nuevas siglas (max/3)");
-    scanf("%s",nuevo_siglas);
+    gets(nuevo_siglas);
     while ((p+i)->siglas == nuevo_siglas && i<4)
     {
         strcpy((p+i)->siglas, nuevo_siglas);
@@ -181,13 +181,13 @@ void alta_materia(materia ** p, char* nuevo_id, char* nuevo_nombre, char* nuevo_
         strcpy((*p+tam_mat)->siglas, nuevo_siglas);
 }
 
-char* id_siglas_materia(materia **p, char* id_materia)
+char* id_siglas_materia(materia ** p, char* id_materia)
 {
     int i=0;
-    while(((*p)+i)->id == id_materia && i<5)
+    while((*p+i)->id == id_materia && i<5)
     {
             i++;
     }
-    return((*p)+i)->siglas;
+    return (*p+i)->siglas;
 }
 
