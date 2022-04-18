@@ -14,12 +14,12 @@
 //INICIAMOS MAIN
 int main(){
     /*Vectores*/
-    horari * v_horarios;
-    materia * v_materias;
-    matricula *v_matriculas;
-    r_alum  * v_alumno;
-    usuario *v_usuarios;
-    calificaciones * v_calificaciones;
+    horari* v_horarios;
+    materia* v_materias;
+    matricula* v_matriculas;
+    r_alum* v_alumno;
+    usuario* v_usuarios;
+    calificaciones* v_calificaciones;
 
     /*CARGAMOS*/
     cargar_estructura(&v_alumno);

@@ -50,11 +50,11 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
                 printf("\n1. Ficha del alumno\n2. Calificaciones del alumno\n3. Volver\n\n");
                 scanf("%i", &op2);
                 if(op2 == 1)
-                    ficha_alumno(Id_alumno, alumnos);
+                    ficha_alumno(Id_alumno, *alumnos);
                 if(op2 == 2)
                 {
-                    ver_nota(Id_alumno, Id_materia, nota);
-                    calif_profe(Id_alumno, Id_materia, nota);
+                    ver_nota((int)strtol(Id_alumno,NULL,10),(int)strtol(Id_materia,NULL,10), *nota);
+                    calif_profe(Id_alumno, Id_materia, *nota);
                 }
                 if(op2 != 1 && op2 != 2 && op2 != 3)
                     printf("Opcion incorrecta");
@@ -78,13 +78,13 @@ void perfil_administrador(char * id_admin, r_alum ** alumnos, calificaciones ** 
             switch(op)
             {
                 case 1:
-                    admin_usuarios(pv_usuarios);
+                    admin_usuarios(*pv_usuarios);
                     break;
                 case 2:
-                    listaalumadm(alumnos);
+                    listaalumadm(*alumnos);
                     break;
                 case 3:
-                    admin_materias(materias);
+                    admin_materias(*materias);
                     break;
                 case 4:
                     admin_hora(v_fechas, alum, pv_usuarios, materias);

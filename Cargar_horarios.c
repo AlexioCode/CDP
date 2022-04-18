@@ -22,10 +22,10 @@ int nLineas(char* fichero){
 
 /* Cabecera: void cargar_horarios()
 Postcondicion: Guarda del fichero horarios.txt en la estructura */
-void cargar_horarios(horari ** horarios){
+void cargar_horarios(horari** horarios){
     FILE *f=fopen("horarios.txt", "r");
-
-    horarios=(horari**)malloc(sizeof(horari*)*nLineas("horarios.txt"));
+    tam_horari=n_lineas("horarios.txt");
+    horarios=(horari**)malloc(sizeof(horari)*tam_horari);
     horari aux;
     char cadena[150];
     unsigned i=0;
@@ -39,8 +39,4 @@ void cargar_horarios(horari ** horarios){
         fclose(f);}
     else{
         printf("Error al abrir el fichero Productos.txt\n");}
-    int a;
-    for(a=0;a<9;a++){   //Recorrer el vector de clientes
-        printf("Linea: %d-%d-%d-%d-%s\n ",(*horarios)[a].ID_prof, (*horarios)[a].dia_clase, (*horarios)[a].hora_clase, (*horarios)[a].ID_materia, (*horarios)[a].grupo);
-    }
 }

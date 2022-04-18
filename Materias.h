@@ -21,7 +21,7 @@ materia* cargar_materias();
 //void guardar_materias(materia *p, int tam_mat);
 //Tener el fichero materias.txt, puntero al vector de materias y tener el tamaño máximo (tam_materia/alta_materia)
 //
-void guardar_materias(materia *p);
+void guardar_materias(materia **p);
 //void admin_materias(materia *p, int tam_mat);
 //Puntero al vector de materias y tener el tamaño máximo (tam_materia/alta_materia)
 //Llama a una función según el valor dado
