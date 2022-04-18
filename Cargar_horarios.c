@@ -22,7 +22,7 @@ int nLineas(char* fichero){
 
 /* Cabecera: void cargar_horarios()
 Postcondicion: Guarda del fichero horarios.txt en la estructura */
-void cargar_horarios(){
+void cargar_horarios(horari ** horarios){
     FILE *f=fopen("horarios.txt", "r");
 
     horarios=(horari*)malloc(sizeof(horari)*nLineas("horarios.txt"));
@@ -33,7 +33,7 @@ void cargar_horarios(){
         while(!feof(f)){
             fgets(cadena, 150, f);
             sscanf(cadena,"%d[^-]-%d[^-]-%d[^-]-%d[^-]-%[^-]",&aux.ID_prof , &aux.dia_clase, &aux.hora_clase, &aux.ID_materia, aux.grupo);
-            horarios[i]=aux;
+            (*horarios)[i]=aux;
             i++;
             }
         fclose(f);}
@@ -41,6 +41,6 @@ void cargar_horarios(){
         printf("Error al abrir el fichero Productos.txt\n");}
     int a;
     for(a=0;a<9;a++){   //Recorrer el vector de clientes
-        printf("Linea: %d-%d-%d-%d-%s\n ",horarios[a].ID_prof, horarios[a].dia_clase, horarios[a].hora_clase, horarios[a].ID_materia, horarios[a].grupo);
+        printf("Linea: %d-%d-%d-%d-%s\n ",(*horarios)[a].ID_prof, (*horarios)[a].dia_clase, (*horarios)[a].hora_clase, (*horarios)[a].ID_materia, (*horarios)[a].grupo);
     }
 }

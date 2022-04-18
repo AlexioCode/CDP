@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1650268971 source:c:\users\alexa\desktop\cdp\main.c
+1650270187 source:c:\users\alexa\desktop\cdp\main.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -175,13 +175,13 @@
 
 1650211335 c:\users\alexa\desktop\cdp\calificaciones.h
 
-1650268339 source:c:\users\alexa\desktop\cdp\cargar_horarios.c
+1650269781 source:c:\users\alexa\desktop\cdp\cargar_horarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"horarios.h"
 
-1650269216 c:\users\alexa\desktop\cdp\horarios.h
+1650270047 c:\users\alexa\desktop\cdp\horarios.h
 	"usuarios.h"
 	"Materias.h"
 	"alumnos.h"
