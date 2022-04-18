@@ -11,7 +11,7 @@ int hora_clase;
 int ID_materia;
 char grupo[10];
 }horari;
-horari *horarios;
+//horari *horarios;
 /*
 cabecera: int busca_hora(int hora,int dia, int ID_pro,int B,horari *horarios)
 Precondicion: le debe llegar la hora, el dia y la ID de un profesor valido
