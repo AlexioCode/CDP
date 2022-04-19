@@ -204,9 +204,9 @@ void modalum(r_alum *alum){
         }while((strcmp(res,"Si")!=0) && (strcmp(res,"No")!=0));//Aseguramos que solo entre Si o No
         if(strcmp(res,"Si")==0) //Si res= "Si"
                     modalum(alum); //Llamamos de nuevo a la función, vuelve a empezar
-        else
+        else{
                 Guardar_Alumnos(&alum);
-                return;     //Si escribe "No" sale de la función
+                return;}     //Si escribe "No" sale de la función
 
     }
 
