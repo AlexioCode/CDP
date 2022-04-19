@@ -124,7 +124,7 @@ void cambia_hora(int i,horari *horarios){
 /* Cabecera: void modificar_hora(int ID_pro, int *M, int B,horari *horarios,r_alum *alum,usuario *usuar,materia *mater)
    Precondicion:Le debe llegar el ID del profesor
    Postcondicion: Abre un menu para seleccionar que quiere hacer con la hora seleccionada */
-void modificar_hora(int ID_pro,horari *horarios,r_alum *alum,materia *mater){
+void modificar_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro){
     int i,dia,hora,x;
     do{
         do{
@@ -187,7 +187,7 @@ int elige_grupo(char* ID,horari* horarios){
     }while(dia_clas>5 || dia_clas<1);
 
 
-    printf("Estas son las clases que tiene en este día:\n");
+    printf("Estas son las clases que tiene en este dia:\n");
     do{
         printf("A la hora %i tiene ",k);
         j=0;
@@ -210,12 +210,12 @@ int elige_grupo(char* ID,horari* horarios){
 
         k++;
     }while(k<=5);
-return -1;
+return 0;
 }
 /* Cabecera: void aniadir_hora(int ID_pro, int B,horari *horarios,r_alum *alum,usuario *usuar,materia *mater)
    Precondicion: Le debe llegar la ID de un profesor
    Postcondicion: Le deja aniadir a un admin una clase a un profesor siempre que el hueco elegido este libre */
-void aniadir_hora(int ID_pro,horari *horarios,r_alum *alum,materia *mater){
+void aniadir_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro){
     int a, b,i,l=0,c;
     do{
         printf("Introduzca el dia de la semana en que quiere aniadir la clase \n El numero debera ser del 1-5 donde sera lunes, martes, miercoles, jueves y viernes, respectivamente");
@@ -239,9 +239,9 @@ void aniadir_hora(int ID_pro,horari *horarios,r_alum *alum,materia *mater){
             scanf("%i",&c);
         }while(c<1 || c>3);
         switch(c){
-            case 1: modificar_hora(ID_pro,horarios,alum,mater);
+            case 1: modificar_hora(pos,horarios,alum,mater,ID_pro);
                     break;
-            case 2: aniadir_hora(ID_pro,horarios,alum,mater);
+            case 2: aniadir_hora(pos,horarios,alum,mater,ID_pro);
                     break;
             case 3: return;
                     break;
@@ -258,7 +258,7 @@ void aniadir_hora(int ID_pro,horari *horarios,r_alum *alum,materia *mater){
    Precondicion: Le debe llegar la ID de un profesor
    Postcondicion: Le permite al admin eliminar una clase a un profesor */
 
-void eliminar_hora(int ID_pro,horari *horarios){
+void eliminar_hora(int pos,horari *horarios,char ID_pro){
     int dia,hora,i,j,p;
     do{
         printf("Introduzca la hora \n");
@@ -282,7 +282,7 @@ void eliminar_hora(int ID_pro,horari *horarios){
             return;
 
         else
-            eliminar_hora(ID_pro,horarios);
+            eliminar_hora(pos,horarios,ID_pro);
 
         }
     else{
@@ -294,19 +294,6 @@ void eliminar_hora(int ID_pro,horari *horarios){
         printf("Volveras al anterior menu \n");
     }
 }
-
-int ID(usuario *usuar){
-    int id=0,i;
-    char ip[4];
-    printf("\nIntroduzca el ID de un profesor \n");
-    scanf("%s",ip);
-    for(i=0;i<num_usuarios;i++){
-        if(strcmp(usuar[i].Id_usuario,ip)==0){
-            id=(int)strtol(ip,NULL,10);
-            return id;
-        }
-    }
-return 0;}
 
 /* Cabecera: int busca(int ID_pro, int *M,usuario *usuar)
    Precondicion: Le debe llegar la ID de un profesor
@@ -333,15 +320,27 @@ void admin_hora(horari *horarios,r_alum *alum,usuario *usuar,materia *mater){
         printf("Introduzca una opcion del 1-3 o 4 para salir\n");
         scanf("%i",&a);
     }while(a>4 || a<1);
-    id=ID(usuar);
-    switch(a){
-        case 1: modificar_hora(id,horarios,alum, mater);
+    if(a==4){return;}
+    else{
+        int i;
+        char ip[4];
+        do{
+            printf("\nIntroduzca el ID de un profesor \n");
+            scanf("%s",ip);
+            for(i=0;i<num_usuarios;i++){
+                if(strcmp(usuar[i].Id_usuario,ip)==0){
+                    id=(int)strtol(ip,NULL,10);
+                }
+            }
+            if(id==0){printf("La ID no se corresponde con ningun usuario \n");}
+        }while(id>0);
+        switch(a){
+        case 1: modificar_hora(id,horarios,alum, mater,*ip);
                 break;
-        case 2: eliminar_hora(id,horarios);
+        case 2: eliminar_hora(id,horarios,*ip);
                 break;
-        case 3: aniadir_hora(id,horarios,alum,mater);
-                break;
-        case 4: return;
+        case 3: aniadir_hora(id,horarios,alum,mater,*ip);
                 break;
         }
+    }
 }
