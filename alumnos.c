@@ -235,12 +235,22 @@ void listaalumprof (r_alum *alum){
 
 //Cabecera:void listaalumadm (r_alum *alum)
 //Precondición: Recibe estructura inicializada
+//Postcondición: Devuelve lista de alumnos
+void listar(r_alum *alum){
+    int i;
+    for(i=0;i<tam_alum;i++){ //Recorro estructura e imprimo todos los datos
+        printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo );
+    } //Fin for
+}//Fin Listar
+
+//Cabecera:void listaalumadm (r_alum *alum)
+//Precondición: Recibe estructura inicializada
 //Postcondición: Devuelve lista de alumnos con opción a modificar alguno de ellos
 void listaalumadm (r_alum *alum){
-    int i,res;
+    int res;
     char mod[3];
     do{
-     printf("Introduzca 1 si quiere dar de alta\n Introduzca 2 si quiere dar de baja\n Introduzca 3 si quiere modificar\n Introduzca 4 si quiere listar todos los alumnos");
+     printf("Introduzca 1 si quiere dar de alta\n Introduzca 2 si quiere dar de baja\n Introduzca 3 si quiere modificar\n Introduzca 4 si quiere listar todos los alumnos\n");
      scanf("%d",&res);
     }while(res<1 || res>4); //Aseguramos que mete un número del 1 al 4
     switch (res) { //Damos opciones
@@ -254,16 +264,12 @@ void listaalumadm (r_alum *alum){
             modalum(alum);//modificar
             break;
         default: //Caso 4
-            //Listar
-            for(i=0;i<tam_alum;i++){
-                printf("Alumno: %d | Id: %s | Nombre: %s | Direccion: %s | Localidad: %s | Curso: %s | Grupo: %s",i, alum[i].Id_alum, alum[i].Nombre_alum, alum[i].Direc_alum, alum[i].Local_alum, alum[i].Curso, alum[i].Grupo );
-            } //Fin for
-            //Fin caso 4
+            listar(alum);
                 break;
     }//Fin switch
 //Preguntamos si quiere realizar algo más
     do{
-        printf("¿Quiere modificar algún dato? Si/No");
+        printf("¿Quiere modificar algún dato? Si/No\n");
         scanf("%s",mod);
     }while((strcmp(mod,"Si")!=0) && (strcmp(mod,"No")!=0));//Aseguramos que se introduzca Si o No
     if(strcmp(mod,"Si")==0) //Si pone "Si"
