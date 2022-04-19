@@ -269,3 +269,119 @@
 	<string.h>
 	"usuarios.h"
 
+1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\calificacion_alum.c
+	<stdio.h>
+	<stdlib.h>
+	"calificaciones.h"
+	"alumnos.h"
+	"Materias.h"
+
+1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\calificaciones.h
+
+1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\alumnos.h
+	"Materias.h"
+
+1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\materias.h
+	<stdlib.h>
+
+1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\cargar_calificaciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"calificaciones.h"
+
+1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\cargar_horarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"horarios.h"
+
+1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\horarios.h
+	"usuarios.h"
+	"Materias.h"
+	"alumnos.h"
+
+1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\usuarios.h
+
+1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\guardar_calificaciones.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"calificaciones.h"
+
+1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\guardar_horarios.c
+	"horarios.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1650369489 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\horarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	"Materias.h"
+	"alumnos.h"
+	"horarios.h"
+	"usuarios.h"
+
+1650367317 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\main.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"horarios.h"
+	"alumnos.h"
+	"Materias.h"
+	"Matriculas.h"
+	"calificaciones.h"
+	"usuarios.h"
+	"perfiles.h"
+
+1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\matriculas.h
+	<stdlib.h>
+
+1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\perfiles.h
+	"alumnos.h"
+	"calificaciones.h"
+	"horarios.h"
+	"Materias.h"
+	"Matriculas.h"
+	"usuarios.h"
+
+1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\materias.c
+	<stdio.h>
+	<string.h>
+	"Materias.h"
+
+1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\matriculas.c
+	<stdio.h>
+	<string.h>
+	"Matriculas.h"
+
+1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\perfiles.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"alumnos.h"
+	"calificaciones.h"
+	"horarios.h"
+	"Materias.h"
+	"Matriculas.h"
+	"perfiles.h"
+	"usuarios.h"
+
+1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\usuarios.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"usuarios.h"
+
+1650367095 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\alumnos.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	"alumnos.h"
+	"Materias.h"
+

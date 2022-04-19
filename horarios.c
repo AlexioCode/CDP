@@ -150,7 +150,7 @@ void modificar_hora(int ID_pro,horari *horarios,r_alum *alum,materia *mater){
     printf("Se ha encontrado clase en la hora accedida\n");
     do{
     printf("ÀQue desea modificar de esta clase?\n");
-    printf(" 1.La materia a la que dara clase el profesor \n 2.El grupo al que dara clase el profesor \n");
+    printf(" 1.La materia a la que dara clase el profesor \n 2.El grupo al que dara clase el profesor\n");
     printf(" 3.Tambien puede cambiar el dia y la hora de esta clase\n");
     printf(" Advertencia: Tenga en cuenta, que solo se podra cambiar esta clase a una hora que no tenga una clase previa asignada \n");
     printf(" 4.Salir al anterior menu");
@@ -295,6 +295,19 @@ void eliminar_hora(int ID_pro,horari *horarios){
     }
 }
 
+int ID(usuario *usuar){
+    int id=0,i;
+    char ip[4];
+    printf("\nIntroduzca el ID de un profesor \n");
+    scanf("%s",ip);
+    for(i=0;i<num_usuarios;i++){
+        if(strcmp(usuar[i].Id_usuario,ip)==0){
+            id=(int)strtol(ip,NULL,10);
+            return id;
+        }
+    }
+return 0;}
+
 /* Cabecera: int busca(int ID_pro, int *M,usuario *usuar)
    Precondicion: Le debe llegar la ID de un profesor
    Postcondicion: Devuelve 1 si encuentra la ID del profesor y 5 si no lo ha hecho. */
@@ -311,8 +324,8 @@ int busca(char *ID_pro,usuario *usuar){//Devuelve 1 si existe la ID pasada y ade
  Postcondicion: Le abre el menu de horarios al admin y le manda a las respectivas funciones
 */
 void admin_hora(horari *horarios,r_alum *alum,usuario *usuar,materia *mater){
-    printf("######################################################################################");
-    int a,id;
+    printf("######################################################################################\n");
+    int a=0,id;
     printf("Bienvenido a la opcion de horarios \n");
     do{
         printf("En esta opcion, usted puede:\n  1.Modificar un horario ya existente. \n");
@@ -320,10 +333,7 @@ void admin_hora(horari *horarios,r_alum *alum,usuario *usuar,materia *mater){
         printf("Introduzca una opcion del 1-3 o 4 para salir\n");
         scanf("%i",&a);
     }while(a>4 || a<1);
-
-    printf("Introduzca el ID de un profesor \n");
-    scanf("%i",&id);
-
+    id=ID(usuar);
     switch(a){
         case 1: modificar_hora(id,horarios,alum, mater);
                 break;
