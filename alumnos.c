@@ -263,7 +263,7 @@ void listaalumadm (r_alum *alum){
     }//Fin switch
 //Preguntamos si quiere realizar algo más
     do{
-        printf("¿Quiere modificar algún dato?");
+        printf("¿Quiere modificar algún dato? Si/No");
         scanf("%s",mod);
     }while((strcmp(mod,"Si")!=0) && (strcmp(mod,"No")!=0));//Aseguramos que se introduzca Si o No
     if(strcmp(mod,"Si")==0) //Si pone "Si"
