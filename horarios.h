@@ -89,4 +89,10 @@ int nLineas(char* fichero);
 //Postcondicion: Guarda del fichero horarios.txt en la estructura
 */
 void cargar_horarios(horari** horarios);
+/*
+cabecera:int ID(usuario *usuar);
+Postcondicion:Te devuelve la posicion en el vector del profesor
+*/
+int ID(usuario *usuar);
+
 #endif  //HORARIOS_H_INCLUDED
