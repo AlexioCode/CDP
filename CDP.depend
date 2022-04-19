@@ -276,7 +276,7 @@
 	"alumnos.h"
 	"Materias.h"
 
-1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\calificaciones.h
+1650380055 c:\users\fure\desktop\dani\metodología de la programación\cdp\calificaciones.h
 
 1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\alumnos.h
 	"Materias.h"
@@ -284,19 +284,19 @@
 1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\materias.h
 	<stdlib.h>
 
-1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\cargar_calificaciones.c
+1650390982 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\cargar_calificaciones.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"calificaciones.h"
 
-1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\cargar_horarios.c
+1650391323 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\cargar_horarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"horarios.h"
 
-1650366107 c:\users\fure\desktop\dani\metodología de la programación\cdp\horarios.h
+1650388322 c:\users\fure\desktop\dani\metodología de la programación\cdp\horarios.h
 	"usuarios.h"
 	"Materias.h"
 	"alumnos.h"
@@ -309,13 +309,13 @@
 	<string.h>
 	"calificaciones.h"
 
-1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\guardar_horarios.c
+1650388416 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\guardar_horarios.c
 	"horarios.h"
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 
-1650369489 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\horarios.c
+1650379955 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\horarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -325,7 +325,7 @@
 	"horarios.h"
 	"usuarios.h"
 
-1650367317 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\main.c
+1650390800 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\main.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -359,7 +359,7 @@
 	<string.h>
 	"Matriculas.h"
 
-1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\perfiles.c
+1650379883 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\perfiles.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -371,13 +371,13 @@
 	"perfiles.h"
 	"usuarios.h"
 
-1650366107 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\usuarios.c
+1650390982 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\usuarios.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"usuarios.h"
 
-1650367095 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\alumnos.c
+1650390477 source:c:\users\fure\desktop\dani\metodología de la programación\cdp\alumnos.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>

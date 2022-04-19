@@ -61,7 +61,6 @@ void cargar_usuarios(usuario ** usuarios)
             fscanf(fich, "%[^-]-%[^-]-%[^-]-%[^-]-%[^\n]\n", (*usuarios)[n_usuario].Id_usuario,
                    (*usuarios)[n_usuario].Nomb_usuario, (*usuarios)[n_usuario].Perfil_usuario,
                    (*usuarios)[n_usuario].Usuario, (*usuarios)[n_usuario].Contrasena);
-            printf("Usuario %i leido\n", n_usuario + 1);
         }
         fclose(fich);
     }
