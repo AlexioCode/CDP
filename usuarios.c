@@ -21,7 +21,7 @@ int n_lineas_usuarios(char * fichero)
     int n = 0;
     char c;
     FILE *fich;
-    if((fich = fopen("usuarios.txt", "r")) == NULL)
+    if((fich = fopen(fichero, "r")) == NULL)
     {
         printf("No se ha podido abrir el fichero %s", fichero);
         exit(1);
