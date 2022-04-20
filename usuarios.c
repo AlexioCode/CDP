@@ -101,7 +101,7 @@ void guardar_usuarios(usuario ** v_usuarios)
             fprintf(fich, "%s-%s-%s-%s-%s\n", (*v_usuarios)[n_usuario].Id_usuario, (*v_usuarios)[n_usuario].Nomb_usuario,
                     (*v_usuarios)[n_usuario].Perfil_usuario, (*v_usuarios)[n_usuario].Usuario,
                     (*v_usuarios)[n_usuario].Contrasena);
-            printf("\nUsuario %i guardado en el fichero", n_usuario + 1);
+            //printf("\nUsuario %i guardado en el fichero", n_usuario + 1);
         }
         fclose(fich);
     }
