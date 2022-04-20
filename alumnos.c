@@ -16,7 +16,7 @@ int n_lineas(char * fichero)
     int n = 0;
     char c;
     FILE *fich;
-    if((fich = fopen("alumnos.txt", "r")) == NULL)
+    if((fich = fopen(fichero, "r")) == NULL)
     {
         printf("No se ha podido abrir el fichero %s", fichero);
         exit(1);
