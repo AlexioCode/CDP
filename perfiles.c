@@ -21,23 +21,26 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
     char siglas_materia[4];
     char Id_materia[5];
     char Id_alumno[7];
-    int a=0;
+    int op3 = 0;
     do
     {
         do
         {
             pos_grupo = elige_grupo(id_prof, *v_fechas);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
-            if(pos_grupo == -1){
-                do{
-                puts("No se ha encontrado grupos para usted. ¿Desea seguir buscando? \n1 para si y 0 para no\n");
-
-                scanf("%d",&a);
-                }while(a!=0 && a!=1);
-                    if(a==0){return;}
-                    else{perfil_profesor(id_prof,alumnos, v_calif, v_fechas, materias, v_matriculas,pv_usuarios);}
+            if(pos_grupo == -1)
+                {
+                    do
+                    {
+                        puts("No se ha encontrado grupos para usted. ¿Desea seguir buscando? \n1 para si y 0 para no\n");
+                        scanf("%d", &op3);
+                    }while(op3 != 0 && op3 != 1);
+                        if(op3 == 0)
+                            return;
+                        else
+                            perfil_profesor(id_prof, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);
                 }
             strcpy(grupo, (*v_fechas)[pos_grupo].grupo);
-            itoa((*v_fechas)[pos_grupo].ID_materia,Id_materia,10);   //el que haya puesto esto que lo arregle
+            itoa((*v_fechas)[pos_grupo].ID_materia, Id_materia,10);
             strcpy(siglas_materia, id_siglas_materia(materias, Id_materia));
 
             printf("\nMenu:\nGRUPO %s MATERIA %s\n--------------\n"
