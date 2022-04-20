@@ -27,7 +27,7 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
         do
         {
             pos_grupo = elige_grupo(id_prof, *v_fechas);   //mostrar todos los grupos y materias del profesor y adquirir la posicion en horarios.txt
-            if(pos_grupo == 0)
+            if(pos_grupo == -1)
                 puts("Se ha producido un error fatal en elige_grupo");
             strcpy(grupo, (*v_fechas)[pos_grupo].grupo);
             itoa((*v_fechas)[pos_grupo].ID_materia,Id_materia,10);   //el que haya puesto esto que lo arregle
