@@ -10,10 +10,10 @@
 /* Cabecera: int busca_hora(int hora,int dia, int ID_pro,int *B,horari *horarios)
    Precondicion: le debe llegar la hora, el dia y la ID de un profesor valido
    Postcondicion: busca si el profesor tiene clase en la hora y el dia indicados */
-int busca_hora(int hora,int dia, int ID_pro,horari* horarios){
+int busca_hora(int hora,int dia, char *ID_pro,horari* horarios){
     int i;
     for(i=0;i<tam_horari;i++){
-        if(ID_pro==horarios[i].ID_prof && hora==horarios[i].hora_clase && horarios[i].dia_clase==dia){
+        if(strcmp(ID_pro,horarios[i].ID_prof)==0 && hora==horarios[i].hora_clase && horarios[i].dia_clase==dia){
             return i;
             }
         }
@@ -27,7 +27,7 @@ Postcondicion: Modifica la materia a la que va a dar clase un profesor
 */
 void modi_hora(int pos_hora,materia* mater,horari *horarios){
     char nuevamater[5];
-     int control=0,i=0,id_mat;
+     int control=0,i=0;
     do{
     printf("Introduzca el ID de la nueva materia o pulse 0 \n");
     scanf("%s",nuevamater);
@@ -48,8 +48,7 @@ void modi_hora(int pos_hora,materia* mater,horari *horarios){
             modi_hora(pos_hora,mater,horarios);
             }
         else{
-            id_mat=(int)strtol(nuevamater,NULL,10);
-            horarios[pos_hora].ID_materia=id_mat;
+            strcpy(horarios[pos_hora].ID_materia,nuevamater);
             }
         }
     }
@@ -136,7 +135,7 @@ void modificar_hora(horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
             scanf("%i",&hora);
         }while(hora<1 || hora>6);
 
-        pos_horari=busca_hora(hora,dia,(int)strtol(ID_pro,NULL,10),horarios);
+        pos_horari=busca_hora(hora,dia,ID_pro,horarios);
 
         if(pos_horari<1 || pos_horari> num_usuarios){
             printf("Lo siento, no se ha encontrado o no existe clase en la hora a la que quiere acceder. Intentelo de nuevo :) \n");
@@ -171,10 +170,7 @@ void modificar_hora(horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
    Precondicion: Le debe llegar la ID del profesor
    Postcondicion: Le dice que clases tiene ese dia y devuelve la posicion del vector de la clase elegida sino devuelve -1 */
 int elige_grupo(char* ID,horari* horarios){
-    int i, j, k=0,p,dia_clas, ID_pro;
-    long ID_p;
-    ID_p=strtol(ID,NULL,10);
-    ID_pro=(int)ID_p;
+    int i, j, k=0,p,dia_clas;
 
     do{
         printf("Introduzca el dia al que quiere acceder \n Introduzca un numero del 1-5 siendo el 1 el lunes, el 2 martes, el 3 miercoles, el 4 jueves y el 5 viernes \n");
@@ -188,8 +184,8 @@ int elige_grupo(char* ID,horari* horarios){
         printf("A la hora %i tiene ",(k+1));
         j=0;
         for(i=0;i>tam_horari;i++){
-            if(ID_pro==horarios[i].ID_prof && dia_clas==horarios[i].dia_clase && k==horarios[i].hora_clase){
-                printf("con la clase %s para dar la asignatura %i\n", horarios[i].grupo, horarios[i].ID_materia);
+            if(strcmp(horarios[i].ID_prof,ID)==0 && dia_clas==horarios[i].dia_clase && k==horarios[i].hora_clase){
+                printf("con la clase %s para dar la asignatura %s\n", horarios[i].grupo, horarios[i].ID_materia);
                 k++;
                 j=1;
                 do{
@@ -213,7 +209,7 @@ return -1;
    Postcondicion: Le deja aniadir a un admin una clase a un profesor siempre que el hueco elegido este libre */
 void aniadir_hora(horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
     int a, b,i,busca=0,c,cont;
-    char id_ma[5], grupo[10];
+    char id_ma[5], grupo[11];
     do{
         printf("Introduzca el dia de la semana en que quiere aniadir la clase \n El numero debera ser del 1-5 donde sera lunes, martes, miercoles, jueves y viernes, respectivamente");
         scanf("%i",&a);
@@ -224,7 +220,7 @@ void aniadir_hora(horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
         scanf("%i",&b);
     }while(b<1 || b>6);
 
-    busca=busca_hora(b,a,(int)strtol(ID_pro,NULL,10),horarios);
+    busca=busca_hora(b,a,ID_pro,horarios);
 
     if(busca!=-1){
         printf("El profesor %s ya tiene clase el dia %i en la hora numero %i \n", ID_pro, a, b);
@@ -261,9 +257,9 @@ void aniadir_hora(horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
         tam_horari++;
         horarios[tam_horari-1].dia_clase=a;
         horarios[tam_horari-1].hora_clase=b;
-        horarios[tam_horari-1].ID_prof=(int)strtol(ID_pro,NULL,10);
+        strcpy(horarios[tam_horari-1].ID_prof,ID_pro);
         strcpy(horarios[tam_horari-1].grupo,grupo);
-        horarios[tam_horari-1].ID_materia=(int)strtol(id_ma,NULL,10);
+        strcpy(horarios[tam_horari-1].ID_materia,id_ma);
         Guardar_Horarios(&horarios);
     }
 }
@@ -283,7 +279,7 @@ void eliminar_hora(horari *horarios,char ID_pro[]){
         scanf("%i",&dia);
     }while(dia<1 || dia>5);
 
-    busca=busca_hora(hora,dia,strtol(ID_pro,NULL,10),horarios);
+    busca=busca_hora(hora,dia,ID_pro,horarios);
 
     if(busca==-1){
         do{
@@ -327,9 +323,10 @@ int busca(char *ID_pro,usuario *usuar){//Devuelve 1 si existe la ID pasada y ade
 */
 void admin_hora(horari *horarios,r_alum *alum,usuario *usuar,materia *mater){
     printf("######################################################################################\n");
-    int a=0,id;
+    int a=0,id=0;
     int i;
-    char ip[3];
+    char ip[4];
+    const char* str1 = "profesor";
     printf("Bienvenido a la opcion de horarios \n");
     do{
         printf("\nEn esta opcion, usted puede:\n 1.Modificar un horario ya existente.\n \n");
@@ -345,8 +342,8 @@ void admin_hora(horari *horarios,r_alum *alum,usuario *usuar,materia *mater){
             scanf("%s",ip);
             }while((int)strtol(ip,NULL,10)<=0 || (int)strtol(ip,NULL,10)>999);
             for(i=0;i<num_usuarios;i++){
-                if(strcmp(usuar[i].Id_usuario,ip)==0 && strcmp(usuar[i].Perfil_usuario,'profesor')==0){
-                    id=(int)strtol(ip,NULL,10);
+                if(strncmp(usuar[i].Id_usuario,ip,3)==0 && strncmp(usuar[i].Perfil_usuario,str1,8)==0){
+                    id=1;
                 }
             }
             if(id==0){printf("La ID no se corresponde con ningun usuario \n");}

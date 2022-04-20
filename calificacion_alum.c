@@ -65,7 +65,8 @@ void eliminar_nota(int alum, int materia,calificaciones *nota){
 int i;
 i=borrar(alum,materia,nota);
 if(i>0){
-    nota=realloc(nota,sizeof(calificaciones*)*(tam_calif-1));
+    nota=realloc(nota,sizeof(calificaciones*)*(tam_calif-i));
+    tam_calif=tam_calif-i;
     }
 }
 
@@ -95,21 +96,23 @@ do{
 }while(a<0 || a>10);
 nota[tam_calif-1].not=a;
 printf("Introduzca una descripcion del examen\n");
-fgets(nota[tam_calif-1].descrip, tam_calif, stdin);}
+scanf("%s",nota[tam_calif-1].descrip);
+Guardar_calificaciones(&nota);
+}
 
 void aniadir_not(int alu, int materia,calificaciones *nota){
 nota=realloc(nota,sizeof(calificaciones*)*(tam_calif+1));
+tam_calif++;
 anadir_not(alu,materia,nota);
 }
 
 void calif_profe(char *al, char *mat,calificaciones *nota){
-int a=0,b=0, alum,materia;
-long alu, mater;
-alu=strtol(al, NULL ,10);
-mater=strtol(mat,NULL,10);
-alum=(int)alu;
-materia=(int)mater;
+int a,b, alum,materia;
 do{
+    a=0;
+    b=0;
+    alum=(int)strtol(al, NULL ,10);
+    materia=(int)strtol(mat,NULL,10);
     printf("###################################################################################\n");
     printf("Bienvenido al menu de calificaciones \n");
     do{

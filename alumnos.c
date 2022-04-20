@@ -51,7 +51,8 @@ void cargar_estructura (r_alum ** v_alumno){
     if(f){  //Controla si se ha podido abrir el fichero
         while(!feof(f)){
             fgets(cadena, 150, f);
-            sscanf(cadena,"%s[^-]/%s[^-]/%s[^-]/%s[^-]/%s[^-]/%s[^-]/",aux.Id_alum, aux.Nombre_alum, aux.Direc_alum, aux.Local_alum, aux.Curso, aux.Grupo);
+            sscanf(cadena,"%s[^-]/%s[^-]/%s[^-]/%s[^-]/%s[^-]/%s[^-]/",
+                   aux.Id_alum, aux.Nombre_alum, aux.Direc_alum, aux.Local_alum, aux.Curso, aux.Grupo);
             (*v_alumno)[i]=aux;
             i++;
                         }

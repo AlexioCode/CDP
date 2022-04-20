@@ -5,11 +5,11 @@
 #include"alumnos.h"
 int tam_horari;
 typedef struct{
-int ID_prof; //3 digitos
+char ID_prof[4]; //3 digitos
 int dia_clase;
 int hora_clase;
-int ID_materia;
-char grupo[10];
+char ID_materia[5];
+char grupo[11];
 }horari;
 horari *horarios;
 /*
@@ -17,7 +17,7 @@ cabecera: int busca_hora(int hora,int dia, int ID_pro,int B,horari *horarios)
 Precondicion: le debe llegar la hora, el dia y la ID de un profesor valido
 Postcondicion: busca si el profesor tiene clase en la hora y el dia indicados
 */
-int busca_hora(int hora,int dia, int ID_pro,horari *horarios);
+int busca_hora(int hora,int dia, char* ID_pro,horari *horarios);
 /*
 cabecera: void modi_hora(int i,int *Y,materia *mater)
 Precondicion: Le debe llegar una posicion del vector
