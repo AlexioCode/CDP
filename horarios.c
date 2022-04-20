@@ -25,37 +25,34 @@ cabecera: void modi_hora(int i,int *Y,materia *mater)
 Precondicion: Le debe llegar una posicion del vector
 Postcondicion: Modifica la materia a la que va a dar clase un profesor
 */
-/*ARREGLAR*/
-void modi_hora(int i,materia* mater,horari *horarios){
+void modi_hora(int pos_hora,materia* mater,horari *horarios){
     char nuevamater[5];
-     int o=0,l=0;
+     int control=0,i=0,id_mat;
     do{
     printf("Introduzca el ID de la nueva materia o pulse 0 \n");
     scanf("%s",nuevamater);
     }while(strtol(nuevamater,NULL,10)<0 || strtol(nuevamater,NULL,10)>9999);
 
     if(strtol(nuevamater,NULL,10)==0){
-        return;
-        }
+        return;}
 
     else{
         do{
-            if(strcmp(mater[l].id,nuevamater)==0){
-                    o=1;}
-            l++;
-        }while((o!=0) && (l!=tam_mat));
+            if(strcmp(mater[i].id,nuevamater)==0){
+                    control=1;}
+            i++;
+            }while((control==0) && (i!=tam_mat));
 
-            if(o==0){
-                printf("El ID introducido no se ha encontrado o no existe \n");
-                modi_hora(i,mater,horarios);
-                }
-            else{
-                int x;
-                x=(int)strtol(nuevamater,NULL,10);
-                horarios[i].ID_materia=x;
+        if(control==0){
+            printf("El ID introducido no se ha encontrado o no existe \n");
+            modi_hora(pos_hora,mater,horarios);
+            }
+        else{
+            id_mat=(int)strtol(nuevamater,NULL,10);
+            horarios[pos_hora].ID_materia=id_mat;
             }
         }
-}
+    }
 /* Cabecera: void grupo_hora(int i, int *A,r_alum *alum)
    Precondicion: Le debe llegar la posicion del vector
    Postcondicion: Cambia el grupo al que dara clase el profesor */
@@ -124,28 +121,27 @@ void cambia_hora(int i,horari *horarios){
 /* Cabecera: void modificar_hora(int ID_pro, int *M, int B,horari *horarios,r_alum *alum,usuario *usuar,materia *mater)
    Precondicion:Le debe llegar el ID del profesor
    Postcondicion: Abre un menu para seleccionar que quiere hacer con la hora seleccionada */
-void modificar_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
-    int i,dia,hora,x;
+void modificar_hora(horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
+    int i,dia,hora,pos_horari,int a;
     do{
         do{
+            a=1;
             printf("Elija dia, entre el 1 y el 5, o 0 si desea volver \n");
             scanf("%i",&dia);
             if(dia==0)
                     return;
-
         }while(dia<1 || dia>5);
-
         do{
             printf("Introduzca la hora en un rango de 1 a 6 \n");
             scanf("%i",&hora);
         }while(hora<1 || hora>6);
 
-        x=busca_hora(hora,dia,ID_pro,horarios);
+        pos_horari=busca_hora(hora,dia,ID_pro,horarios);
 
-        if(x<1 || x> num_usuarios){
+        if(pos_horari<1 || pos_horari> num_usuarios){
             printf("Lo siento, no se ha encontrado o no existe clase en la hora a la que quiere acceder. Intentelo de nuevo :) \n");
-            }
-    }while(x<1 || x> num_usuarios);
+            a=0;}
+    }while(pos_horari<1 || pos_horari> num_usuarios && a=0);
 
     printf("Se ha encontrado clase en la hora accedida\n");
     do{
@@ -157,13 +153,13 @@ void modificar_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID
     scanf("%i",&i);
     }while(i<1 || i>4);
     switch(i){
-        case 1: modi_hora(i,mater,horarios);
+        case 1: modi_hora(pos_horari,mater,horarios);
                 break;
 
-        case 2: grupo_hora(i,alum,horarios);
+        case 2: grupo_hora(pos_horari,alum,horarios);
                 break;
 
-        case 3: cambia_hora(i, horarios);
+        case 3: cambia_hora(pos_horari,horarios);
                 break;
 
         case 4: return;
@@ -313,33 +309,35 @@ int busca(char *ID_pro,usuario *usuar){//Devuelve 1 si existe la ID pasada y ade
 void admin_hora(horari *horarios,r_alum *alum,usuario *usuar,materia *mater){
     printf("######################################################################################\n");
     int a=0,id;
+    int i;
+    char ip[4];
     printf("Bienvenido a la opcion de horarios \n");
     do{
-        printf("\nEn esta opcion, usted puede:\n  1.Modificar un horario ya existente.\n \n");
-        printf("2.Eliminar un horario ya existente. \n 3.Crear un horario desde cero. \n \n");
+        printf("\nEn esta opcion, usted puede:\n 1.Modificar un horario ya existente.\n \n");
+        printf(" 2.Eliminar un horario ya existente. \n 3.Crear un horario desde cero. \n \n");
         printf("Introduzca una opcion del 1-3 o 4 para salir.\n\n");
         scanf("%i",&a);
     }while(a>4 || a<1);
     if(a==4){return;}
     else{
-        int i;
-        char ip[4];
         do{
+            do{
             printf("\nIntroduzca el ID de un profesor \n");
             scanf("%s",ip);
+            }while((int)strtol(ip,NULL,10)<=0 || (int)strtol(ip,NULL,10)>999);
             for(i=0;i<num_usuarios;i++){
-                if(strcmp(usuar[i].Id_usuario,ip)==0){
+                if(strcmp(usuar[i].Id_usuario,ip)==0 && strcmp(usuar[i].Perfil_usuario,'profesor')==0){
                     id=(int)strtol(ip,NULL,10);
                 }
             }
             if(id==0){printf("La ID no se corresponde con ningun usuario \n");}
         }while(id>0);
         switch(a){
-        case 1: modificar_hora(id,horarios,alum, mater,ip);
+        case 1: modificar_hora(horarios,alum, mater,ip);
                 break;
-        case 2: eliminar_hora(id,horarios,ip);
+        case 2: eliminar_hora(horarios,ip);
                 break;
-        case 3: aniadir_hora(id,horarios,alum,mater,ip);
+        case 3: aniadir_hora(horarios,alum,mater,ip);
                 break;
         }
     }

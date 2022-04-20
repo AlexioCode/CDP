@@ -5,7 +5,7 @@
 #include"alumnos.h"
 int tam_horari;
 typedef struct{
-int ID_prof;
+int ID_prof; //3 digitos
 int dia_clase;
 int hora_clase;
 int ID_materia;
