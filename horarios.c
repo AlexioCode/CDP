@@ -124,7 +124,7 @@ void cambia_hora(int i,horari *horarios){
 /* Cabecera: void modificar_hora(int ID_pro, int *M, int B,horari *horarios,r_alum *alum,usuario *usuar,materia *mater)
    Precondicion:Le debe llegar el ID del profesor
    Postcondicion: Abre un menu para seleccionar que quiere hacer con la hora seleccionada */
-void modificar_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro){
+void modificar_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
     int i,dia,hora,x;
     do{
         do{
@@ -189,7 +189,7 @@ int elige_grupo(char* ID,horari* horarios){
 
     printf("Estas son las clases que tiene en este dia:\n");
     do{
-        printf("A la hora %i tiene ",k);
+        printf("A la hora %i tiene ",(k+1));
         j=0;
         for(i=0;i>tam_horari;i++){
             if(ID_pro==horarios[i].ID_prof && dia_clas==horarios[i].dia_clase && k==horarios[i].hora_clase){
@@ -197,7 +197,7 @@ int elige_grupo(char* ID,horari* horarios){
                 k++;
                 j=1;
                 do{
-                    printf("ÀDesea elegir este grupo?\n Elige 1 para si y 0 para no \n");
+                    printf("¿Desea elegir este grupo?\n Elige 1 para si y 0 para no. \n");
                     scanf("%i",&p);
                     }while(p!=0 && p!=1);
                 if(p==1){
@@ -210,12 +210,12 @@ int elige_grupo(char* ID,horari* horarios){
 
         k++;
     }while(k<=5);
-return 0;
+return -1;
 }
 /* Cabecera: void aniadir_hora(int ID_pro, int B,horari *horarios,r_alum *alum,usuario *usuar,materia *mater)
    Precondicion: Le debe llegar la ID de un profesor
    Postcondicion: Le deja aniadir a un admin una clase a un profesor siempre que el hueco elegido este libre */
-void aniadir_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro){
+void aniadir_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
     int a, b,i,l=0,c;
     do{
         printf("Introduzca el dia de la semana en que quiere aniadir la clase \n El numero debera ser del 1-5 donde sera lunes, martes, miercoles, jueves y viernes, respectivamente");
@@ -258,7 +258,7 @@ void aniadir_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_p
    Precondicion: Le debe llegar la ID de un profesor
    Postcondicion: Le permite al admin eliminar una clase a un profesor */
 
-void eliminar_hora(int pos,horari *horarios,char ID_pro){
+void eliminar_hora(int pos,horari *horarios,char ID_pro[]){
     int dia,hora,i,j,p;
     do{
         printf("Introduzca la hora \n");
@@ -315,9 +315,9 @@ void admin_hora(horari *horarios,r_alum *alum,usuario *usuar,materia *mater){
     int a=0,id;
     printf("Bienvenido a la opcion de horarios \n");
     do{
-        printf("En esta opcion, usted puede:\n  1.Modificar un horario ya existente. \n");
-        printf("2.Eliminar un horario ya existente. \n 3.Crear un horario desde cero \n");
-        printf("Introduzca una opcion del 1-3 o 4 para salir\n");
+        printf("\nEn esta opcion, usted puede:\n  1.Modificar un horario ya existente.\n \n");
+        printf("2.Eliminar un horario ya existente. \n 3.Crear un horario desde cero. \n \n");
+        printf("Introduzca una opcion del 1-3 o 4 para salir.\n\n");
         scanf("%i",&a);
     }while(a>4 || a<1);
     if(a==4){return;}
@@ -335,11 +335,11 @@ void admin_hora(horari *horarios,r_alum *alum,usuario *usuar,materia *mater){
             if(id==0){printf("La ID no se corresponde con ningun usuario \n");}
         }while(id>0);
         switch(a){
-        case 1: modificar_hora(id,horarios,alum, mater,*ip);
+        case 1: modificar_hora(id,horarios,alum, mater,ip);
                 break;
-        case 2: eliminar_hora(id,horarios,*ip);
+        case 2: eliminar_hora(id,horarios,ip);
                 break;
-        case 3: aniadir_hora(id,horarios,alum,mater,*ip);
+        case 3: aniadir_hora(id,horarios,alum,mater,ip);
                 break;
         }
     }

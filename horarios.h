@@ -41,7 +41,7 @@ cabecera: void modificar_hora(int ID_pro, int B,horari *horarios,r_alum *alum,ma
 Precondicion:Le debe llegar la el ID del profesor
 Postcondicion: Abre un menu para seleccionar que quiere hacer con la hora seleccionada
 */
-void modificar_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro);
+void modificar_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro[]);
 /*
 cabecera: int elige_grupo(char *ID, int B,horari *horarios)
 Precondicion: Le debe llegar la ID del profesor
@@ -53,13 +53,13 @@ cabecera: void aniadir_hora(int ID_pro, int B,horari *horarios,r_alum *alum,mate
 Precondicion: Le debe llegar la ID de un profesor
 Postcondicion: Le deja aniadir a un admin una clase a un profesor siempre que el hueco elegido este libre
 */
-void aniadir_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro);
+void aniadir_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro[]);
 /*
 cabecera: void eliminar_hora(int ID_pro, int B,horari *horarios)
 Precondicion: Le debe llegar la ID de un profesor
 Postcondicion: Le permite al admin eliminar una clase a un profesor
 */
-void eliminar_hora(int pos,horari *horarios,char ID_pro);
+void eliminar_hora(int pos,horari *horarios,char ID_pro[]);
 /*
 cabecera: int busca(int ID_pro, int *M,usuario *usuar)
 Precondicion: Le debe llegar la ID de un profesor
