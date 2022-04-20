@@ -1,15 +1,15 @@
-#include<stdlib.h>
-#include<stdio.h>
-#include<string.h>
-#include<math.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
 //Incluimos archivos.h
-#include"horarios.h"
-#include"alumnos.h"
-#include"Materias.h"
-#include"Matriculas.h"
-#include"calificaciones.h"
-#include"usuarios.h"
-#include"perfiles.h"
+#include "horarios.h"
+#include "alumnos.h"
+#include "Materias.h"
+#include "Matriculas.h"
+#include "calificaciones.h"
+#include "usuarios.h"
+#include "perfiles.h"
 
 //INICIAMOS MAIN
 int main(){
