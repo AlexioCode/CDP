@@ -12,12 +12,12 @@ void cargar_horarios(horari** horarios){
     if((f=fopen("horarios.txt","r"))!=NULL){ //Controla si se ha podido abrir el fichero
             for(i=0;i<tam_horari;i++){
             fscanf(f,"%d-%d-%d-%d-%[^\n]\n",
-                    (*horarios)[i].ID_prof,
-                    (*horarios)[i].dia_clase,
-                    (*horarios)[i].hora_clase,
-                    (*horarios)[i].ID_materia,
+                    &(*horarios)[i].ID_prof,
+                    &(*horarios)[i].dia_clase,
+                    &(*horarios)[i].hora_clase,
+                    &(*horarios)[i].ID_materia,
                     (*horarios)[i].grupo);
-                    printf("hola");}
+                    }
         fclose(f);}
     else{
         printf("Error al abrir el fichero Productos.txt\n");

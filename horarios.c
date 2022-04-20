@@ -100,7 +100,7 @@ void cambia_hora(int pos_horari,horari *horarios){
             printf("Indique la hora del dia a la que quiere cambiar la clase \n");
             scanf("%d",&hora);
             }while(hora<1 || hora>6);
-        if(busca_hora(hora,dia,horarios[i].ID_prof,horarios)==-1)
+        if(busca_hora(hora,dia,horarios[pos_horari].ID_prof,horarios)==-1)
                 iterador=1;
 
         else{
@@ -113,8 +113,8 @@ void cambia_hora(int pos_horari,horari *horarios){
                 return;
         }
     }while(iterador==0);
-    horarios[i].dia_clase=dia;
-    horarios[i].hora_clase=hora;
+    horarios[pos_horari].dia_clase=dia;
+    horarios[pos_horari].hora_clase=hora;
 }
 
 /* Cabecera: void modificar_hora(int ID_pro, int *M, int B,horari *horarios,r_alum *alum,usuario *usuar,materia *mater)
@@ -211,8 +211,9 @@ return -1;
 /* Cabecera: void aniadir_hora(int ID_pro, int B,horari *horarios,r_alum *alum,usuario *usuar,materia *mater)
    Precondicion: Le debe llegar la ID de un profesor
    Postcondicion: Le deja aniadir a un admin una clase a un profesor siempre que el hueco elegido este libre */
-void aniadir_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
-    int a, b,i,l=0,c;
+void aniadir_hora(horari *horarios,r_alum *alum,materia *mater,char ID_pro[]){
+    int a, b,i,busca=0,c,cont;
+    char id_ma[5], grupo[10];
     do{
         printf("Introduzca el dia de la semana en que quiere aniadir la clase \n El numero debera ser del 1-5 donde sera lunes, martes, miercoles, jueves y viernes, respectivamente");
         scanf("%i",&a);
@@ -223,12 +224,9 @@ void aniadir_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_p
         scanf("%i",&b);
     }while(b<1 || b>6);
 
-    for(i=0;i<tam_horari;i++){
-        if(horarios[i].ID_prof==(int)strtol(ID_pro,NULL,10) && horarios[i].dia_clase==a && horarios[i].hora_clase==b)
-            l=0;
-        }
+    busca=busca_hora(b,a,(int)strtol(ID_pro,NULL,10),horarios);
 
-    if(l==0){
+    if(busca!=-1){
         printf("El profesor %s ya tiene clase el dia %i en la hora numero %i \n", ID_pro, a, b);
         do{
             printf("ÀDesea modificarla, introducir otros parametros o desea salir?. Introduce 1 para lo primero, 2 para lo segundo o 3 para lo tercero\n");
@@ -237,24 +235,43 @@ void aniadir_hora(int pos,horari *horarios,r_alum *alum,materia *mater,char ID_p
         switch(c){
             case 1: modificar_hora(horarios,alum,mater,ID_pro);
                     break;
-            case 2: aniadir_hora(pos,horarios,alum,mater,ID_pro);
+            case 2: aniadir_hora(horarios,alum,mater,ID_pro);
                     break;
             case 3: return;
                     break;
             }
     }
     else{
-        horarios=(horari*)realloc(horarios,sizeof(horari)*(tam_horari+1));           //Preguntar sobre el realloc
+        do{
+            printf("Introduce el ID de una materia valida \n");
+            scanf("%s",id_ma);
+            for(i=0;i<tam_mat;i++){
+                if(strcmp(mater[i].id,id_ma)==0){cont=0;}
+            }
+            }while(cont!=0);
+        do{
+            cont=1;
+            printf("Introduce un Grupo valido \n");
+            scanf("%s",grupo);
+            for(i=0;i<tam_alum;i++){
+                if(strcmp(alum[i].Grupo,grupo)==0){cont=0;}
+            }
+            }while(cont!=0);
+        horarios=(horari*)realloc(horarios,sizeof(horari)*(tam_horari+1));
+        tam_horari++;
         horarios[tam_horari-1].dia_clase=a;
         horarios[tam_horari-1].hora_clase=b;
-        horarios[tam_horari-1].ID_prof=ID_pro;}
+        horarios[tam_horari-1].ID_prof=(int)strtol(ID_pro,NULL,10);
+        strcpy(horarios[tam_horari-1].grupo,grupo);
+        horarios[tam_horari-1].ID_materia=(int)strtol(id_ma,NULL,10);
+        Guardar_Horarios(&horarios);
+    }
 }
-
 /* Cabecera: void eliminar_hora(int ID_pro, int B,horari *horarios)
    Precondicion: Le debe llegar la ID de un profesor
    Postcondicion: Le permite al admin eliminar una clase a un profesor */
 
-void eliminar_hora(int pos,horari *horarios,char ID_pro[]){
+void eliminar_hora(horari *horarios,char ID_pro[]){
     int dia,hora,busca,j,i;
     do{
         printf("Introduzca la hora \n");
@@ -266,7 +283,7 @@ void eliminar_hora(int pos,horari *horarios,char ID_pro[]){
         scanf("%i",&dia);
     }while(dia<1 || dia>5);
 
-    busca=busca_hora(hora,dia,ID_pro,horarios);
+    busca=busca_hora(hora,dia,strtol(ID_pro,NULL,10),horarios);
 
     if(busca==-1){
         do{
@@ -278,16 +295,18 @@ void eliminar_hora(int pos,horari *horarios,char ID_pro[]){
             return;
 
         else
-            eliminar_hora(pos,horarios,ID_pro);
+            eliminar_hora(horarios,ID_pro);
 
         }
     else{
-        for(i=pos;i<(tam_horari-1);i++){
+        for(i=busca;i<(tam_horari-1);i++){
             horarios[i]=horarios[i+1];
         }
         horarios=realloc(horarios,sizeof(horari)*(tam_horari-1));
         printf("Eliminado con exito \n");
         printf("Volveras al anterior menu \n");
+        tam_horari--;
+        Guardar_Horarios(&horarios);
     }
 }
 
@@ -310,7 +329,7 @@ void admin_hora(horari *horarios,r_alum *alum,usuario *usuar,materia *mater){
     printf("######################################################################################\n");
     int a=0,id;
     int i;
-    char ip[4];
+    char ip[3];
     printf("Bienvenido a la opcion de horarios \n");
     do{
         printf("\nEn esta opcion, usted puede:\n 1.Modificar un horario ya existente.\n \n");
