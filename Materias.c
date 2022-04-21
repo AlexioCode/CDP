@@ -131,7 +131,7 @@ void cambiar_nombre_mat(materia *p){
     {
         if((p+i)->nombre == nuevo_nombre)
         {
-        strcpy((p+i)->id, nuevo_nombre);    
+        strcpy((p+i)->nombre, nuevo_nombre);    
         }
         i++;
     }
