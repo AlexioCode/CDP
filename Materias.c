@@ -112,9 +112,12 @@ void cambiar_id_mat(materia *p){
     char nuevo_id[4];
     puts("Introduce nuevo id (max/4)");
     gets(nuevo_id);
-    while ((p+i)->id == nuevo_id && i<5)
+    while (i<5)
     {
+        if ((p+i)->id == nuevo_id)
+        {
         strcpy((p+i)->id, nuevo_id);
+        }
         i++;
     }
 }
@@ -124,9 +127,12 @@ void cambiar_nombre_mat(materia *p){
     char nuevo_nombre[50];
     puts("Introduce nuevo nombre (max/50)");
     gets(nuevo_nombre);
-    while ((p+i)->nombre == nuevo_nombre && i<51)
+    while (i<51)
     {
-        strcpy((p+i)->id, nuevo_nombre);
+        if((p+i)->nombre == nuevo_nombre)
+        {
+        strcpy((p+i)->id, nuevo_nombre);    
+        }
         i++;
     }
 }
@@ -136,9 +142,12 @@ void cambiar_siglas_mat(materia *p){
     char nuevo_siglas[3];
     puts("Introduce nuevas siglas (max/3)");
     gets(nuevo_siglas);
-    while ((p+i)->siglas == nuevo_siglas && i<4)
+    while (i<4)
     {
-        strcpy((p+i)->siglas, nuevo_siglas);
+        if((p+i)->siglas == nuevo_siglas)
+        {
+        strcpy((p+i)->siglas, nuevo_siglas);    
+        }
         i++;
     }
 }
