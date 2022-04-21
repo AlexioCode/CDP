@@ -179,7 +179,7 @@ void baja_usuario(usuario ** pv_usuarios, char * id)
     int n_usuario = 0;
     int encontrado = 0;
 
-    while((encontrado == 0) || (n_usuario < num_usuarios))  //buscar el n_usuario con ese id
+    while((encontrado == 0) && (n_usuario < num_usuarios))  //buscar el n_usuario con ese id
     {
         if (strcmp(id, (*pv_usuarios)[n_usuario].Id_usuario) == 0)
             encontrado = 1;
