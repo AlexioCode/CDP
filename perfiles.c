@@ -40,7 +40,7 @@ void perfil_profesor(char * id_prof, r_alum ** alumnos, calificaciones ** v_cali
                             perfil_profesor(id_prof, alumnos, v_calif, v_fechas, materias, v_matriculas, pv_usuarios);
                 }
             strcpy(grupo, (*v_fechas)[pos_grupo].grupo);
-            itoa((*v_fechas)[pos_grupo].ID_materia, Id_materia,10);
+            strcpy((*v_fechas)[pos_grupo].ID_materia, Id_materia);
             strcpy(siglas_materia, id_siglas_materia(materias, Id_materia));
 
             printf("\nMenu:\nGRUPO %s MATERIA %s\n--------------\n"
